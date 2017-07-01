@@ -1,0 +1,24 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "args": [],
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "start",
+            "args": ["fable", "npm-run", "start"],
+            "isBuildCommand": true,
+            "problemMatcher": "$fable-webpack",
+            "isBackground": true
+        },
+        {
+            "taskName": "build",
+            "args": ["fable", "npm-run", "build"],
+            "problemMatcher": "$fable-webpack",
+            "isBackground": false
+        }
+    ]
+}
