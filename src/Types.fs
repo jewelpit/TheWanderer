@@ -1,13 +1,7 @@
-module App.Types
+module Wanderer.Types
 
-open Global
+type Model =
+    | GameStart
 
-type Msg =
-  | CounterMsg of Counter.Types.Msg
-  | HomeMsg of Home.Types.Msg
-
-type Model = {
-    currentPage: Page
-    counter: Counter.Types.Model
-    home: Home.Types.Model
-  }
+type Message =
+    | DoNothing
