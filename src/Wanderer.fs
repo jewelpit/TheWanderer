@@ -5,18 +5,23 @@ open Elmish.Debug
 open Elmish.React
 open Fable.Core.JsInterop
 
-open Wanderer.Types
-
 importAll "../css/main.css"
 
+type Model =
+    | CharacterCreation
+
+type Message =
+    DoNothing
+
 let init () =
-    GameStart
+    CharacterCreation
 
 let update (msg : Message) model =
-    GameStart
+    CharacterCreation
 
 let view model dispatch =
-    Fable.Helpers.React.div [] [Fable.Helpers.React.str "The Wanderer"]
+    match model with
+    | CharacterCreation -> CharacterCreation.View.view dispatch
 
 // App
 Program.mkSimple init update view
