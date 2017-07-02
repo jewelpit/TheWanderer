@@ -1,13 +1,21 @@
-module Wanderer.CharacterCreation.View
+module Wanderer.CharacterCreation
 
 open Elmish
 open Fable.Core.JsInterop
 
-open Wanderer.CharacterCreation.Types
 open Wanderer.ViewHelpers
 
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
+
+type InProgressCharacter = {
+    Might : int
+    Will : int
+    Persuasion : int
+    Combat : int
+    Ritual : int
+    Sneaking : int
+}
 
 let view character dispatch =
     R.p [] [
