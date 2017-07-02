@@ -5,23 +5,25 @@ open Elmish.Debug
 open Elmish.React
 open Fable.Core.JsInterop
 
+open Wanderer.CharacterCreation.Types
+
 importAll "../css/main.css"
 
 type Model =
-    | CharacterCreation
+    | CharacterCreation of InProgressCharacter
 
 type Message =
     DoNothing
 
 let init () =
-    CharacterCreation
+    CharacterCreation { Might = 3; Will = 3; Persuasion = 3; Combat = 3; Ritual = 3; Sneaking = 3 }
 
 let update (msg : Message) model =
-    CharacterCreation
+    model
 
 let view model dispatch =
     match model with
-    | CharacterCreation -> CharacterCreation.View.view dispatch
+    | CharacterCreation character -> CharacterCreation.View.view character dispatch
 
 // App
 Program.mkSimple init update view
