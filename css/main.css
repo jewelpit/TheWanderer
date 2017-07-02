@@ -3,6 +3,14 @@ body {
     font-family: Verdana, Geneva, sans-serif
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Abel"
+}
+
+select {
+    margin-left: 0.5em;
+}
+
 .container {
     background-color: antiquewhite;
     border: 2px solid gray;
@@ -10,8 +18,4 @@ body {
     margin: auto;
     max-width: 1200px;
     padding: 1em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Abel"
 }
