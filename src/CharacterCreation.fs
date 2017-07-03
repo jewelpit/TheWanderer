@@ -11,15 +11,9 @@ open Wanderer.ViewHelpers
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
-[<Emit("$0.options[$0.selectedIndex].value")>]
-let private getSelectedValue (srcElement : Element) : string = jsNative
-
 let private updateHighSkill skill fallbackSkill character =
     let newLowSkill = if character.LowSkill <> skill then character.LowSkill else fallbackSkill
     { character with HighSkill = skill; LowSkill = newLowSkill }
-
-let private makeValueOption value text selected =
-    R.option [P.Value <| U2.Case1 value; P.Selected selected] [R.str text]
 
 let view (character : InProgressCharacter) dispatch =
     R.div [] [
