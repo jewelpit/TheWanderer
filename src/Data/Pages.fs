@@ -16,7 +16,7 @@ let pages =
                 fun dispatch state ->
                    R.div [] [
                        R.str "Welcome to this \"bad\"venture! There is a "
-                       Rearkip dispatch
+                       Etzeznalt dispatch
                        R.str " behind you!"
                    ]
             Continuations = [{ Description = R.str "Go east"; NextPageName = "end" }]
