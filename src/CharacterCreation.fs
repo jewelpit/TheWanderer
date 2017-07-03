@@ -14,6 +14,13 @@ module P = Fable.Helpers.React.Props
 [<Emit("$0.options[$0.selectedIndex].value")>]
 let private getSelectedValue (srcElement : Element) : string = jsNative
 
+let private updateHighSkill skill fallbackSkill character =
+    let newLowSkill = if character.LowSkill <> skill then character.LowSkill else fallbackSkill
+    { character with HighSkill = skill; LowSkill = newLowSkill }
+
+let private makeValueOption value text selected =
+    R.option [P.Value <| U2.Case1 value; P.Selected selected] [R.str text]
+
 let view character dispatch =
     R.div [] [
         R.h1 [] [R.str "The Wanderer"]
@@ -49,17 +56,13 @@ let view character dispatch =
                     let idx : int = unbox e.nativeEvent.srcElement?selectedIndex
                     match idx with
                     | 0 ->
-                        let newLowSkill = if character.LowSkill <> Persuasion then character.LowSkill else Combat
-                        { character with HighSkill = Persuasion; LowSkill = newLowSkill }
+                        updateHighSkill Persuasion Combat character
                     | 1 ->
-                        let newLowSkill = if character.LowSkill <> Combat then character.LowSkill else Persuasion
-                        { character with HighSkill = Combat; LowSkill = newLowSkill }
+                        updateHighSkill Combat Persuasion character
                     | 2 ->
-                        let newLowSkill = if character.LowSkill <> Ritual then character.LowSkill else Persuasion
-                        { character with HighSkill = Ritual; LowSkill = newLowSkill }
+                        updateHighSkill Ritual Persuasion character
                     | 3 ->
-                        let newLowSkill = if character.LowSkill <> Sneaking then character.LowSkill else Persuasion
-                        { character with HighSkill = Sneaking; LowSkill = newLowSkill }
+                        updateHighSkill Sneaking Persuasion character
                     | i ->
                         printfn "Could not recognive index %d" i
                         character
@@ -87,13 +90,13 @@ let view character dispatch =
                     |> dispatch)]
                 [
                     if character.HighSkill <> Persuasion then
-                        yield R.option [P.Value <| U2.Case1 "persuasion"] [R.str "talking to people"]
+                        yield makeValueOption "persuasion" "talking to people" (character.LowSkill = Persuasion)
                     if character.HighSkill <> Combat then
-                        yield R.option [P.Value <| U2.Case1 "combat"] [R.str "fighting"]
+                        yield makeValueOption "combat" "fighting" (character.LowSkill = Combat)
                     if character.HighSkill <> Ritual then
-                        yield R.option [P.Value <| U2.Case1 "ritual"] [R.str "using magic"]
+                        yield makeValueOption "ritual" "using magic" (character.LowSkill = Ritual)
                     if character.HighSkill <> Sneaking then
-                        yield R.option [P.Value <| U2.Case1 "sneaking"] [R.str "athletics"]
+                        yield makeValueOption "sneaking" "athletics" (character.LowSkill = Sneaking)
                 ]
         ]
         R.h3 [] [R.str "With these choices, Pompeia will have the following stats:"]
