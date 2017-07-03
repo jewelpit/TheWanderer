@@ -25,12 +25,12 @@ let update (msg : Message) model =
             Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
             Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
         }
-        |> ActiveGame
+        |> fun c -> ActiveGame (c, Data.pages.["start"])
 
 let view model dispatch =
     match model with
     | CharacterCreation character -> CharacterCreation.view character dispatch
-    | ActiveGame character -> ActiveGame.view character dispatch
+    | ActiveGame (character, page) -> ActiveGame.view (character, page) dispatch
 
 // App
 Program.mkSimple init update view
