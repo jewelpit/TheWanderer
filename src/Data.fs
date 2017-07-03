@@ -18,7 +18,7 @@ let pages =
         {
             Name = "start"
             Text = "Welcome to this \"bad\"venture!"
-            Continuations = [{ Description = R.str "Go east"; NextPageName = "end2" }]
+            Continuations = [{ Description = R.str "Go east"; NextPageName = "end" }]
         }
         {
             Name = "end"

@@ -12,7 +12,9 @@ open Wanderer.ViewHelpers
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
-let view (character, page) dispatch =
+let view (gameState : ActiveGameState) dispatch =
+    let character = gameState.Character
+    let page = gameState.Page
     R.div [P.Style [P.Display "flex"]] [
         R.table [] [
             R.tbody [] [
