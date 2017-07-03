@@ -1,12 +1,16 @@
 module Wanderer.Model
 
+type Skill =
+    | Persuasion
+    | Combat
+    | Ritual
+    | Sneaking
+
 type InProgressCharacter = {
     Might : int
     Will : int
-    Persuasion : int
-    Combat : int
-    Ritual : int
-    Sneaking : int
+    HighSkill : Skill
+    LowSkill : Skill
 }
 
 type Model =
