@@ -5,6 +5,7 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import.Browser
 
+open Wanderer.Modals
 open Wanderer.Model
 open Wanderer.ViewHelpers
 
@@ -23,10 +24,11 @@ let view (character : InProgressCharacter) dispatch =
             of your purse, I will keep talking.
             """
         R.p [] [
-            R.str """
-                To other humans, my name is Pompeia.  To your kind, I am known only as wanderer.  I have traveled far over
-                these lands, and
-                """
+            R.str "To other "
+            humans "humans" dispatch
+            R.str ", my name is Pompeia.  To "
+            etzeznalt "your kind" dispatch
+            R.str ", I am known only as wanderer.  I have traveled far over these lands, and "
             R.select
                 [P.OnChange (fun e ->
                     let idx : int = unbox e.nativeEvent.srcElement?selectedIndex

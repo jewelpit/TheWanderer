@@ -46,14 +46,17 @@ let view (gameState : ActiveGameState) dispatch =
             ]
         ]
         R.div [P.ClassName "verticalDivider"] []
-        R.div [P.ClassName "storyArea"] [
-            R.p [] [page.Text dispatch gameState]
-            R.ul [] [
-                for cont in page.Continuations do
-                    yield R.li [] [
-                        cont.Description
-                        R.br []
-                        R.button [P.OnClick (fun _ -> dispatch (Flip cont.NextPageName))] [R.str "Choose"]]
+        R.div [] [
+            R.h1 [] [R.str "The Wanderer"]
+            R.div [P.ClassName "storyArea"] [
+                R.p [] [page.Text dispatch gameState]
+                R.ul [] [
+                    for cont in page.Continuations do
+                        yield R.li [] [
+                            cont.Description
+                            R.br []
+                            R.button [P.OnClick (fun _ -> dispatch (Flip cont.NextPageName))] [R.str "Choose"]]
+                ]
             ]
         ]
     ]
