@@ -3,9 +3,11 @@
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src/Data.fs" />
     <Compile Include="src/Model.fs" />
     <Compile Include="src/Views/ViewHelpers.fs" />
+    <Compile Include="src/Data/Modals.fs" />
+    <Compile Include="src/Data/Pages.fs" />
+    <Compile Include="src/Views/Modal.fs" />
     <Compile Include="src/Views/SplashScreen.fs" />
     <Compile Include="src/Views/CharacterCreation.fs" />
     <Compile Include="src/Views/ActiveGame.fs" />

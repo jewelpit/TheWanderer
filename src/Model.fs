@@ -1,6 +1,17 @@
-module Wanderer.Model
+module rec Wanderer.Model
 
-open Wanderer.Data
+open Fable.Import.React
+
+type Continuation = {
+    Description : ReactElement
+    NextPageName : string
+}
+
+type Page = {
+    Name : string
+    Text : (Message -> unit) -> ActiveGameState -> ReactElement
+    Continuations : Continuation list
+}
 
 type Skill =
     | Persuasion
@@ -34,14 +45,17 @@ type SavedGameState = {
     PageName : string
 }
 
-type Model =
-    | SplashScreen
-    | CharacterCreation of InProgressCharacter
-    | ActiveGame of ActiveGameState
-
 type Message =
     | StartCharacterCreation
     | UpdateCharacter of InProgressCharacter
     | StartGame
     | LoadGame of ActiveGameState
     | Flip of string
+    | ShowModal of string * ReactElement
+    | CloseModal
+
+type Model =
+    | SplashScreen
+    | CharacterCreation of InProgressCharacter
+    | ActiveGame of ActiveGameState
+    | Modal of string * ReactElement * Model
