@@ -31,7 +31,7 @@ let saveGame (state : ActiveGameState) =
 let init () =
     SplashScreen
 
-let update (msg : Message) model =
+let rec update (msg : Message) model =
     let newModel =
         match msg, model with
         | (StartCharacterCreation, SplashScreen) ->
@@ -55,6 +55,10 @@ let update (msg : Message) model =
             | None ->
                 printfn "Could not find page %s" pageName
                 model
+        | (ShowModal (title, content), m) ->
+            Modal (title, content, m)
+        | (CloseModal, Modal (_, _, innerModel)) ->
+            innerModel
         | tup ->
             printfn "Could not understand %A" tup
             model
@@ -63,11 +67,14 @@ let update (msg : Message) model =
     | _ -> ()
     newModel
 
-let view model dispatch =
+let rec view model dispatch =
     match model with
     | SplashScreen -> SplashScreen.view (loadGame ()) dispatch
     | CharacterCreation character -> CharacterCreation.view character dispatch
     | ActiveGame gameState -> ActiveGame.view gameState dispatch
+    | Modal (title, contents, m) ->
+        let innerElements = view m dispatch
+        Modal.view (title, contents) innerElements dispatch
 
 // App
 Program.mkSimple init update view

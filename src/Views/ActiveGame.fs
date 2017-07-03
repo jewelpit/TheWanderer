@@ -47,7 +47,7 @@ let view (gameState : ActiveGameState) dispatch =
         ]
         R.div [P.ClassName "verticalDivider"] []
         R.div [P.ClassName "storyArea"] [
-            R.p [] [R.str page.Text]
+            R.p [] [page.Text dispatch gameState]
             R.ul [] [
                 for cont in page.Continuations do
                     yield R.li [] [
