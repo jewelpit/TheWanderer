@@ -18,7 +18,7 @@ let pages =
         {
             Name = "start"
             Text = "Welcome to this \"bad\"venture!"
-            Continuations = [{ Description = R.str "Go east"; NextPageName = "end" }]
+            Continuations = [{ Description = R.str "Go east"; NextPageName = "end2" }]
         }
         {
             Name = "end"
@@ -28,3 +28,8 @@ let pages =
     ]
     |> List.map (fun p -> (p.Name, p))
     |> Map.ofList
+
+for kvp in pages do
+    for continuation in kvp.Value.Continuations do
+        if not (Map.containsKey continuation.NextPageName pages) then
+            printfn "Room %A has an invalid contination: %s" kvp.Value continuation.NextPageName
