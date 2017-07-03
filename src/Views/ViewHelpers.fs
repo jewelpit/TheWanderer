@@ -8,6 +8,9 @@ open Fable.Import.Browser
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
+/// Href that goes to nowhere (for custom clickable text).
+let Nowhere = P.Href "javascript:;"
+
 /// Wraps a string in a <p> tag.
 let para text =
     R.p [] [R.str text]
