@@ -3,6 +3,7 @@
     <TargetFramework>netstandard1.6</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="src/Model.fs" />
     <Compile Include="src/ViewHelpers.fs" />
     <Compile Include="src/CharacterCreation.fs" />
     <Compile Include="src/Wanderer.fs" />
