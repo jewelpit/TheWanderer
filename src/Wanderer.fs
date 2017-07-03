@@ -14,9 +14,9 @@ let init () =
     CharacterCreation { Might = 3; Will = 3; HighSkill = Persuasion; LowSkill = Combat }
 
 let update (msg : Message) model =
-    match msg with
-    | UpdateCharacter ipc -> CharacterCreation ipc
-    | StartGame ipc ->
+    match msg, model with
+    | (UpdateCharacter ipc, CharacterCreation _) -> CharacterCreation ipc
+    | (StartGame, CharacterCreation ipc) ->
         {
             Might = ipc.Might
             Will = ipc.Will
@@ -26,6 +26,15 @@ let update (msg : Message) model =
             Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
         }
         |> fun c -> ActiveGame (c, Data.pages.["start"])
+    | (Flip pageName, ActiveGame (character, page)) ->
+        match Map.tryFind pageName Data.pages with
+        | Some p -> ActiveGame (character, p)
+        | None ->
+            printfn "Could not find page %s" pageName
+            model
+    | tup ->
+        printfn "Could not understand %A" tup
+        model
 
 let view model dispatch =
     match model with

@@ -15,4 +15,11 @@ module P = Fable.Helpers.React.Props
 let view (character, page) dispatch =
     R.div [] [
         R.p [] [R.str page.Text]
+        R.ul [] [
+            for cont in page.Continuations do
+                yield R.li [] [
+                    cont.Description
+                    R.br []
+                    R.button [P.OnClick (fun _ -> dispatch (Flip cont.NextPageName))] [R.str "Choose"]]
+        ]
     ]
