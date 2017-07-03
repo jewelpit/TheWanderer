@@ -5,9 +5,10 @@
   <ItemGroup>
     <Compile Include="src/Data.fs" />
     <Compile Include="src/Model.fs" />
-    <Compile Include="src/ViewHelpers.fs" />
-    <Compile Include="src/CharacterCreation.fs" />
-    <Compile Include="src/ActiveGame.fs" />
+    <Compile Include="src/Views/ViewHelpers.fs" />
+    <Compile Include="src/Views/SplashScreen.fs" />
+    <Compile Include="src/Views/CharacterCreation.fs" />
+    <Compile Include="src/Views/ActiveGame.fs" />
     <Compile Include="src/Wanderer.fs" />
   </ItemGroup>
   <ItemGroup>
