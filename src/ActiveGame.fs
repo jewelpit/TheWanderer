@@ -13,4 +13,6 @@ module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
 let view (character, page) dispatch =
-    R.p [] [R.str page.Text]
+    R.div [] [
+        R.p [] [R.str page.Text]
+    ]
