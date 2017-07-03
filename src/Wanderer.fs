@@ -30,7 +30,7 @@ let update (msg : Message) model =
 let view model dispatch =
     match model with
     | CharacterCreation character -> CharacterCreation.view character dispatch
-    | ActiveGame character -> Fable.Helpers.React.p [] [Fable.Helpers.React.str <| sprintf "%A" character]
+    | ActiveGame character -> ActiveGame.view character dispatch
 
 // App
 Program.mkSimple init update view
