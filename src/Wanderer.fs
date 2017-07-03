@@ -11,7 +11,7 @@ open Wanderer.Model
 importAll "../css/main.css"
 
 let init () =
-    CharacterCreation { Might = 3; Will = 3; Persuasion = 3; Combat = 3; Ritual = 3; Sneaking = 3 }
+    CharacterCreation { Might = 3; Will = 3; HighSkill = Persuasion; LowSkill = Combat }
 
 let update (msg : Message) model =
     match msg with

@@ -1,13 +1,18 @@
 module Wanderer.CharacterCreation
 
 open Elmish
+open Fable.Core
 open Fable.Core.JsInterop
+open Fable.Import.Browser
 
 open Wanderer.Model
 open Wanderer.ViewHelpers
 
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
+
+[<Emit("$0.options[$0.selectedIndex].value")>]
+let private getSelectedValue (srcElement : Element) : string = jsNative
 
 let view character dispatch =
     R.div [] [
@@ -43,10 +48,18 @@ let view character dispatch =
                 [P.OnChange (fun e ->
                     let idx : int = unbox e.nativeEvent.srcElement?selectedIndex
                     match idx with
-                    | 0 -> { character with Persuasion = 4 }
-                    | 1 -> { character with Combat = 4 }
-                    | 2 -> { character with Ritual = 4 }
-                    | 3 -> { character with Sneaking = 4 }
+                    | 0 ->
+                        let newLowSkill = if character.LowSkill <> Persuasion then character.LowSkill else Combat
+                        { character with HighSkill = Persuasion; LowSkill = newLowSkill }
+                    | 1 ->
+                        let newLowSkill = if character.LowSkill <> Combat then character.LowSkill else Persuasion
+                        { character with HighSkill = Combat; LowSkill = newLowSkill }
+                    | 2 ->
+                        let newLowSkill = if character.LowSkill <> Ritual then character.LowSkill else Persuasion
+                        { character with HighSkill = Ritual; LowSkill = newLowSkill }
+                    | 3 ->
+                        let newLowSkill = if character.LowSkill <> Sneaking then character.LowSkill else Persuasion
+                        { character with HighSkill = Sneaking; LowSkill = newLowSkill }
                     | i ->
                         printfn "Could not recognive index %d" i
                         character
@@ -61,22 +74,26 @@ let view character dispatch =
             R.str ". My greatest weakness is my low skill at "
             R.select
                 [P.OnChange (fun e ->
-                    let idx : int = unbox e.nativeEvent.srcElement?selectedIndex
-                    match idx with
-                    | 0 -> { character with Persuasion = 2 }
-                    | 1 -> { character with Combat = 2 }
-                    | 2 -> { character with Ritual = 2 }
-                    | 3 -> { character with Sneaking = 2 }
-                    | i ->
-                        printfn "Could not recognive index %d" i
+                    let value = getSelectedValue e.nativeEvent.srcElement
+                    match value with
+                    | "persuasion" -> { character with LowSkill = Persuasion }
+                    | "combat" -> { character with LowSkill = Combat }
+                    | "ritual" -> { character with LowSkill = Ritual }
+                    | "sneaking" -> { character with LowSkill = Sneaking }
+                    | s ->
+                        printfn "Could not recognive value %s" s
                         character
                     |> Model.UpdateCharacter
                     |> dispatch)]
                 [
-                    R.option [] [R.str "talking to people"]
-                    R.option [] [R.str "fighting"]
-                    R.option [] [R.str "using magic"]
-                    R.option [] [R.str "athletics"]
+                    if character.HighSkill <> Persuasion then
+                        yield R.option [P.Value <| U2.Case1 "persuasion"] [R.str "talking to people"]
+                    if character.HighSkill <> Combat then
+                        yield R.option [P.Value <| U2.Case1 "combat"] [R.str "fighting"]
+                    if character.HighSkill <> Ritual then
+                        yield R.option [P.Value <| U2.Case1 "ritual"] [R.str "using magic"]
+                    if character.HighSkill <> Sneaking then
+                        yield R.option [P.Value <| U2.Case1 "sneaking"] [R.str "athletics"]
                 ]
         ]
         R.h3 [] [R.str "With these choices, Pompeia will have the following stats:"]
@@ -93,19 +110,35 @@ let view character dispatch =
                 R.tr [] [R.td [P.ColSpan 2.] [R.hr []]]
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Persuasion"]
-                    R.td [] [R.str <| string character.Persuasion]
+                    R.td [] [
+                        if character.HighSkill = Persuasion then 4 else if character.LowSkill = Persuasion then 2 else 3
+                        |> string
+                        |> R.str
+                    ]
                 ]
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Combat"]
-                    R.td [] [R.str <| string character.Combat]
+                    R.td [] [
+                        if character.HighSkill = Combat then 4 else if character.LowSkill = Combat then 2 else 3
+                        |> string
+                        |> R.str
+                    ]
                 ]
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Ritual"]
-                    R.td [] [R.str <| string character.Ritual]
+                    R.td [] [
+                        if character.HighSkill = Ritual then 4 else if character.LowSkill = Ritual then 2 else 3
+                        |> string
+                        |> R.str
+                    ]
                 ]
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Sneaking"]
-                    R.td [] [R.str <| string character.Sneaking]
+                    R.td [] [
+                        if character.HighSkill = Sneaking then 4 else if character.LowSkill = Sneaking then 2 else 3
+                        |> string
+                        |> R.str
+                    ]
                 ]
             ]
         ]
