@@ -24,9 +24,19 @@ type Character = {
     Sneaking : int
 }
 
+type ActiveGameState = {
+    Character : Character
+    Page : Page
+}
+
+type SavedGameState = {
+    Character : Character
+    PageName : string
+}
+
 type Model =
     | CharacterCreation of InProgressCharacter
-    | ActiveGame of (Character * Page)
+    | ActiveGame of ActiveGameState
 
 type Message =
     | UpdateCharacter of InProgressCharacter
