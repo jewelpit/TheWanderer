@@ -29,13 +29,15 @@ let saveGame (state : ActiveGameState) =
     window.localStorage.setItem("savedGame", toJson savedState)
 
 let init () =
-    match loadGame () with
-    | None -> CharacterCreation { Might = 3; Will = 3; HighSkill = Persuasion; LowSkill = Combat }
-    | Some gameState -> ActiveGame gameState
+    SplashScreen
 
 let update (msg : Message) model =
     let newModel =
         match msg, model with
+        | (StartCharacterCreation, SplashScreen) ->
+            CharacterCreation { Might = 3; Will = 3; HighSkill = Persuasion; LowSkill = Combat }
+        | (LoadGame state, SplashScreen) ->
+            ActiveGame state
         | (UpdateCharacter ipc, CharacterCreation _) -> CharacterCreation ipc
         | (StartGame, CharacterCreation ipc) ->
             {
@@ -63,6 +65,7 @@ let update (msg : Message) model =
 
 let view model dispatch =
     match model with
+    | SplashScreen -> SplashScreen.view (loadGame ()) dispatch
     | CharacterCreation character -> CharacterCreation.view character dispatch
     | ActiveGame gameState -> ActiveGame.view gameState dispatch
 

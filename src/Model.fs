@@ -35,10 +35,13 @@ type SavedGameState = {
 }
 
 type Model =
+    | SplashScreen
     | CharacterCreation of InProgressCharacter
     | ActiveGame of ActiveGameState
 
 type Message =
+    | StartCharacterCreation
     | UpdateCharacter of InProgressCharacter
     | StartGame
+    | LoadGame of ActiveGameState
     | Flip of string
