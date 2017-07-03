@@ -13,8 +13,19 @@ type InProgressCharacter = {
     LowSkill : Skill
 }
 
+type Character = {
+    Might : int
+    Will : int
+    Persuasion : int
+    Combat : int
+    Ritual : int
+    Sneaking : int
+}
+
 type Model =
     | CharacterCreation of InProgressCharacter
+    | ActiveGame of Character
 
 type Message =
     | UpdateCharacter of InProgressCharacter
+    | StartGame of InProgressCharacter

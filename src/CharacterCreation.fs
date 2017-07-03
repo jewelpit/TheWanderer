@@ -21,7 +21,7 @@ let private updateHighSkill skill fallbackSkill character =
 let private makeValueOption value text selected =
     R.option [P.Value <| U2.Case1 value; P.Selected selected] [R.str text]
 
-let view character dispatch =
+let view (character : InProgressCharacter) dispatch =
     R.div [] [
         R.h1 [] [R.str "The Wanderer"]
         para """
@@ -145,4 +145,6 @@ let view character dispatch =
                 ]
             ]
         ]
+        R.hr []
+        R.button [P.OnClick (fun _ -> dispatch (StartGame character))] [R.str "I am ready to begin my tale..."]
     ]
