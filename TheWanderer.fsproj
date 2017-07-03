@@ -6,6 +6,7 @@
     <Compile Include="src/Model.fs" />
     <Compile Include="src/ViewHelpers.fs" />
     <Compile Include="src/CharacterCreation.fs" />
+    <Compile Include="src/ActiveGame.fs" />
     <Compile Include="src/Wanderer.fs" />
   </ItemGroup>
   <ItemGroup>
