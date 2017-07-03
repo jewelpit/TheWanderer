@@ -20,6 +20,11 @@ let pages =
             Text = "Welcome to this \"bad\"venture!"
             Continuations = [{ Description = R.str "Go east"; NextPageName = "end" }]
         }
+        {
+            Name = "end"
+            Text = "You beat the game!"
+            Continuations = []
+        }
     ]
     |> List.map (fun p -> (p.Name, p))
     |> Map.ofList

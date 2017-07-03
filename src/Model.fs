@@ -30,4 +30,5 @@ type Model =
 
 type Message =
     | UpdateCharacter of InProgressCharacter
-    | StartGame of InProgressCharacter
+    | StartGame
+    | Flip of string

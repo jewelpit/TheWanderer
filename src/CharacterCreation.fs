@@ -140,5 +140,5 @@ let view (character : InProgressCharacter) dispatch =
             ]
         ]
         R.hr []
-        R.button [P.OnClick (fun _ -> dispatch (StartGame character))] [R.str "I am ready to begin my tale..."]
+        R.button [P.OnClick (fun _ -> dispatch StartGame)] [R.str "I am ready to begin my tale..."]
     ]
