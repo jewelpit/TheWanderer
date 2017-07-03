@@ -7,15 +7,23 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Abel"
 }
 
-select {
-    margin-left: 0em;
-}
-
 .container {
     background-color: honeydew;
     border: 2px solid gray;
     border-radius: 8px;
     margin: auto;
+    max-height: 95%;
     max-width: 1200px;
     padding: 1em;
+}
+
+.storyArea {
+    overflow-y: auto
+}
+
+.verticalDivider {
+    background-color: gray;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: 2px;
 }
