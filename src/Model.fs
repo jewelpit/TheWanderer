@@ -1,5 +1,7 @@
 module Wanderer.Model
 
+open Wanderer.Data
+
 type Skill =
     | Persuasion
     | Combat
@@ -24,7 +26,7 @@ type Character = {
 
 type Model =
     | CharacterCreation of InProgressCharacter
-    | ActiveGame of Character
+    | ActiveGame of (Character * Page)
 
 type Message =
     | UpdateCharacter of InProgressCharacter
