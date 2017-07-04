@@ -14,6 +14,7 @@ type FailureEffect =
 type Condition =
     | Automatic
     | SkillCheckRequired of Attribute * Skill * int * FailureEffect
+    | Bribe of int
 
 type Continuation = {
     Description : ReactElement
@@ -57,6 +58,11 @@ let pages =
                         NextPageName = "middle2"
                         Condition = SkillCheckRequired (Might, Combat, 20, AttributeDamage)
                     }
+                    {
+                        Description = R.str "Go eastest, but pay"
+                        NextPageName = "middle2"
+                        Condition = Bribe 15
+                    }
                 ]
         }
         {
@@ -73,13 +79,13 @@ for kvp in pages do
         if not (Map.containsKey continuation.NextPageName pages) then
             printfn "Room %A has an invalid continuation: %s" kvp.Value continuation.NextPageName
         match continuation.Condition with
-        | Automatic -> ()
         | SkillCheckRequired (attr, skill, target, effect) ->
             match effect with
             | AlternateRoom name ->
-                if not (Map.containsKey name pages) then
+            if not (Map.containsKey name pages) then
                     printfn "Continuation %A has an invalid alternate room." continuation
             | AttributeDamage -> ()
+        | _ -> ()
     for part in List.collect Modals.parseLine kvp.Value.Text do
         match part with
         | Modals.Str _ -> ()
