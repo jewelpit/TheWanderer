@@ -25,17 +25,33 @@ let loadGame () =
             | None ->
                 printfn "Could not find page %s" savedGame.PageName
                 Pages.pages.["start"]
-        Some { Character = savedGame.Character; Page = page; History = savedGame.History; Flags = Set.empty }
+        Some {
+            Character = savedGame.Character
+            Page = page
+            History = savedGame.History
+            Flags = Set.ofList savedGame.Flags
+        }
 
 let saveGame (state : ActiveGameState) =
-    let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
+    let savedState =
+        {
+            Character = state.Character
+            PageName = state.Page.Name
+            History = state.History
+            Flags = List.ofSeq state.Flags
+        }
     window.localStorage.setItem("savedGame", toJson savedState)
 
 let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation) =
     let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
     let moveToPage pageName =
         match Map.tryFind pageName Pages.pages with
-        | Some p -> { gameState with Page = p; History = newHistory }
+        | Some p ->
+            let newFlags =
+                match p.SetFlags with
+                | [] -> gameState.Flags
+                | flags -> Set.union gameState.Flags (Set.ofList flags)
+            { gameState with Page = p; History = newHistory; Flags = newFlags }
         | None ->
             printfn "Could not find page %s" pageName
             gameState

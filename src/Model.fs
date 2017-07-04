@@ -53,6 +53,7 @@ type SavedGameState = {
     Character : Character
     PageName : string
     History : string list
+    Flags : string list
 }
 
 type Message =
