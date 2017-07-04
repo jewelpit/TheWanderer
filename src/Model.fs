@@ -20,6 +20,8 @@ type Character = {
     Combat : int
     Ritual : int
     Sneaking : int
+    Injuries : int
+    Stress : int
 }
 with
     static member GetAttr attr character =
