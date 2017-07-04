@@ -4,12 +4,7 @@ open Fable.Import.React
 
 open Wanderer.Modals
 open Wanderer.Pages
-
-type Skill =
-    | Persuasion
-    | Combat
-    | Ritual
-    | Sneaking
+open Wanderer.Skills
 
 type InProgressCharacter = {
     Might : int
@@ -45,6 +40,7 @@ type Message =
     | StartGame
     | LoadGame of ActiveGameState
     | Flip of string
+    | SkillFlip of Continuation
     | ShowModal of Modal
     | CloseModal
 
