@@ -30,11 +30,13 @@ type Character = {
 type ActiveGameState = {
     Character : Character
     Page : Page
+    History : string list
 }
 
 type SavedGameState = {
     Character : Character
     PageName : string
+    History : string list
 }
 
 type Message =

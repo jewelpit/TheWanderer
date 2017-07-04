@@ -22,10 +22,10 @@ let loadGame () =
             | None ->
                 printfn "Could not find page %s" savedGame.PageName
                 Pages.pages.["start"]
-        Some { Character = savedGame.Character; Page = page }
+        Some { Character = savedGame.Character; Page = page; History = savedGame.History }
 
 let saveGame (state : ActiveGameState) =
-    let savedState = { Character = state.Character; PageName = state.Page.Name }
+    let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
     window.localStorage.setItem("savedGame", toJson savedState)
 
 let init () =
@@ -48,10 +48,12 @@ let rec update (msg : Message) model =
                 Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
             }
-            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"] }
+            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
         | (Flip pageName, ActiveGame gameState) ->
             match Map.tryFind pageName Pages.pages with
-            | Some p -> ActiveGame { gameState with Page = p }
+            | Some p ->
+                let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
+                ActiveGame { gameState with Page = p; History = newHistory }
             | None ->
                 printfn "Could not find page %s" pageName
                 model

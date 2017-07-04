@@ -20,6 +20,14 @@ let showModalLinkByName modalName text dispatch =
     | Some modal ->
         showModalLink modal text dispatch
 
+let formatLine (text : string) dispatch =
+    parseLine text
+    |> List.map (fun part ->
+        match part with
+        | Str s -> R.str s
+        | Link link -> showModalLinkByName link.LinkName link.DisplayName dispatch)
+    |> R.div []
+
 let view modal innerElements dispatch =
     R.div [] [
         innerElements
