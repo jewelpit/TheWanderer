@@ -1,38 +1,32 @@
-module Wanderer.Data
+module Wanderer.Pages
 
 open Fable.Import.React
 
-open Wanderer.Modals
-open Wanderer.Model
-
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
+
+type Continuation = {
+    Description : ReactElement
+    NextPageName : string
+}
+
+type Page = {
+    Name : string
+    Text : string
+    Continuations : Continuation list
+}
 
 let pages =
     [
         {
             Name = "start"
-            Text =
-                fun dispatch state ->
-                   R.div [] [
-                       R.str "Welcome to this \"bad\"venture! There is a "
-                       Etzeznalt dispatch
-                       R.str " behind you!"
-                   ]
+            Text = """I first made my way into Tetznatalk as dusk was falling, after a long day of travel. There was an
+                [[etzeznalt|Etzeznalt]] there."""
             Continuations = [{ Description = R.str "Go east"; NextPageName = "end" }]
         }
         {
             Name = "end"
-            Text = fun dispatch state ->
-                    R.div [] [
-                        R.str "You beat the game!"
-                        R.h1 [] [R.str "COOOOOOOOL"]
-                        R.button [
-                            P.OnClick (fun _ -> dispatch (ShowModal ("this is my modal title", R.str "This is my modal text")))
-                        ] [
-                            R.str "click me!"
-                        ]
-                    ]
+            Text = "You beat the game!"
             Continuations = []
         }
     ]
