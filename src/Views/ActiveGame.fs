@@ -1,7 +1,5 @@
 module Wanderer.ActiveGame
 
-open System.Text.RegularExpressions
-
 open Elmish
 open Fable.Core
 open Fable.Core.JsInterop
@@ -14,26 +12,6 @@ open Wanderer.ViewHelpers
 
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
-
-let private modalLinkRegex = Regex(@"(\[\[\S+\]\])", RegexOptions.Compiled)
-
-let private formatPageText (text : string) dispatch =
-    let parts = modalLinkRegex.Split(text)
-    printfn "%A" parts
-    let resultParts =
-        parts
-        |> Array.map (fun part ->
-            let m = modalLinkRegex.Match(part)
-            if m.Success then
-                let matchPart = m.Groups.[1].Value
-                let linkParts = matchPart.Substring(2, matchPart.Length - 4).Split([|'|'|])
-                let displayName = Array.head linkParts
-                let linkName = linkParts.[linkParts.Length - 1]
-                showModalLinkByName linkName displayName dispatch
-            else
-                R.str part)
-        |> List.ofArray
-    R.div [] resultParts
 
 let view (gameState : ActiveGameState) dispatch =
     let character = gameState.Character
@@ -70,7 +48,14 @@ let view (gameState : ActiveGameState) dispatch =
         ]
         R.div [P.ClassName "verticalDivider"] []
         R.div [P.ClassName "storyArea"] [
-            R.p [] [formatPageText page.Text dispatch]
+            R.div [P.ClassName "history"] [
+                for paragraph in gameState.History ->
+                    para paragraph
+            ]
+            R.p [] [
+                for paragraph in page.Text ->
+                    Modal.formatLine paragraph dispatch
+            ]
             R.ul [] [
                 for cont in page.Continuations do
                     yield R.li [] [
