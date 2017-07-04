@@ -18,7 +18,7 @@ type Condition =
     | Flags of string list * Condition
 
 type Continuation = {
-    Description : ReactElement
+    Description : string
     NextPageName : string
     Condition : Condition
     SetFlags : string list
@@ -56,22 +56,30 @@ let pages =
                     Etzneznalts, and looked lost in thought.  At the sound of my arrival he looked up, and before he
                     could stop blurted out, "Please!  You must help us!" """
                 ]
-            Continuations = [cb.Build(R.str "\"Excuse me?\"", "tez1"); cb.Build(R.str "Enter test harness", "middle")]
+            Continuations = [cb.Build("\"Excuse me?\"", "tez1"); cb.Build("Enter test harness", "middle")]
+        }
+        {
+            Name = "tez1"
+            Text =
+                [
+                    """Test."""
+                ]
+            Continuations= []
         }
         {
             Name = "middle"
             Text = ["You made it closer..."]
             Continuations =
-                [cb.Build(R.str "Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))]
+                [cb.Build("Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))]
         }
         {
             Name = "middle2"
             Text = ["You made it closer, but then you fucked up."]
             Continuations =
                 [
-                    cb.Build(R.str "Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
-                    cb.Build(R.str "Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
-                    cb.Build(R.str "Beat the game already!", "end", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
+                    cb.Build("Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
+                    cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
+                    cb.Build("Beat the game already!", "end", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
                 ]
         }
         {
