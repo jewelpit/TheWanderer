@@ -23,7 +23,6 @@ let view savedState dispatch =
                 R.a [Nowhere; P.OnClick (fun _ -> dispatch StartCharacterCreation)] [R.str "restart your game"]
             ]
     R.div [] [
-        R.h1 [] [R.str "The Wanderer"]
         para """
             Welcome to The Wanderer, a storybook game for eevee's Games Made Quick 1½.  This game uses your browser's
             local storage to save your state, so if you clear that or play in your browser's private mode, progress will

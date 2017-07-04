@@ -17,11 +17,11 @@ let loadGame () =
     | x ->
         let savedGame = ofJson<SavedGameState> <| string x
         let page =
-            match Map.tryFind savedGame.PageName Data.pages with
+            match Map.tryFind savedGame.PageName Pages.pages with
             | Some p -> p
             | None ->
                 printfn "Could not find page %s" savedGame.PageName
-                Data.pages.["start"]
+                Pages.pages.["start"]
         Some { Character = savedGame.Character; Page = page }
 
 let saveGame (state : ActiveGameState) =
@@ -48,16 +48,16 @@ let rec update (msg : Message) model =
                 Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
             }
-            |> fun c -> ActiveGame { Character = c; Page = Data.pages.["start"] }
+            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"] }
         | (Flip pageName, ActiveGame gameState) ->
-            match Map.tryFind pageName Data.pages with
+            match Map.tryFind pageName Pages.pages with
             | Some p -> ActiveGame { gameState with Page = p }
             | None ->
                 printfn "Could not find page %s" pageName
                 model
-        | (ShowModal (title, content), m) ->
-            Modal (title, content, m)
-        | (CloseModal, Modal (_, _, innerModel)) ->
+        | (ShowModal modal, m) ->
+            Modal (modal, m)
+        | (CloseModal, Modal (_, innerModel)) ->
             innerModel
         | tup ->
             printfn "Could not understand %A" tup
@@ -72,9 +72,9 @@ let rec view model dispatch =
     | SplashScreen -> SplashScreen.view (loadGame ()) dispatch
     | CharacterCreation character -> CharacterCreation.view character dispatch
     | ActiveGame gameState -> ActiveGame.view gameState dispatch
-    | Modal (title, contents, m) ->
+    | Modal (modal, m) ->
         let innerElements = view m dispatch
-        Modal.view (title, contents) innerElements dispatch
+        Modal.view modal innerElements dispatch
 
 // App
 Program.mkSimple init update view
