@@ -31,6 +31,32 @@ let private makeInjuryRow title value =
             R.td [] [R.str <| string value]
         ]
 
+let rec private makeConditionButton continuation condition (gameState : ActiveGameState) dispatch =
+        match condition with
+        | Automatic ->
+            Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str "Choose"]
+        | SkillCheckRequired (attr, skill, target, effect) ->
+            if Character.GetEffectiveAttr attr gameState.Character > 0 then
+                Some <| R.button
+                    [P.OnClick (fun _ -> dispatch (Flip continuation))]
+                    [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
+            else
+                let buttonText =
+                    match attr with
+                    | Skills.Might -> "Too many injuries."
+                    | Skills.Will -> "Too much stress."
+                Some <| R.button [P.Disabled true] [R.str buttonText]
+        | Bribe cost ->
+            if gameState.Character.Muld >= cost then
+                Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str <| sprintf "Bribe (%d muld)" cost]
+            else
+                Some <| R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
+        | Flags (flags, nextCondition) ->
+            if List.forall (fun flag -> Set.contains flag gameState.Flags) flags then
+                makeConditionButton continuation nextCondition gameState dispatch
+            else
+                None
+
 let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispatch =
     let character = gameState.Character
     let page = gameState.Page
@@ -74,28 +100,13 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
             ]
             yield R.ul [] [
                 for cont in page.Continuations do
-                    yield R.li [] [
-                        yield cont.Description
-                        yield R.br []
-                        match cont.Condition with
-                        | Automatic ->
-                            yield R.button [P.OnClick (fun _ -> dispatch (Flip cont))] [R.str "Choose"]
-                        | SkillCheckRequired (attr, skill, target, effect) ->
-                            if Character.GetEffectiveAttr attr gameState.Character > 0 then
-                                yield R.button
-                                    [P.OnClick (fun _ -> dispatch (Flip cont))]
-                                    [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
-                            else
-                                let buttonText =
-                                    match attr with
-                                    | Skills.Might -> "Too many injuries."
-                                    | Skills.Will -> "Too much stress."
-                                yield R.button [P.Disabled true] [R.str buttonText]
-                        | Bribe cost ->
-                            if gameState.Character.Muld >= cost then
-                                yield R.button [P.OnClick (fun _ -> dispatch (Flip cont))] [R.str <| sprintf "Bribe (%d muld)" cost]
-                            else
-                                yield R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
+                    match makeConditionButton cont cont.Condition gameState dispatch with
+                    | None -> ()
+                    | Some conditionButton ->
+                        yield R.li [] [
+                            yield cont.Description
+                            yield R.br []
+                            yield conditionButton
                     ]
             ]
         ]
