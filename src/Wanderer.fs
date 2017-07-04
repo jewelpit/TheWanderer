@@ -66,7 +66,7 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                 GameWithResult (moveToPage continuation.NextPageName, rollResult)
             else
                 match effect with
-                | Pages.AlternateRoom name -> moveToPage name
+                | Pages.AlternatePage name -> moveToPage name
                 | Pages.AttributeDamage ->
                     let movedState = moveToPage continuation.NextPageName
                     let character = movedState.Character;
