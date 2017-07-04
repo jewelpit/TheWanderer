@@ -79,9 +79,16 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                         | Automatic ->
                             yield R.button [P.OnClick (fun _ -> dispatch (Flip cont))] [R.str "Choose"]
                         | SkillCheckRequired (attr, skill, target, effect) ->
-                            yield R.button
-                                [P.OnClick (fun _ -> dispatch (Flip cont))]
-                                [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
+                            if Character.GetEffectiveAttr attr gameState.Character > 0 then
+                                yield R.button
+                                    [P.OnClick (fun _ -> dispatch (Flip cont))]
+                                    [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
+                            else
+                                let buttonText =
+                                    match attr with
+                                    | Skills.Might -> "Too many injuries."
+                                    | Skills.Will -> "Too much stress."
+                                yield R.button [P.Disabled true] [R.str buttonText]
                     ]
             ]
         ]
