@@ -43,7 +43,7 @@ let pages =
                     {
                         Description = R.str "Go easter"
                         NextPageName = "end"
-                        Condition = SkillCheckRequired (Will, Persuasion, 3, AlternateRoom "middle2")
+                        Condition = SkillCheckRequired (Will, Persuasion, 30, AlternateRoom "middle2")
                     }
                 ]
         }
@@ -55,7 +55,7 @@ let pages =
                     {
                         Description = R.str "Go eastest"
                         NextPageName = "end"
-                        Condition = SkillCheckRequired (Might, Combat, 2, AttributeDamage)
+                        Condition = SkillCheckRequired (Might, Combat, 20, AttributeDamage)
                     }
                 ]
         }

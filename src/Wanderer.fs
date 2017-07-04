@@ -48,11 +48,17 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
         if rollResult.Succeeded then
             GameWithResult (moveToPage continuation.NextPageName, rollResult)
         else
-            let nextPageName =
-                match effect with
-                | Pages.AlternateRoom name -> name
-                | Pages.AttributeDamage -> continuation.NextPageName
-            GameWithResult (moveToPage nextPageName, rollResult)
+            match effect with
+            | Pages.AlternateRoom name -> moveToPage name
+            | Pages.AttributeDamage ->
+                let movedState = moveToPage continuation.NextPageName
+                let character = movedState.Character;
+                match attr with
+                | Might ->
+                    { movedState with Character = { character with Injuries = character.Injuries + 1 }}
+                | Will ->
+                    { movedState with Character = { character with Stress = character.Stress + 1 }}
+            |> (fun state -> GameWithResult (state, rollResult))
 
 let init () =
     SplashScreen
@@ -73,6 +79,8 @@ let rec update (msg : Message) model =
                 Combat = if ipc.HighSkill = Combat then 4 else if ipc.LowSkill = Combat then 2 else 3
                 Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
+                Injuries = 0
+                Stress = 0
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
         | (Flip continuation, GameWithResult (gameState, _))
@@ -86,7 +94,8 @@ let rec update (msg : Message) model =
             printfn "Could not understand %A" tup
             model
     match newModel with
-    | ActiveGame gameState -> saveGame gameState
+    | ActiveGame gameState
+    | GameWithResult (gameState, _) -> saveGame gameState
     | _ -> ()
     newModel
 
