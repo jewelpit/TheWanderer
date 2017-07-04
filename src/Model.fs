@@ -46,6 +46,7 @@ type ActiveGameState = {
     Character : Character
     Page : Page
     History : string list
+    Flags : string Set
 }
 
 type SavedGameState = {

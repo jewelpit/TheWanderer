@@ -25,7 +25,7 @@ let loadGame () =
             | None ->
                 printfn "Could not find page %s" savedGame.PageName
                 Pages.pages.["start"]
-        Some { Character = savedGame.Character; Page = page; History = savedGame.History }
+        Some { Character = savedGame.Character; Page = page; History = savedGame.History; Flags = Set.empty }
 
 let saveGame (state : ActiveGameState) =
     let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
@@ -39,30 +39,34 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
         | None ->
             printfn "Could not find page %s" pageName
             gameState
-    match continuation.Condition with
-    | Pages.Automatic -> ActiveGame <| moveToPage continuation.NextPageName
-    | Pages.SkillCheckRequired (attr, skill, target, effect) ->
-        let attrValue = Character.GetAttr attr gameState.Character
-        let skillValue = Character.GetSkill skill gameState.Character
-        let rollResult = roll attrValue skillValue target
-        if rollResult.Succeeded then
-            GameWithResult (moveToPage continuation.NextPageName, rollResult)
-        else
-            match effect with
-            | Pages.AlternateRoom name -> moveToPage name
-            | Pages.AttributeDamage ->
-                let movedState = moveToPage continuation.NextPageName
-                let character = movedState.Character;
-                match attr with
-                | Might ->
-                    { movedState with Character = { character with Injuries = character.Injuries + 1 }}
-                | Will ->
-                    { movedState with Character = { character with Stress = character.Stress + 1 }}
-            |> (fun state -> GameWithResult (state, rollResult))
-    | Pages.Bribe cost ->
-        let newMuld = Math.Max(0, gameState.Character.Muld - cost)
-        let newState = moveToPage continuation.NextPageName
-        ActiveGame { newState with Character = { newState.Character with Muld = newMuld } }
+    let rec changePageHelper condition =
+        match condition with
+        | Pages.Automatic -> ActiveGame <| moveToPage continuation.NextPageName
+        | Pages.SkillCheckRequired (attr, skill, target, effect) ->
+            let attrValue = Character.GetAttr attr gameState.Character
+            let skillValue = Character.GetSkill skill gameState.Character
+            let rollResult = roll attrValue skillValue target
+            if rollResult.Succeeded then
+                GameWithResult (moveToPage continuation.NextPageName, rollResult)
+            else
+                match effect with
+                | Pages.AlternateRoom name -> moveToPage name
+                | Pages.AttributeDamage ->
+                    let movedState = moveToPage continuation.NextPageName
+                    let character = movedState.Character;
+                    match attr with
+                    | Might ->
+                        { movedState with Character = { character with Injuries = character.Injuries + 1 }}
+                    | Will ->
+                        { movedState with Character = { character with Stress = character.Stress + 1 }}
+                |> (fun state -> GameWithResult (state, rollResult))
+        | Pages.Bribe cost ->
+            let newMuld = Math.Max(0, gameState.Character.Muld - cost)
+            let newState = moveToPage continuation.NextPageName
+            ActiveGame { newState with Character = { newState.Character with Muld = newMuld } }
+        | Pages.Flags (flags, newCond) ->
+            changePageHelper newCond
+    changePageHelper continuation.Condition
 
 let init () =
     SplashScreen
@@ -87,7 +91,7 @@ let rec update (msg : Message) model =
                 Stress = 0
                 Muld = 100
             }
-            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
+            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = []; Flags = Set.empty }
         | (Flip continuation, GameWithResult (gameState, _))
         | (Flip continuation, ActiveGame gameState) ->
             changePage gameState continuation
