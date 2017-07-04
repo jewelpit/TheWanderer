@@ -59,4 +59,5 @@ type Model =
     | SplashScreen
     | CharacterCreation of InProgressCharacter
     | ActiveGame of ActiveGameState
+    | GameWithResult of ActiveGameState * Skills.RollResult
     | Modal of Modal * Model
