@@ -91,6 +91,11 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                                     | Skills.Might -> "Too many injuries."
                                     | Skills.Will -> "Too much stress."
                                 yield R.button [P.Disabled true] [R.str buttonText]
+                        | Bribe cost ->
+                            if gameState.Character.Muld >= cost then
+                                yield R.button [P.OnClick (fun _ -> dispatch (Flip cont))] [R.str <| sprintf "Bribe (%d muld)" cost]
+                            else
+                                yield R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
                     ]
             ]
         ]
