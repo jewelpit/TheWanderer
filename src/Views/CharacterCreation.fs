@@ -142,5 +142,13 @@ let view (character : InProgressCharacter) dispatch =
             ]
         ]
         R.hr []
+        R.h4 [] [
+            R.str "If this is your first time playing, it would be useful to read about "
+            showModalLinkByName "Attributes and Skills" "attributes and skills" dispatch
+            R.str ", "
+            showModalLinkByName "Rolling" "rolling" dispatch
+            R.str ", and "
+            showModalLinkByName "Injuries" "injuries" dispatch
+        ]
         R.button [P.OnClick (fun _ -> dispatch StartGame)] [R.str "I am ready to begin my tale..."]
     ]

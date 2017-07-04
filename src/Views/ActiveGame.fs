@@ -73,7 +73,7 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                 divider
                 makeStatRow "Muld Shells" character.Muld
                 divider
-                makeInjuryRow "Injuries" character.Injuries
+                makeInjuryRow "Wounds" character.Wounds
                 makeInjuryRow "Stress" character.Stress
             ]
         ]

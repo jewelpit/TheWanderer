@@ -20,7 +20,7 @@ type Character = {
     Combat : int
     Ritual : int
     Sneaking : int
-    Injuries : int
+    Wounds : int
     Stress : int
     Muld : int
 }
@@ -32,7 +32,7 @@ with
 
     static member GetEffectiveAttr attr character =
         match attr with
-        | Might -> character.Might - character.Injuries
+        | Might -> character.Might - character.Wounds
         | Will -> character.Will - character.Stress
 
     static member GetSkill skill character =
