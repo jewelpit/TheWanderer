@@ -52,7 +52,11 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                 match continuation.SetFlags with
                 | [] -> gameState.Flags
                 | flags -> Set.union gameState.Flags (Set.ofList flags)
-            { gameState with Page = p; History = newHistory; Flags = newFlags }
+            if p.Resets then
+                let newCharacter = { gameState.Character with Wounds = 0; Stress = 0 }
+                { gameState with Page = p; History = []; Flags = newFlags; Character = newCharacter }
+            else
+                { gameState with Page = p; History = newHistory; Flags = newFlags }
         | None ->
             printfn "Could not find page %s" pageName
             gameState
