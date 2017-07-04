@@ -59,6 +59,10 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                 | Will ->
                     { movedState with Character = { character with Stress = character.Stress + 1 }}
             |> (fun state -> GameWithResult (state, rollResult))
+    | Pages.Bribe cost ->
+        let newMuld = Math.Max(0, gameState.Character.Muld - cost)
+        let newState = moveToPage continuation.NextPageName
+        ActiveGame { newState with Character = { newState.Character with Muld = newMuld } }
 
 let init () =
     SplashScreen
@@ -81,7 +85,7 @@ let rec update (msg : Message) model =
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
                 Injuries = 0
                 Stress = 0
-                Muld = 0
+                Muld = 100
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
         | (Flip continuation, GameWithResult (gameState, _))
