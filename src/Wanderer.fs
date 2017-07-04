@@ -81,6 +81,7 @@ let rec update (msg : Message) model =
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
                 Injuries = 0
                 Stress = 0
+                Muld = 0
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
         | (Flip continuation, GameWithResult (gameState, _))

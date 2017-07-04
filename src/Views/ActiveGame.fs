@@ -45,6 +45,8 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                 makeStatRow "Ritual" character.Ritual
                 makeStatRow "Sneaking" character.Sneaking
                 divider
+                makeStatRow "Muld Shells" character.Muld
+                divider
                 makeInjuryRow "Injuries" character.Injuries
                 makeInjuryRow "Stress" character.Stress
             ]
