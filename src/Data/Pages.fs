@@ -54,7 +54,7 @@ let pages =
                 [
                     {
                         Description = R.str "Go eastest"
-                        NextPageName = "end"
+                        NextPageName = "middle2"
                         Condition = SkillCheckRequired (Might, Combat, 20, AttributeDamage)
                     }
                 ]
