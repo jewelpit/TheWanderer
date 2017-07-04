@@ -19,9 +19,5 @@ Any modification you do to the F# code will be reflected in the web page after s
 - Dominant race: the Etzeznalt, intelligent humanoid bat people.
 - Magic and sci-fi side by side.
 
-## Design Notes
-- Add money to the game, allow bribery
-- When should conditions go away?  Should there even be conditions?
-    - If we have conditions, we need to think about what to do when the player is brought unconscious.
-    - Maybe have them start the act over?  If the acts are fairly short, this could work.
-        - Would make saving slightly more complicated, but that should be okay.
+## TODO
+- Add a way to track flags and set them on page entry

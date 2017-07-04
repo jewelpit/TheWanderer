@@ -15,6 +15,7 @@ type Condition =
     | Automatic
     | SkillCheckRequired of Attribute * Skill * int * FailureEffect
     | Bribe of int
+    | Flags of string list * Condition
 
 type Continuation = {
     Description : ReactElement
@@ -26,6 +27,7 @@ type Page = {
     Name : string
     Text : string list
     Continuations : Continuation list
+    SetFlags : string list
 }
 
 let pages =
@@ -35,6 +37,7 @@ let pages =
             Text = ["""I first made my way into Tetznatalk as dusk was falling, after a long day of travel. There was an
                 [[etzeznalt|Etzeznalt]] there."""]
             Continuations = [{ Description = R.str "Go east"; NextPageName = "middle"; Condition = Automatic }]
+            SetFlags = []
         }
         {
             Name = "middle"
@@ -47,6 +50,7 @@ let pages =
                         Condition = SkillCheckRequired (Will, Persuasion, 30, AlternateRoom "middle2")
                     }
                 ]
+            SetFlags = []
         }
         {
             Name = "middle2"
@@ -64,11 +68,13 @@ let pages =
                         Condition = Bribe 15
                     }
                 ]
+            SetFlags = []
         }
         {
             Name = "end"
             Text = ["You beat the game!"]
             Continuations = []
+            SetFlags = []
         }
     ]
     |> List.map (fun p -> (p.Name, p))
