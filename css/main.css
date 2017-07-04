@@ -79,6 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .storyArea {
+    height: 80vh;
     overflow-y: auto
 }
 
