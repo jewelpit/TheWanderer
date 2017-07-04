@@ -57,13 +57,18 @@ let modals =
             Content =
                 R.div [] [
                     para """
-                        Etzeznalts the four to five foot tall, batlike, dominant species of this planet.  Although their
-                        vestigial wings are no longer large enough for them to fly, they are frequently used in local dances,
-                        ceremonies, or even just to soak up some heat on a nice day.
+                        Four to five foot tall, batlike, and the dominant species of this planet.  Although their
+                        vestigial wings are no longer large enough for them to fly, they are frequently used in local
+                        dances, ceremonies, or even just to soak up some heat on a nice day.
                         """
                     para """
                         Each Etzeznalt village is guarded by a Town Guardian.  Town Guardians live in treehouses on the
-                        outskirts of town, and draw their magical energy from the Heartseed in the center of their trees.
+                        outskirts of town, and draw their magical energy from the Heartseed in the center of their
+                        trees.
+                        """
+                    para """
+                        When humans crash landed on this planet hundreds of years ago, the Etzeznalt, fearing them,
+                        ordered that humans be scattered and forced to live as wanderers.
                         """
                 ]
         }
@@ -72,14 +77,16 @@ let modals =
             Content =
                 R.div [] [
                     para """
-                        Humans are what I am.  My people crash landed on this planet nearly four hundred years ago, but when we
-                        asked the etzeznalt for refuge, we were instead scattered to the winds.  Forever after, etzeznalts have
-                        known humans only as wanderers.
+                        Humans, my people, crash landed on this planet nearly four hundred years ago.  We would not have
+                        survived our first winter here were it not for the Etzeznalts who discovered us, but a few short
+                        years after they ensured our survival they announced that the humans would be scattered to the
+                        winds, and forced to live as wanderers.  The Etzeznalts had no idea what humans could do if
+                        given a foothold on a planet, and were scared of the possibilities.
                         """
                     para """
-                        Unlike Etzeznalts, who have to recharge their magical power at Heartseeds, humans can pull magic from
-                        the wider world around them.  This makes humans ideal travelers, and is a great aid to them on their
-                        travels.
+                        Unlike Etzeznalts, who have to recharge their magical power at Heartseeds, humans can pull magic
+                        from the wider world around them.  This makes humans ideal travelers, and is a great aid to them
+                        on their travels.
                         """
                 ]
         }
