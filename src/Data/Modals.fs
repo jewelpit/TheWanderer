@@ -1,5 +1,7 @@
 module Wanderer.Modals
 
+open System.Text.RegularExpressions
+
 open Fable.Import.React
 
 open Wanderer.ViewHelpers
@@ -11,6 +13,43 @@ type Modal = {
     Title : string
     Content : ReactElement
 }
+
+type ModalLink = {
+    LinkName : string
+    DisplayName : string
+}
+
+type ParsedLine =
+    | Str of string
+    | Link of ModalLink
+
+let modalLinkRegex = Regex(@"(\[\[\S+\]\])", RegexOptions.Compiled)
+
+let parseLine (text : string) =
+    let parts = modalLinkRegex.Split(text)
+    printfn "%A" parts
+    let resultParts =
+        parts
+        |> Array.map (fun part ->
+            let m = modalLinkRegex.Match(part)
+            if m.Success then
+                let matchPart = m.Groups.[1].Value
+                let linkParts = matchPart.Substring(2, matchPart.Length - 4).Split([|'|'|])
+                let displayName = Array.head linkParts
+                let linkName = linkParts.[linkParts.Length - 1]
+                Link { LinkName = linkName; DisplayName = displayName }
+            else
+                Str part)
+        |> List.ofArray
+    resultParts
+
+let getDisplayLine (text : string) =
+    parseLine text
+    |> List.map (fun part ->
+        match part with
+        | Str s -> s
+        | Link link -> link.DisplayName)
+    |> List.reduce (+)
 
 let modals =
     [
