@@ -31,27 +31,28 @@ let saveGame (state : ActiveGameState) =
     let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
     window.localStorage.setItem("savedGame", toJson savedState)
 
-let changePage model (gameState : ActiveGameState) (continuation : Pages.Continuation) =
-    let nextPageName =
-        match continuation.Condition with
-        | Pages.Automatic -> continuation.NextPageName
-        | Pages.SkillCheckRequired (attr, skill, target, effect) ->
-            let attrValue = Character.GetAttr attr gameState.Character
-            let skillValue = Character.GetSkill skill gameState.Character
-            let rollResult = roll attrValue skillValue target
-            if rollResult.Succeeded then
-                continuation.NextPageName
-            else
+let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation) =
+    let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
+    let moveToPage pageName =
+        match Map.tryFind pageName Pages.pages with
+        | Some p -> { gameState with Page = p; History = newHistory }
+        | None ->
+            printfn "Could not find page %s" pageName
+            gameState
+    match continuation.Condition with
+    | Pages.Automatic -> ActiveGame <| moveToPage continuation.NextPageName
+    | Pages.SkillCheckRequired (attr, skill, target, effect) ->
+        let attrValue = Character.GetAttr attr gameState.Character
+        let skillValue = Character.GetSkill skill gameState.Character
+        let rollResult = roll attrValue skillValue target
+        if rollResult.Succeeded then
+            GameWithResult (moveToPage continuation.NextPageName, rollResult)
+        else
+            let nextPageName =
                 match effect with
                 | Pages.AlternateRoom name -> name
                 | Pages.AttributeDamage -> continuation.NextPageName
-    match Map.tryFind nextPageName Pages.pages with
-    | Some p ->
-        let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
-        ActiveGame { gameState with Page = p; History = newHistory }
-    | None ->
-        printfn "Could not find page %s" continuation.NextPageName
-        model
+            GameWithResult (moveToPage nextPageName, rollResult)
 
 let init () =
     SplashScreen
@@ -74,8 +75,9 @@ let rec update (msg : Message) model =
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
+        | (Flip continuation, GameWithResult (gameState, _))
         | (Flip continuation, ActiveGame gameState) ->
-            changePage model gameState continuation
+            changePage gameState continuation
         | (ShowModal modal, m) ->
             Modal (modal, m)
         | (CloseModal, Modal (_, innerModel)) ->
@@ -92,7 +94,8 @@ let rec view model dispatch =
     match model with
     | SplashScreen -> SplashScreen.view (loadGame ()) dispatch
     | CharacterCreation character -> CharacterCreation.view character dispatch
-    | ActiveGame gameState -> ActiveGame.view gameState dispatch
+    | ActiveGame gameState -> ActiveGame.view gameState None dispatch
+    | GameWithResult (gameState, result) -> ActiveGame.view gameState (Some result) dispatch
     | Modal (modal, m) ->
         let innerElements = view m dispatch
         Modal.view modal innerElements dispatch

@@ -13,7 +13,7 @@ open Wanderer.ViewHelpers
 module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
-let view (gameState : ActiveGameState) dispatch =
+let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispatch =
     let character = gameState.Character
     let page = gameState.Page
     R.div [P.Style [P.Display "flex"]] [
@@ -48,15 +48,26 @@ let view (gameState : ActiveGameState) dispatch =
         ]
         R.div [P.ClassName "verticalDivider"] []
         R.div [P.ClassName "storyArea"] [
-            R.div [P.ClassName "history"] [
+            yield R.div [P.ClassName "history"] [
                 for paragraph in gameState.History ->
                     para paragraph
             ]
-            R.p [] [
+            match result with
+            | None -> ()
+            | Some rollResult ->
+                yield R.h4 [] [
+                    yield R.str <| sprintf "You %s with a roll of " 
+                        (if rollResult.Succeeded then "succeeded" else "failed")
+                    for roll in rollResult.Rolls do
+                        yield R.div [P.ClassName (if roll <= rollResult.AttributeLevel then "success" else "fail")] [
+                            R.str <| sprintf " %d " roll
+                        ]
+                ]
+            yield R.p [] [
                 for paragraph in page.Text ->
                     Modal.formatLine paragraph dispatch
             ]
-            R.ul [] [
+            yield R.ul [] [
                 for cont in page.Continuations do
                     yield R.li [] [
                         yield cont.Description
