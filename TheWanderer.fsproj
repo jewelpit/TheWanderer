@@ -4,6 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="src/Views/ViewHelpers.fs" />
+    <Compile Include="src/Data/Skills.fs" />
     <Compile Include="src/Data/Modals.fs" />
     <Compile Include="src/Data/Pages.fs" />
     <Compile Include="src/Model.fs" />

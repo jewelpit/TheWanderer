@@ -1,5 +1,7 @@
 module Wanderer.App
 
+open System
+
 open Elmish
 open Elmish.Debug
 open Elmish.React
@@ -8,6 +10,7 @@ open Fable.Import.Browser
 
 open Wanderer.CharacterCreation
 open Wanderer.Model
+open Wanderer.Skills
 
 importAll "../css/main.css"
 
@@ -27,6 +30,15 @@ let loadGame () =
 let saveGame (state : ActiveGameState) =
     let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
     window.localStorage.setItem("savedGame", toJson savedState)
+
+let changePage model (gameState : ActiveGameState) pageName =
+    match Map.tryFind pageName Pages.pages with
+    | Some p ->
+        let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
+        ActiveGame { gameState with Page = p; History = newHistory }
+    | None ->
+        printfn "Could not find page %s" pageName
+        model
 
 let init () =
     SplashScreen
@@ -50,13 +62,10 @@ let rec update (msg : Message) model =
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
         | (Flip pageName, ActiveGame gameState) ->
-            match Map.tryFind pageName Pages.pages with
-            | Some p ->
-                let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
-                ActiveGame { gameState with Page = p; History = newHistory }
-            | None ->
-                printfn "Could not find page %s" pageName
-                model
+            changePage model gameState pageName
+        | (SkillFlip continuation, ActiveGame gameState) ->
+            printfn "You rolled the dice!"
+            changePage model gameState continuation.NextPageName
         | (ShowModal modal, m) ->
             Modal (modal, m)
         | (CloseModal, Modal (_, innerModel)) ->

@@ -27,7 +27,6 @@ let modalLinkRegex = Regex(@"(\[\[\S+\]\])", RegexOptions.Compiled)
 
 let parseLine (text : string) =
     let parts = modalLinkRegex.Split(text)
-    printfn "%A" parts
     let resultParts =
         parts
         |> Array.map (fun part ->
