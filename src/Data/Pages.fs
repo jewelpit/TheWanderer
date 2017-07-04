@@ -68,7 +68,7 @@ let pages =
                         Condition = Bribe 15
                     }
                 ]
-            SetFlags = []
+            SetFlags = ["YouFuckedItUp"]
         }
         {
             Name = "end"
