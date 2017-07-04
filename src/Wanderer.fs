@@ -43,7 +43,8 @@ let saveGame (state : ActiveGameState) =
     window.localStorage.setItem("savedGame", toJson savedState)
 
 let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation) =
-    let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
+    let newHistory =
+        gameState.History @ ((List.map Modals.getDisplayLine gameState.Page.Text) @ [continuation.Description])
     let moveToPage pageName =
         match Map.tryFind pageName Pages.pages with
         | Some p ->
