@@ -17,6 +17,7 @@ Any modification you do to the F# code will be reflected in the web page after s
 
 ## World Notes
 - Dominant race: the Etzeznalt, intelligent humanoid bat people.
+- Magic and sci-fi side by side.
 
 ## Design Notes
 - Add money to the game, allow bribery
