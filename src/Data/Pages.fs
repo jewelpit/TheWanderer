@@ -45,9 +45,18 @@ let pages =
     [
         {
             Name = "start"
-            Text = ["""I first made my way into Tetznatalk as dusk was falling, after a long day of travel. There was an
-                [[etzeznalt|Etzeznalt]] there."""]
-            Continuations = [cb.Build(R.str "Go east", "middle")]
+            Text =
+                [
+                    """I first made my way into Tetznatalk as dusk was falling, after a long day of travel.  I was
+                    weary, and looking forward to my first night indoors in nearly a month.  I rode up to the inn and
+                    stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
+                    for it."""
+                    """When I walked into the bar, I saw a shaky, bespectacled Etzeznalt behind the counter, nervously
+                    cleaning a glass.  He was dressed in the round black hat and brown kilt typical of rural
+                    Etzneznalts, and looked lost in thought.  At the sound of my arrival he looked up, and before he
+                    could stop blurted out, "Please!  You must help us!" """
+                ]
+            Continuations = [cb.Build(R.str "\"Excuse me?\"", "tez1"); cb.Build(R.str "Enter test harness", "middle")]
         }
         {
             Name = "middle"

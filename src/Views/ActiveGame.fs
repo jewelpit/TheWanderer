@@ -94,10 +94,8 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                             R.str <| sprintf " %d " roll
                         ]
                 ]
-            yield R.p [] [
-                for paragraph in page.Text ->
-                    Modal.formatLine paragraph dispatch
-            ]
+            for paragraph in page.Text ->
+                R.p [] [Modal.formatLine paragraph dispatch]
             yield R.ul [] [
                 for cont in page.Continuations do
                     match makeConditionButton cont cont.Condition gameState dispatch with
