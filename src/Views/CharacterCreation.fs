@@ -7,6 +7,7 @@ open Fable.Import.Browser
 
 open Wanderer.Modal
 open Wanderer.Model
+open Wanderer.Skills
 open Wanderer.ViewHelpers
 
 module R = Fable.Helpers.React

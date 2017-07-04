@@ -59,9 +59,16 @@ let view (gameState : ActiveGameState) dispatch =
             R.ul [] [
                 for cont in page.Continuations do
                     yield R.li [] [
-                        cont.Description
-                        R.br []
-                        R.button [P.OnClick (fun _ -> dispatch (Flip cont.NextPageName))] [R.str "Choose"]]
+                        yield cont.Description
+                        yield R.br []
+                        match cont.Condition with
+                        | Automatic ->
+                            yield R.button [P.OnClick (fun _ -> dispatch (Flip cont.NextPageName))] [R.str "Choose"]
+                        | SkillCheckRequired (attr, skill, target, effect) ->
+                            yield R.button
+                                [P.OnClick (fun _ -> dispatch (SkillFlip cont))]
+                                [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
+                    ]
             ]
         ]
     ]
