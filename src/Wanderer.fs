@@ -72,7 +72,7 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                     let character = movedState.Character;
                     match attr with
                     | Might ->
-                        { movedState with Character = { character with Injuries = character.Injuries + 1 }}
+                        { movedState with Character = { character with Wounds = character.Wounds + 1 }}
                     | Will ->
                         { movedState with Character = { character with Stress = character.Stress + 1 }}
                 |> (fun state -> GameWithResult (state, rollResult))
@@ -103,7 +103,7 @@ let rec update (msg : Message) model =
                 Combat = if ipc.HighSkill = Combat then 4 else if ipc.LowSkill = Combat then 2 else 3
                 Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
-                Injuries = 0
+                Wounds = 0
                 Stress = 0
                 Muld = 100
             }

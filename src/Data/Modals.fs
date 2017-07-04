@@ -83,6 +83,62 @@ let modals =
                         """
                 ]
         }
+        {
+            Title = "Attributes and Skills"
+            Content =
+                R.div [] [
+                    para """
+                        Pompeia has two core attributes: Might and Will.  Might determines how good Pompeia is at
+                        physical tasks, and is most frequently paired with the Combat and Sneaking skills.  Will
+                        determines how good Pompeia is at mental tasks, and is most frequently paired with the
+                        Persuasion and Ritual skills.
+                        """
+                    para """
+                        Pompeia's four skills are Persuasion, Combat, Ritual, and Sneaking.  When a skill roll is
+                        required to advance the story, the button to select it will specify which attribute and skill
+                        will be rolled.
+                        """
+                    para """
+                        Muld refers to the shells of the tiny muld snail, which can be used to create a vibrant purple
+                        dye. In rural areas, their sturdiness and portability have made them a de facto currency.
+                        """
+                ]
+        }
+        {
+            Title = "Rolling"
+            Content =
+                R.div [] [
+                    para """
+                        When a story choice button says "Attempt," and lists an attribute, skill, and target number,
+                        that means that a roll is required.  When you attempt a roll, the game will roll a number of
+                        six-sided dice equal to your skill value (so if you have Combat 3, you would roll 3 dice on
+                        Combat rolls).  Any of these dice whose value is equal to or less than the corresponding stat
+                        counts as a success.  If at least as many successes as the target number have been rolled, the
+                        skill roll is passed.
+                        """
+                    para """
+                        When a skill roll is failed, one of two things will happen.  Either the story will fork, and you
+                        will have to deal with the consequences of the failure, or the story will continue on the path
+                        you chose and Pompeia will take an injury.
+                        """
+                ]
+        }
+        {
+            Title = "Injuries"
+            Content =
+                R.div [] [
+                    para """
+                        When Pompeia fails skill rolls, she will either be sent on an alternate path or suffer an
+                        injury.  Injuries come in two varieties: wounds and stress.  Wounds come from failing Might
+                        tests and stress comes from failing Will tests.  When Pompeia suffers a number of wounds equal
+                        to her Might score, she can no longer attempt Might tests.  When she suffers a number of wounds
+                        equal to her Will score, she can no longer attempt Will tests.
+                        """
+                    para """
+                        Injuries and stress are removed during special story events in game.
+                        """
+                ]
+        }
     ]
     |> List.map (fun modal -> (modal.Title, modal))
     |> Map.ofList
