@@ -21,6 +21,18 @@ type Character = {
     Ritual : int
     Sneaking : int
 }
+with
+    static member GetAttr attr character =
+        match attr with
+        | Might -> character.Might
+        | Will -> character.Will
+
+    static member GetSkill skill character =
+        match skill with
+        | Persuasion -> character.Persuasion
+        | Combat -> character.Combat
+        | Ritual -> character.Ritual
+        | Sneaking -> character.Sneaking
 
 type ActiveGameState = {
     Character : Character
@@ -39,8 +51,7 @@ type Message =
     | UpdateCharacter of InProgressCharacter
     | StartGame
     | LoadGame of ActiveGameState
-    | Flip of string
-    | SkillFlip of Continuation
+    | Flip of Continuation
     | ShowModal of Modal
     | CloseModal
 
