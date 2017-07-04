@@ -23,7 +23,7 @@ type ParsedLine =
     | Str of string
     | Link of ModalLink
 
-let modalLinkRegex = Regex(@"(\[\[\S+\]\])", RegexOptions.Compiled)
+let modalLinkRegex = Regex(@"(\[\[.+?\]\])", RegexOptions.Compiled)
 
 let parseLine (text : string) =
     let parts = modalLinkRegex.Split(text)
@@ -57,9 +57,9 @@ let modals =
             Content =
                 R.div [] [
                     para """
-                        Four to five foot tall, batlike, and the dominant species of this planet.  Although their
-                        vestigial wings are no longer large enough for them to fly, they are frequently used in local
-                        dances, ceremonies, or even just to soak up some heat on a nice day.
+                        Six to seven foot tall, owl-like, and the dominant species of this planet.  Although their
+                        vestigial wing-flaps on their arms are no longer large enough for them to fly, they are
+                        frequently used in local dances, ceremonies, or even just to soak up some heat on a nice day.
                         """
                     para """
                         Each Etzeznalt village is guarded by a Town Guardian.  Town Guardians live in treehouses on the
@@ -143,6 +143,16 @@ let modals =
                         """
                     para """
                         Injuries and stress are removed during special story events in game.
+                        """
+                ]
+        }
+        {
+            Title = "Monitor Beetle"
+            Content =
+                R.div [] [
+                    para """
+                        Monitor beetles are large, horned, wingless beetles that have been domesticated as livestock and
+                        riding animals.
                         """
                 ]
         }
