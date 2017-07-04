@@ -37,56 +37,51 @@ type Page = {
     Name : string
     Text : string list
     Continuations : Continuation list
+    Resets : bool
 }
 
+type PageBuilder() =
+    member __.Build(name, text, continuations, ?resets) =
+        {
+            Name = name
+            Text = text
+            Continuations = continuations
+            Resets = defaultArg resets false
+        }
+
 let private cb = ContinuationBuilder()
+let private pb = PageBuilder()
 
 let pages =
     [
-        {
-            Name = "start"
-            Text =
-                [
-                    """I first made my way into Tetznatalk as dusk was falling, after a long day of travel.  I was
-                    weary, and looking forward to my first night indoors in nearly a month.  I rode up to the inn and
-                    stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
-                    for it."""
-                    """When I walked into the bar, I saw a shaky, bespectacled Etzeznalt behind the counter, nervously
-                    cleaning a glass.  He was dressed in the round black hat and brown kilt typical of rural
-                    Etzneznalts, and looked lost in thought.  At the sound of my arrival he looked up, and before he
-                    could stop blurted out, "Please!  You must help us!" """
-                ]
-            Continuations = [cb.Build("\"Excuse me?\"", "tez1"); cb.Build("Enter test harness", "middle")]
-        }
-        {
-            Name = "tez1"
-            Text =
-                [
-                    """Test."""
-                ]
-            Continuations= []
-        }
-        {
-            Name = "middle"
-            Text = ["You made it closer..."]
-            Continuations =
-                [cb.Build("Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))]
-        }
-        {
-            Name = "middle2"
-            Text = ["You made it closer, but then you fucked up."]
-            Continuations =
-                [
-                    cb.Build("Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
-                    cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
-                    cb.Build("Beat the game already!", "end", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
-                ]
-        }
-        {
-            Name = "end"
-            Text = ["You beat the game!"]
-            Continuations = []
-        }
+        pb.Build(
+            "start",
+            [
+                """I first made my way into Tetznatalk as dusk was falling, after a long day of travel.  I was
+                weary, and looking forward to my first night indoors in nearly a month.  I rode up to the inn and
+                stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
+                for it."""
+                """When I walked into the bar, I saw a shaky, bespectacled Etzeznalt behind the counter, nervously
+                cleaning a glass.  He was dressed in the round black hat and brown kilt typical of rural
+                Etzneznalts, and looked lost in thought.  At the sound of my arrival he looked up, and before he
+                could stop blurted out, "Please!  You must help us!" """
+            ],
+            [cb.Build("\"Excuse me?\"", "tez1"); cb.Build("Enter test harness", "middle")])
+        pb.Build("tez1", ["""Test."""], [])
+        pb.Build(
+            "middle",
+            ["You made it closer..."],
+            [cb.Build("Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))])
+        pb.Build(
+            "middle2",
+            ["You made it closer, but then you fucked up."],
+            [
+                cb.Build("Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
+                cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
+                cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
+            ])
+        pb.Build("middle3", ["This'll reset you."], [cb.Build("Fine, just end it!", "end")], resets=true)
+        pb.Build("end", ["You beat the game!"], [])
     ]
     |> List.map (fun p -> (p.Name, p))
     |> Map.ofList
