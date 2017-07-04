@@ -43,7 +43,7 @@ let pages =
                     {
                         Description = R.str "Go easter"
                         NextPageName = "end"
-                        Condition = SkillCheckRequired (Will, Persuasion, 2, AlternateRoom "middle2")
+                        Condition = SkillCheckRequired (Will, Persuasion, 3, AlternateRoom "middle2")
                     }
                 ]
         }

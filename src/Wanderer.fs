@@ -31,13 +31,26 @@ let saveGame (state : ActiveGameState) =
     let savedState = { Character = state.Character; PageName = state.Page.Name; History = state.History }
     window.localStorage.setItem("savedGame", toJson savedState)
 
-let changePage model (gameState : ActiveGameState) pageName =
-    match Map.tryFind pageName Pages.pages with
+let changePage model (gameState : ActiveGameState) (continuation : Pages.Continuation) =
+    let nextPageName =
+        match continuation.Condition with
+        | Pages.Automatic -> continuation.NextPageName
+        | Pages.SkillCheckRequired (attr, skill, target, effect) ->
+            let attrValue = Character.GetAttr attr gameState.Character
+            let skillValue = Character.GetSkill skill gameState.Character
+            let rollResult = roll attrValue skillValue target
+            if rollResult.Succeeded then
+                continuation.NextPageName
+            else
+                match effect with
+                | Pages.AlternateRoom name -> name
+                | Pages.AttributeDamage -> continuation.NextPageName
+    match Map.tryFind nextPageName Pages.pages with
     | Some p ->
         let newHistory = gameState.History @ (List.map Modals.getDisplayLine gameState.Page.Text)
         ActiveGame { gameState with Page = p; History = newHistory }
     | None ->
-        printfn "Could not find page %s" pageName
+        printfn "Could not find page %s" continuation.NextPageName
         model
 
 let init () =
@@ -61,11 +74,8 @@ let rec update (msg : Message) model =
                 Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
             }
             |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = [] }
-        | (Flip pageName, ActiveGame gameState) ->
-            changePage model gameState pageName
-        | (SkillFlip continuation, ActiveGame gameState) ->
-            printfn "You rolled the dice!"
-            changePage model gameState continuation.NextPageName
+        | (Flip continuation, ActiveGame gameState) ->
+            changePage model gameState continuation
         | (ShowModal modal, m) ->
             Modal (modal, m)
         | (CloseModal, Modal (_, innerModel)) ->
