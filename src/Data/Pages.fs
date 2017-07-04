@@ -8,7 +8,7 @@ module R = Fable.Helpers.React
 module P = Fable.Helpers.React.Props
 
 type FailureEffect =
-    | AlternateRoom of string
+    | AlternatePage of string
     | AttributeDamage
 
 type Condition =
@@ -53,7 +53,7 @@ let pages =
             Name = "middle"
             Text = ["You made it closer..."]
             Continuations =
-                [cb.Build(R.str "Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternateRoom "middle2"))]
+                [cb.Build(R.str "Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))]
         }
         {
             Name = "middle2"
@@ -74,14 +74,34 @@ let pages =
     |> List.map (fun p -> (p.Name, p))
     |> Map.ofList
 
+let allRoutedPages =
+    pages
+    |> Seq.map (fun kvp -> kvp.Value)
+    |> Seq.collect (fun page ->
+        page.Continuations)
+    |> Seq.choose (fun cont ->
+        let rec getConditionPage cond =
+            match cond with
+            | Automatic -> Some cont.NextPageName
+            | SkillCheckRequired (_, _, _, effect) ->
+                match effect with
+                | AlternatePage page -> Some page
+                | AttributeDamage -> None
+            | Flags (flags, c) -> getConditionPage c
+            | _ -> None
+        getConditionPage cont.Condition)
+    |> Set.ofSeq
+
 for kvp in pages do
+    if not (Set.contains kvp.Value.Name allRoutedPages) && kvp.Value.Name <> "start" then
+        printfn "Page %A is not reachable from any other pages" kvp.Value
     for continuation in kvp.Value.Continuations do
         if not (Map.containsKey continuation.NextPageName pages) then
-            printfn "Room %A has an invalid continuation: %s" kvp.Value continuation.NextPageName
+            printfn "Page %A has an invalid continuation: %s" kvp.Value continuation.NextPageName
         match continuation.Condition with
         | SkillCheckRequired (attr, skill, target, effect) ->
             match effect with
-            | AlternateRoom name ->
+            | AlternatePage name ->
             if not (Map.containsKey name pages) then
                     printfn "Continuation %A has an invalid alternate room." continuation
             | AttributeDamage -> ()
