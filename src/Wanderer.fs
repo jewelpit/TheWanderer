@@ -48,7 +48,7 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
         match Map.tryFind pageName Pages.pages with
         | Some p ->
             let newFlags =
-                match p.SetFlags with
+                match continuation.SetFlags with
                 | [] -> gameState.Flags
                 | flags -> Set.union gameState.Flags (Set.ofList flags)
             { gameState with Page = p; History = newHistory; Flags = newFlags }
