@@ -21,14 +21,25 @@ type Continuation = {
     Description : ReactElement
     NextPageName : string
     Condition : Condition
+    SetFlags : string list
 }
+
+type ContinuationBuilder() =
+    member __.Build(description, nextPageName, ?condition, ?setFlags) =
+        {
+            Description = description
+            NextPageName = nextPageName
+            Condition = defaultArg condition Automatic
+            SetFlags = defaultArg setFlags []
+        }
 
 type Page = {
     Name : string
     Text : string list
     Continuations : Continuation list
-    SetFlags : string list
 }
+
+let private cb = ContinuationBuilder()
 
 let pages =
     [
@@ -36,45 +47,28 @@ let pages =
             Name = "start"
             Text = ["""I first made my way into Tetznatalk as dusk was falling, after a long day of travel. There was an
                 [[etzeznalt|Etzeznalt]] there."""]
-            Continuations = [{ Description = R.str "Go east"; NextPageName = "middle"; Condition = Automatic }]
-            SetFlags = []
+            Continuations = [cb.Build(R.str "Go east", "middle")]
         }
         {
             Name = "middle"
             Text = ["You made it closer..."]
             Continuations =
-                [
-                    {
-                        Description = R.str "Go easter"
-                        NextPageName = "end"
-                        Condition = SkillCheckRequired (Will, Persuasion, 30, AlternateRoom "middle2")
-                    }
-                ]
-            SetFlags = []
+                [cb.Build(R.str "Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternateRoom "middle2"))]
         }
         {
             Name = "middle2"
             Text = ["You made it closer, but then you fucked up."]
             Continuations =
                 [
-                    {
-                        Description = R.str "Go eastest"
-                        NextPageName = "middle2"
-                        Condition = SkillCheckRequired (Might, Combat, 20, AttributeDamage)
-                    }
-                    {
-                        Description = R.str "Go eastest, but pay"
-                        NextPageName = "middle2"
-                        Condition = Bribe 15
-                    }
+                    cb.Build(R.str "Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
+                    cb.Build(R.str "Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
+                    cb.Build(R.str "Beat the game already!", "end", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
                 ]
-            SetFlags = ["YouFuckedItUp"]
         }
         {
             Name = "end"
             Text = ["You beat the game!"]
             Continuations = []
-            SetFlags = []
         }
     ]
     |> List.map (fun p -> (p.Name, p))
