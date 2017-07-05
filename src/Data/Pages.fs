@@ -62,12 +62,58 @@ let pages =
                 stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
                 for it."""
                 """When I walked into the bar, I saw a shaky, bespectacled Etzeznalt behind the counter, nervously
-                cleaning a glass.  He was dressed in the round black hat and brown kilt typical of rural
-                Etzneznalts, and looked lost in thought.  At the sound of my arrival he looked up, and before he
-                could stop blurted out, "Please!  You must help us!" """
+                cleaning a glass.  He was your typical rural farmer, dressed in the round black hat and brown kilt, and
+                looked lost in thought.  At the sound of my arrival he looked up, and before he could stop blurted out,
+                "Please!  You must help us!" """
             ],
             [cb.Build("\"Excuse me?\"", "tez1"); cb.Build("Enter test harness", "middle")])
-        pb.Build("tez1", ["""Test."""], [])
+        pb.Build(
+            "tez1",
+            [
+                """He apologized, and told me that he was just desperate.  Lady Greltza, a local [[bandit]] lord, had
+                managed to trick the [[Town Guardian]] and steal her heartseed, without which she was slowly dying."""
+                """ "Please," he said. "Please help us." """
+            ],
+            [
+                cb.Build("Of course I agreed.  Bandits have done me wrong many times on my travels.", "tez2-approve")
+                cb.Build("Of course I agreed.  I could never leave a town without its Town Guardian.", "tez2-approve")
+                cb.Build(
+                    "I turned them down.  \"Why should I help the people who scattered mine to the wind?\"",
+                    "tez2-deny")
+            ])
+        pb.Build(
+            "tez2-deny",
+            [
+                """He was shocked. "You doom us," he cried. But I stood resolute, and after a while he calmed down."""
+                """ "Would you do it for 50 muld shells?" He asked eventually.  In this region, that sum would have
+                allowed someone to live comfortably for two months."""
+            ],
+            [
+                cb.Build(
+                    "That amount of muld shells wouldn't be easy to come by otherwise, so I agreed.",
+                    "tez2-approve")
+                cb.Build(
+                    """It's not unheard of for towns to survive long enough to get a new Town Guardian. I was
+                        unconvinced.""",
+                    "tez2-denytwice")
+            ])
+        pb.Build(
+            "tez2-denytwice",
+            ["\"Seventy shells!\""],
+            [cb.Build("That seemed reasonable to me, so I accepted.", "tez2-approve")])
+        pb.Build(
+            "tez2-approve",
+            [
+                """He thanked me profusely.  He went out and brought more villagers back while I prepared my room, and
+                when I was done half of the town was in the first floor.  They told me the story of how Greltza had used
+                her [[Illusion Helm]] to take the form of a bumblebee, an animal beloved by the Guardian."""
+                """The Town Guardian was not able to distinguish Greltza from her other bumblebees, and Greltza was able
+                to steal the heartseed.  Greltza fled town to the east, heading towards the [[Ereshkigal Mountains]]. If
+                she continued on that path, she would eventually cross into the [[Szaltun Desert]], before finally
+                arriving at [[Estaton, the Inland Sea|Estaton]]."""
+            ],
+            []
+        )
         pb.Build(
             "middle",
             ["You made it closer..."],
