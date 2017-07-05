@@ -22,15 +22,17 @@ type Continuation = {
     NextPageName : string
     Condition : Condition
     SetFlags : string list
+    GrantsMoney : int
 }
 
 type ContinuationBuilder() =
-    member __.Build(description, nextPageName, ?condition, ?setFlags) =
+    member __.Build(description, nextPageName, ?condition, ?setFlags, ?grantsMoney) =
         {
             Description = description
             NextPageName = nextPageName
             Condition = defaultArg condition Automatic
             SetFlags = defaultArg setFlags []
+            GrantsMoney = defaultArg grantsMoney 0
         }
 
 type Page = {
@@ -91,7 +93,8 @@ let pages =
             [
                 cb.Build(
                     "That amount of muld shells wouldn't be easy to come by otherwise, so I agreed.",
-                    "tez2-approve")
+                    "tez2-approve",
+                    grantsMoney=50)
                 cb.Build(
                     """It's not unheard of for towns to survive long enough to get a new Town Guardian. I was
                         unconvinced.""",
@@ -100,7 +103,7 @@ let pages =
         pb.Build(
             "tez2-denytwice",
             ["\"Seventy shells!\""],
-            [cb.Build("That seemed reasonable to me, so I accepted.", "tez2-approve")])
+            [cb.Build("That seemed reasonable to me, so I accepted.", "tez2-approve", grantsMoney=70)])
         pb.Build(
             "tez2-approve",
             [
