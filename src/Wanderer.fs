@@ -46,6 +46,7 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
     let newHistory =
         gameState.History @ ((List.map Modals.getDisplayLine gameState.Page.Text) @ [continuation.Description])
     let moveToPage pageName =
+        let newMuld = gameState.Character.Muld + continuation.GrantsMoney
         match Map.tryFind pageName Pages.pages with
         | Some p ->
             let newFlags =
@@ -53,10 +54,11 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                 | [] -> gameState.Flags
                 | flags -> Set.union gameState.Flags (Set.ofList flags)
             if p.Resets then
-                let newCharacter = { gameState.Character with Wounds = 0; Stress = 0 }
+                let newCharacter = { gameState.Character with Wounds = 0; Stress = 0; Muld = newMuld }
                 { gameState with Page = p; History = []; Flags = newFlags; Character = newCharacter }
             else
-                { gameState with Page = p; History = newHistory; Flags = newFlags }
+                let newCharacter = { gameState.Character with Muld = newMuld }
+                { gameState with Page = p; History = newHistory; Flags = newFlags; Character = newCharacter }
         | None ->
             printfn "Could not find page %s" pageName
             gameState
