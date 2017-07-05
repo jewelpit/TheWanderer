@@ -58,6 +58,12 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
                 None
 
 let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispatch =
+    window.setTimeout(
+        (fun _ ->
+            let storyArea = document.getElementById("storyArea")
+            storyArea.scrollTop <- storyArea.scrollHeight),
+        0,
+        [||]) |> ignore
     let character = gameState.Character
     let page = gameState.Page
     R.div [P.Style [P.Display "flex"]] [
@@ -78,7 +84,7 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
             ]
         ]
         R.div [P.ClassName "verticalDivider"] []
-        R.div [P.ClassName "storyArea"] [
+        R.div [P.Id "storyArea"] [
             yield R.div [P.ClassName "history"] [
                 for paragraph in gameState.History ->
                     para paragraph
