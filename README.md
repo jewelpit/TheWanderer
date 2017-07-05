@@ -12,11 +12,11 @@ Any modification you do to the F# code will be reflected in the web page after s
 - Greltza has stolen the Heartseed that keeps the town's defender alive, and she is slowly dying.
 - Greltza will flee to the Ereshkigal Mountains, then through Szalkut Desert, before being caught on the shores of
   Estaton, the Inland Sea.
-- While going through Szalkut Desert, Pompeia will run into the Desert Knight, a mummified Etzeznalt who has been
+- While going through Szalkut Desert, Pompeia will run into the Desert Knight, a mummified Etzen who has been
   stalking the desert for two hundred eighty-two years fighting bandits (as he did in life)
 
 ## World Notes
-- Dominant race: the Etzeznalt, intelligent humanoid bat people.
+- Dominant race: the Etzen, intelligent humanoid bat people.
 - Magic and sci-fi side by side.
 
 ## TODO

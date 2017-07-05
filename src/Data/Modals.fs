@@ -53,7 +53,7 @@ let getDisplayLine (text : string) =
 let modals =
     [
         {
-            Title = "Etzeznalt"
+            Title = "Etzen"
             Content =
                 R.div [] [
                     para """
@@ -62,12 +62,12 @@ let modals =
                         frequently used in local dances, ceremonies, or even just to soak up some heat on a nice day.
                         """
                     para """
-                        Each Etzeznalt village is guarded by a Town Guardian.  Town Guardians live in treehouses on the
+                        Each Etzen village is guarded by a Town Guardian.  Town Guardians live in treehouses on the
                         outskirts of town, and draw their magical energy from the Heartseed in the center of their
                         trees.
                         """
                     para """
-                        When humans crash landed on this planet hundreds of years ago, the Etzeznalt, fearing them,
+                        When humans crash landed on this planet hundreds of years ago, the Etzen, fearing them,
                         ordered that humans be scattered and forced to live as wanderers.
                         """
                 ]
@@ -78,13 +78,13 @@ let modals =
                 R.div [] [
                     para """
                         Humans, my people, crash landed on this planet nearly four hundred years ago.  We would not have
-                        survived our first winter here were it not for the Etzeznalts who discovered us, but a few short
+                        survived our first winter here were it not for the Etzens who discovered us, but a few short
                         years after they ensured our survival they announced that the humans would be scattered to the
-                        winds, and forced to live as wanderers.  The Etzeznalts had no idea what humans could do if
+                        winds, and forced to live as wanderers.  The Etzens had no idea what humans could do if
                         given a foothold on a planet, and were scared of the possibilities.
                         """
                     para """
-                        Unlike Etzeznalts, who have to recharge their magical power at Heartseeds, humans can pull magic
+                        Unlike Etzens, who have to recharge their magical power at Heartseeds, humans can pull magic
                         from the wider world around them.  This makes humans ideal travelers, and is a great aid to them
                         on their travels.
                         """
@@ -153,6 +153,74 @@ let modals =
                     para """
                         Monitor beetles are large, horned, wingless beetles that have been domesticated as livestock and
                         riding animals.
+                        """
+                ]
+        }
+        {
+            Title = "Bandit"
+            Content =
+                R.div [] [
+                    para """
+                        The west coast area of this region was recently the forefront of a land war with the neighbor to
+                        the northwest, but when the war ended, the mercenary soldiers stayed around as bandits, preying
+                        on travelers and towns alike.
+                        """
+                    para "The worst bandits rise to the rank of bandit lord, and hold sway over several bandit tribes."
+                ]
+        }
+        {
+            Title = "Town Guardian"
+            Content =
+                R.div [] [
+                    para """
+                        Each Etzen town is guarded by a Town Guardian, a specially chosen and trained Etzen who receives
+                        magical energy from the town's heartseed.  The Town Guardian is responsible for the physical
+                        defense of the town, and is a position held for life, although when a Town Guardian is 45 years
+                        old they may take on an apprentice.
+                        """
+                ]
+        }
+        {
+            Title = "Illusion Helm"
+            Content =
+                R.div [] [
+                    para """
+                        The Illusion Helm is an ancient artifact, created by the deific Etzen of old.  When worn, the
+                        Illusion Helm will allow the wearer to change their form to that of any animal they've seen.
+                        Lady Greltza is the last known possessor of the helm.
+                        """
+                ]
+        }
+        {
+            Title = "Ereshkigal Mountains"
+            Content =
+                R.div [] [
+                    para """
+                        The Ereshkigal mountains are a chain of volcanic mountains separating the western coastlands
+                        from the Szaltun Desert to the east.  While Blight Pass is the safest route across the
+                        Ereshkigal mountains, the Mines of Misan are the quickest.
+                        """
+                ]
+        }
+        {
+            Title = "Szaltun Desert"
+            Content =
+                R.div [] [
+                    para """
+                        Also called The Desert of Ten Thousand Dunes, the Szaltun Desert lies to the east of the
+                        Ereshkigal mountains.  Despite its initial appearance as a desolate wasteland, the Szaltun
+                        Desert is actually host to a rich ecosystem of cacti, reptiles, and insects.
+                        """
+                ]
+        }
+        {
+            Title = "Estaton"
+            Content =
+                R.div [] [
+                    para """
+                        Ah, Estaton: the Inland Sea.  Estaton is said to be the physical containment of the god Estaton,
+                        chief among the deities.  It is only fitting that the strongest deity should go to the greatest
+                        lake.
                         """
                 ]
         }
