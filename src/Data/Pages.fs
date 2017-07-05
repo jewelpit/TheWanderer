@@ -114,8 +114,14 @@ let pages =
                 to steal the heartseed.  Greltza fled town to the east, heading towards the [[Ereshkigal Mountains]]. If
                 she continued on that path, she would eventually cross into the [[Szaltun Desert]], before finally
                 arriving at [[Estaton, the Inland Sea|Estaton]]."""
+                """We spoke and planned long into the night, but I was eventually able to get rest, and my steed and I
+                were refreshed in the morning when we set out.  I regretted not meeting the Town Guardian, but no
+                outsiders were allowed to visit her in her weakened state."""
             ],
-            []
+            [cb.Build(
+                """As the sun rose, I headed along the Great Eastern Road, towards the forested foothills of the
+                    mountains...""",
+                "eresh-1")]
         )
         pb.Build(
             "middle",
