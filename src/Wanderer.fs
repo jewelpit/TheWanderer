@@ -12,8 +12,6 @@ open Wanderer.CharacterCreation
 open Wanderer.Model
 open Wanderer.Skills
 
-importAll "../css/main.css"
-
 let loadGame () =
     match window.localStorage.getItem "savedGame" with
     | null -> None
