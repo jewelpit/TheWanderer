@@ -134,7 +134,10 @@ let pages =
             [
                 cb.Build("Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
                 cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
-                cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
+                cb.Build("Beat the game quickly", "middle3", Flags (["~YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
+                cb.Build("Beat the game because you paid", "middle3", Flags (["~YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
+                cb.Build("Beat the game because you fought", "middle3", Flags (["YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
+                cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic), setFlags=["SlowWinner"])
             ])
         pb.Build("middle3", ["This'll reset you."], [cb.Build("Fine, just end it!", "end")], resets=true)
         pb.Build("end", ["You beat the game!"], [])
@@ -145,8 +148,7 @@ let pages =
 let allRoutedPages =
     pages
     |> Seq.map (fun kvp -> kvp.Value)
-    |> Seq.collect (fun page ->
-        page.Continuations)
+    |> Seq.collect (fun page -> page.Continuations)
     |> Seq.choose (fun cont ->
         let rec getConditionPage cond =
             match cond with
@@ -159,6 +161,33 @@ let allRoutedPages =
             | _ -> None
         getConditionPage cont.Condition)
     |> Set.ofSeq
+
+let allSetFlags =
+    pages
+    |> Seq.map (fun kvp -> kvp.Value)
+    |> Seq.collect (fun page -> page.Continuations)
+    |> Seq.collect (fun cont -> cont.SetFlags)
+    |> Set.ofSeq
+
+let allReadFlags =
+    pages
+    |> Seq.map (fun kvp -> kvp.Value)
+    |> Seq.collect (fun page -> page.Continuations)
+    |> Seq.collect (fun cont ->
+        let rec getConditionFlag cond =
+            match cond with
+            | Flags (flags, nextCond) -> flags @ (getConditionFlag nextCond)
+            | _ -> []
+        getConditionFlag cont.Condition)
+    |> Set.ofSeq
+
+let unreadFlags = Set.difference allSetFlags allReadFlags
+if not (Set.isEmpty unreadFlags) then
+    printfn "The following flags are set but never read: %A" unreadFlags
+
+let unwrittenFlags = Set.difference allReadFlags allSetFlags
+if not (Set.isEmpty unwrittenFlags) then
+    printfn "The following flags are read but never set: %A" unwrittenFlags
 
 for kvp in pages do
     if not (Set.contains kvp.Value.Name allRoutedPages) && kvp.Value.Name <> "start" then
