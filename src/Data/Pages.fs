@@ -63,7 +63,7 @@ let pages =
                 weary, and looking forward to my first night indoors in nearly a month.  I rode up to the inn and
                 stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
                 for it."""
-                """When I walked into the bar, I saw a shaky, bespectacled Etzeznalt behind the counter, nervously
+                """When I walked into the bar, I saw a shaky, bespectacled Etzen behind the counter, nervously
                 cleaning a glass.  He was your typical rural farmer, dressed in the round black hat and brown kilt, and
                 looked lost in thought.  At the sound of my arrival he looked up, and before he could stop blurted out,
                 "Please!  You must help us!" """
@@ -72,8 +72,9 @@ let pages =
         pb.Build(
             "tez1",
             [
-                """He apologized, and told me that he was just desperate.  Lady Greltza, a local [[bandit]] lord, had
-                managed to trick the [[Town Guardian]] and steal her heartseed, without which she was slowly dying."""
+                """He apologized, and told me that he was just desperate.  Lady Greltza, a local [[bandit|Bandit]] lord,
+                had managed to trick the [[Town Guardian]] and steal her heartseed, without which she was slowly
+                dying."""
                 """ "Please," he said. "Please help us." """
             ],
             [
