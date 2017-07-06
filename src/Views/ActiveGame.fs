@@ -37,9 +37,14 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
             Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str "Choose"]
         | SkillCheckRequired (attr, skill, target, effect) ->
             if Character.GetEffectiveAttr attr gameState.Character > 0 then
+                let successChance =
+                    Skills.getSuccessChance
+                        { Skill = Character.GetSkill skill gameState.Character
+                          Attr = Character.GetAttr attr gameState.Character }
+                        target
                 Some <| R.button
                     [P.OnClick (fun _ -> dispatch (Flip continuation))]
-                    [R.str <| sprintf "Attempt (%A/%A against target %d)" skill attr target]
+                    [R.str <| sprintf "%A/%A vs %d (%.0f%%)" skill attr target successChance]
             else
                 let buttonText =
                     match attr with
@@ -53,13 +58,10 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
                 Some <| R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
         | Flags (flags, nextCondition) ->
             let negatedFlags, positiveFlags = List.partition (fun (f : string) -> f.StartsWith("~")) flags
-            printfn "Positive flags: %A" positiveFlags
-            printfn "Negated flags: %A" negatedFlags
             let hasAllPositiveFlags =
                 List.forall (fun flag -> Set.contains flag gameState.Flags) positiveFlags
             let missingAllNegatedFlags =
                 List.forall (fun (flag : string) ->
-                    printfn "Checking %A: %A" (flag.Substring(1)) (if Set.contains (flag.Substring(1)) gameState.Flags then "contains" else "notcontains")
                     not (Set.contains (flag.Substring(1)) gameState.Flags)) negatedFlags
             if hasAllPositiveFlags && missingAllNegatedFlags then
                 makeConditionButton continuation nextCondition gameState dispatch
