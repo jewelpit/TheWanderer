@@ -137,7 +137,7 @@ let pages =
                 cb.Build("Beat the game quickly", "middle3", Flags (["~YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game because you paid", "middle3", Flags (["~YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game because you fought", "middle3", Flags (["YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
-                cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic), setFlags=["SlowWinner"])
+                cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
             ])
         pb.Build("middle3", ["This'll reset you."], [cb.Build("Fine, just end it!", "end")], resets=true)
         pb.Build("end", ["You beat the game!"], [])
@@ -179,6 +179,7 @@ let allReadFlags =
             | Flags (flags, nextCond) -> flags @ (getConditionFlag nextCond)
             | _ -> []
         getConditionFlag cont.Condition)
+    |> Seq.map (fun flag -> if flag.StartsWith("~") then flag.Substring(1) else flag)
     |> Set.ofSeq
 
 let unreadFlags = Set.difference allSetFlags allReadFlags
