@@ -139,17 +139,16 @@ let pages =
             [
                 cb.Build(
                     "Seeing them, I spurred my monitor beetle on, in an attempt to catch up to the bandits.",
-                    "eresh-2-close",
-                    SkillCheckRequired (Will, Sneaking, 1, AlternatePage "eresh-2-close-spotted"))
+                    "eresh-2",
+                    SkillCheckRequired (Will, Sneaking, 1, AlternatePage "eresh-2-spotted"))
                 cb.Build(
                     """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early.,
                         and I figured I could always scout their positions at night.""",
-                    "eresh-2-maintain")
-            ]
-        )
+                    "eresh-3")
+            ])
 
         pb.Build(
-            "eresh-2-close",
+            "eresh-2",
             [
                 """I was able to ride closer without being spotted, and I was able to count five bandits in this group.
                 They each had a circle pierced by a line, Greltza's symbol, painted on their saddlebags.  This group
@@ -157,21 +156,89 @@ let pages =
             ],
             [
                 cb.Build(
-                    "A chance like this might not come again, so I rode forward and shouted, \"Hello!\"",
-                    "eresh-2-close-greeted")
+                    "A chance like this might not come again, so I rode forward and shouted, \"Hoy!\"",
+                    "eresh-2-persuasion",
+                    SkillCheckRequired (Will, Persuasion, 2, AlternatePage "eresh-2-persuasion-failed"))
                 cb.Build(
                     "A chance like this might not come again, so I rode up and prepared a sleeping spell.",
-                    "eresh-2-close-sleeping",
-                    SkillCheckRequired (Will, Ritual, 2, AlternatePage "eresh-2-close-sleeping-failed"))
+                    "eresh-2-sleeping",
+                    SkillCheckRequired (Will, Ritual, 2, AttributeDamage))
                 cb.Build(
                     """A chance like this might not come again, so I drew my sword, and spurred my monitor beetle into a
                         charge!""",
-                    "eresh-2-close-fighting")
+                    "eresh-2-fighting",
+                    SkillCheckRequired (Might, Combat, 2, AttributeDamage))
                 cb.Build(
                     """Having gotten a good look, I pulled back again.  I had learned their faces, and could now take my
                         time to plan.""",
+                    "eresh-3")
+            ])
+        pb.Build(
+            "eresh-2-spotted",
+            [
+                """Just my luck, the bastards had spotted me!  The five of them wheeled their monitor beetles around to
+                face me.  I could see by the skulls on their belts that the four Etzen in the group were
+                [[barbarians|Barbarians]] from [[Lagamut]].  To my surprise, one among the group was human!  It is not
+                unheard of, for wanderers to join bandit crews, but it came as a shock nonetheless."""
+            ],
+            [
+                cb.Build(
+                    "Even the most unruly barbarians are still people.  I knew I could still talk my way out of this.",
+                    "eresh-2-persuasion",
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-2-persuasion-failed"))
+                cb.Build(
+                    """Money changes all minds, and I knew that if I gave them a small trinket they wanted, they would
+                        let me pass in peace.""",
+                    "eresh-2-bribed",
+                    Bribe 50)
+                cb.Build(
+                    "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
+                    "eresh-2-sleeping",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+                cb.Build(
+                    "If I was going to die, I was going to die on my mount, sword in my hand.",
+                    "eresh-2-fighting",
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                cb.Build(
+                    """At this point I'd seen enough.  I knew I had the fastest mount in the land, steered her around,
+                        and retreated back the way I came.""",
                     "eresh-3",
-                    setFlags=["ERESH-2-INTEL"])
+                    setFlags=["ERESH-2-SPOTTED-RETREATED"])
+            ])
+        pb.Build(
+            "eresh-2-persuasion",
+            [
+                """I offered some of my food to them, and spoke with them at length.  Over the course of our
+                    conversation, I learned that three of them had grown up in a town that had lost its
+                    [[Town Guardian]], and suffered terribly as a result.  They had had second thoughts about Greltza's
+                    mission, and after I agreed to share from my wineskin they had convinced the other two that I should
+                    be allowed to pass unhindered."""
+            ],
+            [
+            cb.Build(
+                "With that, I continued on my way.",
+                "eresh-4")
+            ])
+        pb.Build(
+            "eresh-2-sleeping",
+            [
+                """As I finished making the required hand gestures, the five bandits slumped forward in their saddles.
+                    I made sure to tie their horses to nearby trees, so they wouldn't bolt and injure their riders."""
+            ],
+            [
+                cb.Build("Of course, that didn't stop me from going through their pockets.", "eresh-4", grantsMoney=20)
+            ])
+        pb.Build(
+            "eresh-2-fighting",
+            [
+                """The fighting was long and difficult.  Not only was I outnumbered, they were all
+                    [[barbarians|Barbarians]] of [[Lagamut]].  Never have there been more dangerous fighters."""
+                """Between sword and spell, I was eventually able to push them back, and ultimately force them to
+                    surrender.  It would have been much more effective to be able to take them back to the law, but for
+                    now I had to content myself with binding them to trees and continuing on my way."""
+            ],
+            [
+                cb.Build("I continued on.", "eresh-4")
             ]
         )
 
