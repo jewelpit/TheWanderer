@@ -109,12 +109,13 @@ let pages =
             "tez2-approve",
             [
                 """He thanked me profusely.  He went out and brought more villagers back while I prepared my room, and
-                when I was done half of the town was in the first floor.  They told me the story of how Greltza had used
-                her [[Illusion Helm]] to take the form of a bumblebee, an animal beloved by the Guardian."""
-                """The Town Guardian was not able to distinguish Greltza from her other bumblebees, and Greltza was able
-                to steal the heartseed.  Greltza fled town to the east, heading towards the [[Ereshkigal Mountains]]. If
-                she continued on that path, she would eventually cross into the [[Szaltun Desert]], before finally
-                arriving at [[Estaton, the Inland Sea|Estaton]]."""
+                when I was done half of the town was in the first floor."""
+                """They told me the story of how Greltza had used
+                her [[Illusion Helm]] to take the form of a bumblebee, an animal beloved by the Guardian.  The Town
+                Guardian was not able to distinguish Greltza from her other bumblebees, and Greltza was able to steal
+                the heartseed.  Greltza fled town to the east, heading towards the [[Ereshkigal Mountains]]. If she
+                continued on that path, she would eventually cross into the [[Szaltun Desert]], before finally arriving
+                at [[Estaton, the Inland Sea|Estaton]]."""
                 """We spoke and planned long into the night, but I was eventually able to get rest, and my steed and I
                 were refreshed in the morning when we set out.  I regretted not meeting the Town Guardian, but no
                 outsiders were allowed to visit her in her weakened state."""
@@ -124,6 +125,57 @@ let pages =
                     mountains...""",
                 "eresh-1")]
         )
+
+
+        pb.Build(
+            "eresh-1",
+            [
+                """It was two days' journey along the [[Great Eastern Road]], making a good pace through the foothills
+                before the mountains proper began, when I finally caught up with some of Greltza's scragglers.  It was
+                early afternoon, right after I had finished my midday meal of dried pork strips that tasted like the
+                saddle I was sitting in while I ate them.  I had to make good time to reduce their lead, and that meant
+                no time to prepare food."""
+            ],
+            [
+                cb.Build(
+                    "Seeing them, I spurred my monitor beetle on, in an attempt to catch up to the bandits.",
+                    "eresh-2-close",
+                    SkillCheckRequired (Will, Sneaking, 1, AlternatePage "eresh-2-close-spotted"))
+                cb.Build(
+                    """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early.,
+                        and I figured I could always scout their positions at night.""",
+                    "eresh-2-maintain")
+            ]
+        )
+
+        pb.Build(
+            "eresh-2-close",
+            [
+                """I was able to ride closer without being spotted, and I was able to count five bandits in this group.
+                They each had a circle pierced by a line, Greltza's symbol, painted on their saddlebags.  This group
+                must have been delayed from the others."""
+            ],
+            [
+                cb.Build(
+                    "A chance like this might not come again, so I rode forward and shouted, \"Hello!\"",
+                    "eresh-2-close-greeted")
+                cb.Build(
+                    "A chance like this might not come again, so I rode up and prepared a sleeping spell.",
+                    "eresh-2-close-sleeping",
+                    SkillCheckRequired (Will, Ritual, 2, AlternatePage "eresh-2-close-sleeping-failed"))
+                cb.Build(
+                    """A chance like this might not come again, so I drew my sword, and spurred my monitor beetle into a
+                        charge!""",
+                    "eresh-2-close-fighting")
+                cb.Build(
+                    """Having gotten a good look, I pulled back again.  I had learned their faces, and could now take my
+                        time to plan.""",
+                    "eresh-3",
+                    setFlags=["ERESH-2-INTEL"])
+            ]
+        )
+
+
         pb.Build(
             "middle",
             ["You made it closer..."],
@@ -192,16 +244,16 @@ if not (Set.isEmpty unwrittenFlags) then
 
 for kvp in pages do
     if not (Set.contains kvp.Value.Name allRoutedPages) && kvp.Value.Name <> "start" then
-        printfn "Page %A is not reachable from any other pages" kvp.Value
+        printfn "Page %s is not reachable from any other pages" kvp.Value.Name
     for continuation in kvp.Value.Continuations do
         if not (Map.containsKey continuation.NextPageName pages) then
-            printfn "Page %A has an invalid continuation: %s" kvp.Value continuation.NextPageName
+            printfn "Page %s has an invalid continuation: %s" kvp.Value.Name continuation.NextPageName
         match continuation.Condition with
         | SkillCheckRequired (attr, skill, target, effect) ->
             match effect with
             | AlternatePage name ->
-            if not (Map.containsKey name pages) then
-                    printfn "Continuation %A has an invalid alternate room." continuation
+                if not (Map.containsKey name pages) then
+                    printfn "Page %s has continuation with an invalid alternate page: %s." kvp.Value.Name name
             | AttributeDamage -> ()
         | _ -> ()
     for part in List.collect Modals.parseLine kvp.Value.Text do
@@ -209,4 +261,4 @@ for kvp in pages do
         | Modals.Str _ -> ()
         | Modals.Link link ->
             if not (Map.containsKey link.LinkName Modals.modals) then
-                printfn "Room %A has an invalid modal link: %s" kvp.Value link.LinkName
+                printfn "Page %s has an invalid modal link: %s" kvp.Value.Name link.LinkName
