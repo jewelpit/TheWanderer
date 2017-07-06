@@ -52,7 +52,16 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
             else
                 Some <| R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
         | Flags (flags, nextCondition) ->
-            if List.forall (fun flag -> Set.contains flag gameState.Flags) flags then
+            let negatedFlags, positiveFlags = List.partition (fun (f : string) -> f.StartsWith("~")) flags
+            printfn "Positive flags: %A" positiveFlags
+            printfn "Negated flags: %A" negatedFlags
+            let hasAllPositiveFlags =
+                List.forall (fun flag -> Set.contains flag gameState.Flags) positiveFlags
+            let missingAllNegatedFlags =
+                List.forall (fun (flag : string) ->
+                    printfn "Checking %A: %A" (flag.Substring(1)) (if Set.contains (flag.Substring(1)) gameState.Flags then "contains" else "notcontains")
+                    not (Set.contains (flag.Substring(1)) gameState.Flags)) negatedFlags
+            if hasAllPositiveFlags && missingAllNegatedFlags then
                 makeConditionButton continuation nextCondition gameState dispatch
             else
                 None
