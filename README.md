@@ -16,7 +16,7 @@ Any modification you do to the F# code will be reflected in the web page after s
   stalking the desert for two hundred eighty-two years fighting bandits (as he did in life)
 
 ## World Notes
-- Dominant race: the Etzen, intelligent humanoid bat people.
+- Dominant race: the Etzen, intelligent humanoid owl people.
 - Magic and sci-fi side by side.
 
 ## TODO

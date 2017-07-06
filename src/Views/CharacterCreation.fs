@@ -27,7 +27,7 @@ let view (character : InProgressCharacter) dispatch =
             R.str "To other "
             showModalLinkByName "Humans" "humans" dispatch
             R.str ", my name is Pompeia.  To "
-            showModalLinkByName "Etzen" "ezteznalt" dispatch
+            showModalLinkByName "Etzen" "Etzen" dispatch
             R.str ", I am known only as wanderer.  I have traveled far over these lands, and "
             R.select
                 [P.OnChange (fun e ->
