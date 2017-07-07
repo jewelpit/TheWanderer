@@ -133,8 +133,8 @@ let pages =
                 """It was two days' journey along the [[Great Eastern Road]], making a good pace through the foothills
                 before the mountains proper began, when I finally caught up with some of Greltza's scragglers.  It was
                 early afternoon, right after I had finished my midday meal of dried pork strips that tasted like the
-                saddle I was sitting in while I ate them.  I had to make good time to reduce their lead, and that meant
-                no time to prepare food."""
+                saddle I was sitting in.  I had to make good time to reduce their lead, and that meant no time to
+                stop for luxuries like hot food."""
             ],
             [
                 cb.Build(
@@ -142,7 +142,7 @@ let pages =
                     "eresh-2",
                     SkillCheckRequired (Will, Sneaking, 2, AlternatePage "eresh-2-spotted"))
                 cb.Build(
-                    """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early.,
+                    """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early,
                         and I figured I could always scout their positions at night.""",
                     "eresh-3")
             ])
