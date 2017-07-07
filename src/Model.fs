@@ -46,6 +46,7 @@ type ActiveGameState = {
     Character : Character
     Page : Page
     History : string list
+    FullHistory : string list
     Flags : string Set
 }
 
@@ -53,6 +54,7 @@ type SavedGameState = {
     Character : Character
     PageName : string
     History : string list
+    FullHistory : string list
     Flags : string list
 }
 
@@ -64,6 +66,7 @@ type Message =
     | Flip of Continuation
     | ShowModal of Modal
     | CloseModal
+    | ShowFullHistory
 
 type Model =
     | SplashScreen
@@ -71,3 +74,4 @@ type Model =
     | ActiveGame of ActiveGameState
     | GameWithResult of ActiveGameState * Skills.RollResult
     | Modal of Modal * Model
+    | History of ActiveGameState

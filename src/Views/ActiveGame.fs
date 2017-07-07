@@ -113,16 +113,22 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                 ]
             for paragraph in page.Text ->
                 R.p [] [Modal.formatLine paragraph dispatch]
-            yield R.ul [] [
-                for cont in page.Continuations do
-                    match makeConditionButton cont cont.Condition gameState dispatch with
-                    | None -> ()
-                    | Some conditionButton ->
-                        yield R.li [] [
-                            yield R.str cont.Description
-                            yield R.br []
-                            yield conditionButton
-                    ]
-            ]
+            if List.isEmpty page.Continuations then
+                yield R.p [] [R.h4 [] [R.str "You completed the game! Would you like to view your full log?"]]
+                yield R.button [P.OnClick (fun _ -> dispatch ShowFullHistory)] [R.str "View full log"]
+                yield R.str " or "
+                yield R.a [Nowhere; P.OnClick (fun _ -> dispatch StartCharacterCreation)] [R.str "start a new game"]
+            else
+                yield R.ul [] [
+                    for cont in page.Continuations do
+                        match makeConditionButton cont cont.Condition gameState dispatch with
+                        | None -> ()
+                        | Some conditionButton ->
+                            yield R.li [] [
+                                yield R.str cont.Description
+                                yield R.br []
+                                yield conditionButton
+                        ]
+                ]
         ]
     ]
