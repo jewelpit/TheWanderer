@@ -110,7 +110,7 @@ let view (character : InProgressCharacter) dispatch =
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Persuasion"]
                     R.td [] [
-                        if character.HighSkill = Persuasion then 4 else if character.LowSkill = Persuasion then 2 else 3
+                        if character.HighSkill = Persuasion then 6 else if character.LowSkill = Persuasion then 4 else 5
                         |> string
                         |> R.str
                     ]
@@ -118,7 +118,7 @@ let view (character : InProgressCharacter) dispatch =
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Combat"]
                     R.td [] [
-                        if character.HighSkill = Combat then 4 else if character.LowSkill = Combat then 2 else 3
+                        if character.HighSkill = Combat then 6 else if character.LowSkill = Combat then 4 else 5
                         |> string
                         |> R.str
                     ]
@@ -126,7 +126,7 @@ let view (character : InProgressCharacter) dispatch =
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Ritual"]
                     R.td [] [
-                        if character.HighSkill = Ritual then 4 else if character.LowSkill = Ritual then 2 else 3
+                        if character.HighSkill = Ritual then 6 else if character.LowSkill = Ritual then 4 else 5
                         |> string
                         |> R.str
                     ]
@@ -134,7 +134,7 @@ let view (character : InProgressCharacter) dispatch =
                 R.tr [] [
                     R.th [P.Style [P.TextAlign "right"]] [R.str "Sneaking"]
                     R.td [] [
-                        if character.HighSkill = Sneaking then 4 else if character.LowSkill = Sneaking then 2 else 3
+                        if character.HighSkill = Sneaking then 6 else if character.LowSkill = Sneaking then 4 else 5
                         |> string
                         |> R.str
                     ]
