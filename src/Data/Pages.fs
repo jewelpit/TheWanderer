@@ -230,8 +230,7 @@ let pages =
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
                     SkillCheckRequired (Might, Combat, 3, AttributeDamage))
-            ]
-        )
+            ])
         pb.Build(
             "eresh-2-sleeping",
             [
@@ -267,6 +266,7 @@ let pages =
                     bought not only passage, but a promise they would not follow me for another hour."""
             ],
             [cb.Build("I continued on.", "eresh-4")])
+
         pb.Build(
             "eresh-3",
             [
@@ -275,8 +275,9 @@ let pages =
                     forward through the underbrush."""
             ],
             [cb.Build(
-                """I knew I would have to overtake them in order to catch up to Greltza. I led my beetlee around them
-                    under cover of darkness, careful not to make even the slightest noise.""",
+                """I knew I would have to overtake them in order to catch up to Greltza. I led my beetle around them
+                    under cover of darkness, careful not to make even the slightest noise.  After a time, I was able to
+                    return to the road.""",
                 "eresh-4",
                 SkillCheckRequired (Might, Sneaking, 2, AlternatePage "eresh-3-spotted"))])
         pb.Build(
@@ -352,7 +353,7 @@ let pages =
                     undergrowth.  I was able to leap from tree trunk to rock to avoid the [[electrogun|Electrogun]]
                     arcs, until I was close enough to disarm the human and take his gun."""
                 """ "Listen up, you!" I shouted.  "Throw down your weapons or die." """
-                
+
             ],
             [
                 cb.Build("""They complied.""", "eresh-4")
@@ -371,17 +372,57 @@ let pages =
             [
                 cb.Build("I continued on my way.", "eresh-4")
             ])
+
         pb.Build(
             "eresh-4",
             [
-                """With the bandits taken care of, I decided that it was time for a small rest.  After some more cold
-                    pork and a few hours' sleep under a drooping tree, I continued on as the sun broke over the mountain
-                    ridge to the east."""
+                """With the bandits no longer an issue, I decided that it was time for a small rest.  After some more
+                    cold pork and a few hours' sleep under a drooping tree, I continued on as the sun broke over the
+                    mountain ridge to the east."""
             ],
             [
                 cb.Build("It was two more days until the next obstacle in my path.", "eresh-5")
-            ]
-        )
+            ])
+
+        pb.Build(
+            "eresh-5",
+            [
+                """When I finally arrived at the great granite gates to the Lost Mines, I was relieved to see that it
+                    looked like a group of people had been camping here recently.  Greltza!  She had been here only
+                    hours before!"""
+                """I looked up at the doors, towering twenty feet above me.  It is said that in the old days a password
+                    was needed to gain entry to this door, but the hinges were time-worn and the doors were slightly off
+                    their hinges, with just enough room to squeeze a monitor beetle and rider through."""
+                """I clicked my beetle forward, and she deftly made her way around the broken stonework.  The air in
+                    there was surprisingly fresh, a testament to the multitude of know and unknown entrances to the
+                    mines.  I reached around in my saddlebag and pulled out a small [[glowbulb|Glowbulb]] that I could
+                    strap to my head.  I would need both hands free in here."""
+                """After an hour or two, I came to a fork in the path where I could no longer track the bandits'
+                    footprints through the dust on the ground.  I sat there for a time, astride my beetle, before making
+                    my decision."""
+            ],
+            [
+                cb.Build("I clicked my beetle forwards, going up the stairs to my left.", "eresh-6")
+                cb.Build("I clicked my beetle forwards, going down the stairs to my right.", "eresh-7")
+            ])
+
+            pb.Build(
+                "eresh-6",
+                [
+                    """I continued along the high path the rest of the day, before eventually having to make camp.  I
+                        allowed myself the luxury of a fire, made from wood I had stored in my saddlebags just in case.
+                        I knew that the slight, constant breeze would get rid of the smoke, and being in this enclosed
+                        tunnel would prevent any bandits from seeing my light.  Earlier that day I had killed a rabbit
+                        with a spell as it crossed the trail, and I enjoyed my first hot meal in days."""
+                    """It's funny now, but at the time, this lonely dinner, two hundred feet underground with no one but
+                        myself and my beetle, was the most content I would be on this journey."""
+                ],
+                [
+                    cb.Build(
+                        """I woke many hours later, unsure what time it was.  I put my glowbulb back on my head,
+                            saddled my monitor beetle, and made my way further down the tunnel.""",
+                        "eresh-8")
+                ])
 
 
         pb.Build(
