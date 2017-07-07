@@ -140,7 +140,7 @@ let pages =
                 cb.Build(
                     "Seeing them, I spurred my monitor beetle on, in an attempt to catch up to the bandits.",
                     "eresh-2",
-                    SkillCheckRequired (Will, Sneaking, 1, AlternatePage "eresh-2-spotted"))
+                    SkillCheckRequired (Will, Sneaking, 2, AlternatePage "eresh-2-spotted"))
                 cb.Build(
                     """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early.,
                         and I figured I could always scout their positions at night.""",
@@ -158,16 +158,16 @@ let pages =
                 cb.Build(
                     "A chance like this might not come again, so I rode forward and shouted, \"Hoy!\"",
                     "eresh-2-persuasion",
-                    SkillCheckRequired (Will, Persuasion, 2, AlternatePage "eresh-2-persuasion-failed"))
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-2-persuasion-failed"))
                 cb.Build(
                     "A chance like this might not come again, so I rode up and prepared a sleeping spell.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 2, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
                 cb.Build(
                     """A chance like this might not come again, so I drew my sword, and spurred my monitor beetle into a
                         charge!""",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 2, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
                 cb.Build(
                     """Having gotten a good look, I pulled back again.  I had learned their faces, and could now take my
                         time to plan.""",
@@ -185,7 +185,7 @@ let pages =
                 cb.Build(
                     "Even the most unruly barbarians are still people.  I knew I could still talk my way out of this.",
                     "eresh-2-persuasion",
-                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-2-persuasion-failed"))
+                    SkillCheckRequired (Will, Persuasion, 4, AlternatePage "eresh-2-persuasion-failed"))
                 cb.Build(
                     """Money changes all minds, and I knew that if I gave them a small trinket they wanted, they would
                         let me pass in peace.""",
@@ -194,16 +194,15 @@ let pages =
                 cb.Build(
                     "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
                 cb.Build(
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
                 cb.Build(
                     """At this point I'd seen enough.  I knew I had the fastest mount in the land, steered her around,
                         and retreated back the way I came.""",
-                    "eresh-3",
-                    setFlags=["ERESH-2-SPOTTED-RETREATED"])
+                    "eresh-3-spotted_in_eresh_2")
             ])
         pb.Build(
             "eresh-2-persuasion",
@@ -226,11 +225,11 @@ let pages =
                 cb.Build(
                     "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
                 cb.Build(
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
             ]
         )
         pb.Build(
@@ -247,7 +246,9 @@ let pages =
             "eresh-2-fighting",
             [
                 """The fighting was long and difficult.  Not only was I outnumbered, they were all
-                    [[barbarians|Barbarians of Lagamut]].  Never have there been more dangerous fighters."""
+                    [[barbarians|Barbarians of Lagamut]].  Never have there been more dangerous fighters.  Two of their
+                    number were also armed with [[electroguns|Electrogun]], whose brilliant arcs would have taken my head clean off my
+                    shoulders if I let my concentration lapse for even a moment."""
                 """Between sword and spell, I was eventually able to push them back, and ultimately force them to
                     surrender.  It would have been much more effective to be able to take them back to the law, but for
                     now I had to content myself with binding them to trees and continuing on my way."""
@@ -266,6 +267,121 @@ let pages =
                     bought not only passage, but a promise they would not follow me for another hour."""
             ],
             [cb.Build("I continued on.", "eresh-4")])
+        pb.Build(
+            "eresh-3",
+            [
+                """I followed them from a distance for several hours, until the shadows grew and the world took on a red
+                    hue.  When I saw them begin to settle down for the evening, I dismounted my beetle and made my way
+                    forward through the underbrush."""
+            ],
+            [cb.Build(
+                """I knew I would have to overtake them in order to catch up to Greltza. I led my beetlee around them
+                    under cover of darkness, careful not to make even the slightest noise.""",
+                "eresh-4",
+                SkillCheckRequired (Might, Sneaking, 3, AlternatePage "eresh-3-spotted"))])
+        pb.Build(
+            "eresh-3-spotted_in_eresh_2",
+            [
+                """I was able to escape, and when I turned around to resume following them the bandits were on high
+                    alert.  It was nothing but sheer luck that they didn't blow a horn, or radio Greltza.  As I followed
+                    them throughout the day, they regularly looked back to keep track of how far I was behind them."""
+                """Eventually they had to sleep, and when they set down for the night I knew my chance was here.  I rode
+                    my [[beetle|Monitor Beetle] up to the edge of the undergrowth, dismounted, and plunged in."""
+            ],
+            [cb.Build(
+                """I led my beetle through the underbrush, giving their camp a wide berth.""",
+                "eresh-4",
+                SkillCheckRequired (Might, Sneaking, 4, AlternatePage "eresh-3-spotted"))])
+        pb.Build(
+            "eresh-3-spotted",
+            [
+                """Damn!  It was just my luck to be spotted while I was tied up in the underbrush.  With my legs tangled
+                    in shrubbery and my monitor beetle unharnessed, I was a sitting duck.  Matters grew worse when the
+                    bright arc of an [[electrogun|Electrogun]] fired above my head.  This would be a desperate struggle.
+                    """
+            ],
+            [
+                cb.Build(
+                    """I raised my hands. "Please," I said to them.  "I am just a simple traveler, who ran from
+                        fright." """,
+                    "eresh-3-social",
+                    SkillCheckRequired (Will, Persuasion, 4, AlternatePage "eresh-3-social-failed"))
+                cb.Build(
+                    """I drew my sword.  They had numbers and range on me, but I was quick and my dark clothes blended
+                        with the trees.""",
+                    "eresh-3-fighting",
+                    SkillCheckRequired (Might, Combat, 5, AttributeDamage))
+                cb.Build(
+                    """I began tracing magical forms with my arm.  A flashbang spell in this darkness could leave them
+                        blinded for hours.""",
+                    "eresh-3-magic",
+                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+            ])
+        pb.Build(
+            "eresh-3-social",
+            [
+                """Thankfully, they believed my lie."""
+            ],
+            [cb.Build(
+                "Unfortunately, pretending to be a scared traveler near bandits is not a cheap lie to make.",
+                "eresh-4",
+                Bribe 50)])
+        pb.Build(
+            "eresh-3-social-failed",
+            [
+                """ "You expect us to believe that?" the leader asked. "You're clearly comfortable with a sword, and you
+                    have the eyes of someone who has killed before.  Now why don't you tell us why you're following us?"
+                    """
+                """ "Like hell I will," I replied."""
+            ],
+            [
+                cb.Build(
+                    "I dashed forward, sword flashing.",
+                    "eresh-3-fighting",
+                    SkillCheckRequired (Might, Combat, 5, AttributeDamage))
+                cb.Build(
+                    "I hastily cast a flashbang spell, blinding them.",
+                    "eresh-3-magic",
+                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+            ])
+        pb.Build(
+            "eresh-3-fighting",
+            [
+                """Thankfully, being ambushed in the bushes had meant that the bandits couldn't bring their
+                    [[monitor beetles|Monitor Beetle]] to the fight, so they were just as slowed as I was in the
+                    undergrowth.  I was able to leap from tree trunk to rock to avoid the [[electrogun|Electrogun]]
+                    arcs, until I was close enough to disarm the human and take his gun."""
+                """ "Listen up, you!" I shouted.  "Throw down your weapons or die." """
+                
+            ],
+            [
+                cb.Build("""They complied.""", "eresh-4")
+                cb.Build(
+                    """They complied, and I made sure their purses were the lighter for it.""",
+                    "eresh-4",
+                    grantsMoney=20)
+            ])
+        pb.Build(
+            "eresh-3-magic",
+            [
+                """With a flash brighter than the sun and a sound louder than any I had heard before, the five bandits
+                    dropped to the ground, clutching their heads.  That would teach them to underestimate the people
+                    they rob."""
+            ],
+            [
+                cb.Build("I continued on my way.", "eresh-4")
+            ])
+        pb.Build(
+            "eresh-4",
+            [
+                """With the bandits taken care of, I decided that it was time for a small rest.  After some more cold
+                    pork and a few hours' sleep under a drooping tree, I continued on as the sun broke over the mountain
+                    ridge to the east."""
+            ],
+            [
+                cb.Build("It was two more days until the next obstacle in my path.", "eresh-5")
+            ]
+        )
 
 
         pb.Build(

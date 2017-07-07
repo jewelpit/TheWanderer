@@ -253,6 +253,18 @@ let modals =
                         """
                 ]
         }
+        {
+            Title = "Electrogun"
+            Content =
+                R.div [] [
+                    para """
+                        The electrogun is one of the most fearsome weapons created by the blind monks of Sizzhar.  By
+                        reducing the electrical resistance of the air between the gun and the target the electrogun is
+                        capable of transferring enormous amounts of electricity in an instant, raising the temperature
+                        of the are it hits by thousands of degrees.
+                        """
+                ]
+        }
     ]
     |> List.map (fun modal -> (modal.Title, modal))
     |> Map.ofList
