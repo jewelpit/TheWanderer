@@ -258,8 +258,14 @@ let pages =
                     "Turnabout is fair play, so I made sure to free them from their belongings before leaving.",
                     "eresh-4",
                     grantsMoney=20)
-            ]
-        )
+            ])
+        pb.Build(
+            "eresh-2-bribed",
+            [
+                """The five bandits let me pass, contentedly counting their muld shells.  With that many shells, I had
+                    bought not only passage, but a promise they would not follow me for another hour."""
+            ],
+            [cb.Build("I continued on.", "eresh-4")])
 
 
         pb.Build(
