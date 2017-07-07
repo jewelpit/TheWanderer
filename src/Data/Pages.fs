@@ -178,7 +178,7 @@ let pages =
             [
                 """Just my luck, the bastards had spotted me!  The five of them wheeled their monitor beetles around to
                 face me.  I could see by the skulls on their belts that the four Etzen in the group were
-                [[barbarians|Barbarians]] from [[Lagamut]].  To my surprise, one among the group was human!  It is not
+                [[barbarians|Barbarians of Lagamut]].  To my surprise, one among the group was human!  It is not
                 unheard of, for wanderers to join bandit crews, but it came as a shock nonetheless."""
             ],
             [
@@ -247,7 +247,7 @@ let pages =
             "eresh-2-fighting",
             [
                 """The fighting was long and difficult.  Not only was I outnumbered, they were all
-                    [[barbarians|Barbarians]] of [[Lagamut]].  Never have there been more dangerous fighters."""
+                    [[barbarians|Barbarians of Lagamut]].  Never have there been more dangerous fighters."""
                 """Between sword and spell, I was eventually able to push them back, and ultimately force them to
                     surrender.  It would have been much more effective to be able to take them back to the law, but for
                     now I had to content myself with binding them to trees and continuing on my way."""
