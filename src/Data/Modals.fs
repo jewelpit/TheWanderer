@@ -218,9 +218,38 @@ let modals =
             Content =
                 R.div [] [
                     para """
-                        Ah, Estaton: the Inland Sea.  Estaton is said to be the physical containment of the god Estaton,
-                        chief among the deities.  It is only fitting that the strongest deity should go to the greatest
-                        lake.
+                        Ah, Estaton: the Inland Sea.  Estaton is said to be the physical containment of the goddess
+                        Estaton, chief among the deities.  It is only fitting that the strongest deity should go to the
+                        greatest lake.
+                        """
+                ]
+        }
+        {
+            Title = "Great Eastern Road"
+            Content =
+                R.div [] [
+                    para """
+                        The Great Eastern Road connects the coastal regions along the western coast to the desert beyond
+                        the mountains.  No one can remember who first built the Great Eastern Road, and sections of it
+                        have been mentioned in tales that are thousands of years old.
+                        """
+                    para """
+                        At many points in the past, a strong nation has put the Great Eastern Road under strict control,
+                        and it was safe and well traveled.  In these times, it is crawling with bandits, and only the
+                        foolhardy travel it.
+                        """
+                ]
+        }
+        {
+            Title = "Barbarians of Lagamut"
+            Content =
+                R.div [] [
+                    para """
+                        Lagamut, an island far across the ocean, is known far and wide for its varied collection of
+                        venemous, poisonous, or otherwise deadly wildlife.  In this environment, Etzen and humans have
+                        had to become stronger and more vicious in order to survive.  Each barbarian is born into a
+                        crew, which are usually made up of around two hundred people, although membership in a crew is
+                        not necessarily for life.
                         """
                 ]
         }
