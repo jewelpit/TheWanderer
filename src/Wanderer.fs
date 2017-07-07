@@ -27,6 +27,7 @@ let loadGame () =
             Character = savedGame.Character
             Page = page
             History = savedGame.History
+            FullHistory = savedGame.FullHistory
             Flags = Set.ofList savedGame.Flags
         }
 
@@ -36,6 +37,7 @@ let saveGame (state : ActiveGameState) =
             Character = state.Character
             PageName = state.Page.Name
             History = state.History
+            FullHistory = state.FullHistory
             Flags = List.ofSeq state.Flags
         }
     window.localStorage.setItem("savedGame", toJson savedState)
@@ -53,7 +55,13 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                 | flags -> Set.union gameState.Flags (Set.ofList flags)
             if p.Resets then
                 let newCharacter = { gameState.Character with Wounds = 0; Stress = 0; Muld = newMuld }
-                { gameState with Page = p; History = []; Flags = newFlags; Character = newCharacter }
+                { gameState with
+                    Page = p
+                    History = []
+                    FullHistory = gameState.FullHistory @ gameState.History
+                    Flags = newFlags
+                    Character = newCharacter
+                }
             else
                 let newCharacter = { gameState.Character with Muld = newMuld }
                 { gameState with Page = p; History = newHistory; Flags = newFlags; Character = newCharacter }
@@ -95,7 +103,7 @@ let init () =
 let rec update (msg : Message) model =
     let newModel =
         match msg, model with
-        | (StartCharacterCreation, SplashScreen) ->
+        | (StartCharacterCreation, _) ->
             CharacterCreation { Might = 3; Will = 3; HighSkill = Persuasion; LowSkill = Combat }
         | (LoadGame state, SplashScreen) ->
             ActiveGame state
@@ -112,7 +120,14 @@ let rec update (msg : Message) model =
                 Stress = 0
                 Muld = 100
             }
-            |> fun c -> ActiveGame { Character = c; Page = Pages.pages.["start"]; History = []; Flags = Set.empty }
+            |> fun c ->
+                ActiveGame {
+                    Character = c
+                    Page = Pages.pages.["start"]
+                    History = []
+                    FullHistory = []
+                    Flags = Set.empty
+                }
         | (Flip continuation, GameWithResult (gameState, _))
         | (Flip continuation, ActiveGame gameState) ->
             changePage gameState continuation
@@ -120,6 +135,9 @@ let rec update (msg : Message) model =
             Modal (modal, m)
         | (CloseModal, Modal (_, innerModel)) ->
             innerModel
+        | (ShowFullHistory, GameWithResult (gameState, _))
+        | (ShowFullHistory, ActiveGame gameState) ->
+            History gameState
         | tup ->
             printfn "Could not understand %A" tup
             model
@@ -138,6 +156,7 @@ let rec view model dispatch =
     | Modal (modal, m) ->
         let innerElements = view m dispatch
         Modal.view modal innerElements dispatch
+    | History gameState -> ShowFullHistory.view gameState dispatch
 
 // App
 Program.mkSimple init update view
