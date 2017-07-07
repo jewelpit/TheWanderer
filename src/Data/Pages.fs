@@ -214,11 +214,25 @@ let pages =
                     mission, and after I agreed to share from my wineskin they had convinced the other two that I should
                     be allowed to pass unhindered."""
             ],
+            [cb.Build("With that, I continued on my way.", "eresh-4")])
+        pb.Build(
+            "eresh-2-persuasion-failed",
             [
-            cb.Build(
-                "With that, I continued on my way.",
-                "eresh-4")
-            ])
+                """The five of them were clearly under orders to allow no prisoners.  They drew their weapons, and made
+                it clear that I would be spending the rest of time in a shallow grave on the side of the road, if
+                scavenging animals didn't dig up my body first."""
+            ],
+            [
+                cb.Build(
+                    "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
+                    "eresh-2-sleeping",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+                cb.Build(
+                    "If I was going to die, I was going to die on my mount, sword in my hand.",
+                    "eresh-2-fighting",
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+            ]
+        )
         pb.Build(
             "eresh-2-sleeping",
             [
@@ -226,6 +240,7 @@ let pages =
                     I made sure to tie their horses to nearby trees, so they wouldn't bolt and injure their riders."""
             ],
             [
+                cb.Build("With the bandits taken care of, I headed forward along the road.", "eresh-4")
                 cb.Build("Of course, that didn't stop me from going through their pockets.", "eresh-4", grantsMoney=20)
             ])
         pb.Build(
@@ -239,6 +254,10 @@ let pages =
             ],
             [
                 cb.Build("I continued on.", "eresh-4")
+                cb.Build(
+                    "Turnabout is fair play, so I made sure to free them from their belongings before leaving.",
+                    "eresh-4",
+                    grantsMoney=20)
             ]
         )
 
@@ -268,17 +287,17 @@ let allRoutedPages =
     pages
     |> Seq.map (fun kvp -> kvp.Value)
     |> Seq.collect (fun page -> page.Continuations)
-    |> Seq.choose (fun cont ->
+    |> Seq.collect (fun cont ->
         let rec getConditionPage cond =
             match cond with
-            | Automatic -> Some cont.NextPageName
+            | Automatic -> [cont.NextPageName]
             | SkillCheckRequired (_, _, _, effect) ->
                 match effect with
-                | AlternatePage page -> Some page
-                | AttributeDamage -> None
+                | AlternatePage page -> [page]
+                | AttributeDamage -> []
             | Flags (flags, c) -> getConditionPage c
-            | _ -> None
-        getConditionPage cont.Condition)
+            | _ -> []
+        cont.NextPageName :: (getConditionPage cont.Condition))
     |> Set.ofSeq
 
 let allSetFlags =
