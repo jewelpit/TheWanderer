@@ -112,10 +112,10 @@ let rec update (msg : Message) model =
             {
                 Might = ipc.Might
                 Will = ipc.Will
-                Persuasion = if ipc.HighSkill = Persuasion then 4 else if ipc.LowSkill = Persuasion then 2 else 3
-                Combat = if ipc.HighSkill = Combat then 4 else if ipc.LowSkill = Combat then 2 else 3
-                Ritual = if ipc.HighSkill = Ritual then 4 else if ipc.LowSkill = Ritual then 2 else 3
-                Sneaking = if ipc.HighSkill = Sneaking then 4 else if ipc.LowSkill = Sneaking then 2 else 3
+                Persuasion = if ipc.HighSkill = Persuasion then 6 else if ipc.LowSkill = Persuasion then 4 else 5
+                Combat = if ipc.HighSkill = Combat then 6 else if ipc.LowSkill = Combat then 4 else 5
+                Ritual = if ipc.HighSkill = Ritual then 6 else if ipc.LowSkill = Ritual then 4 else 5
+                Sneaking = if ipc.HighSkill = Sneaking then 6 else if ipc.LowSkill = Sneaking then 4 else 5
                 Wounds = 0
                 Stress = 0
                 Muld = 100
