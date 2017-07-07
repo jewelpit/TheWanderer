@@ -158,16 +158,16 @@ let pages =
                 cb.Build(
                     "A chance like this might not come again, so I rode forward and shouted, \"Hoy!\"",
                     "eresh-2-persuasion",
-                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-2-persuasion-failed"))
+                    SkillCheckRequired (Will, Persuasion, 2, AlternatePage "eresh-2-persuasion-failed"))
                 cb.Build(
                     "A chance like this might not come again, so I rode up and prepared a sleeping spell.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 2, AttributeDamage))
                 cb.Build(
                     """A chance like this might not come again, so I drew my sword, and spurred my monitor beetle into a
                         charge!""",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 2, AttributeDamage))
                 cb.Build(
                     """Having gotten a good look, I pulled back again.  I had learned their faces, and could now take my
                         time to plan.""",
@@ -185,7 +185,7 @@ let pages =
                 cb.Build(
                     "Even the most unruly barbarians are still people.  I knew I could still talk my way out of this.",
                     "eresh-2-persuasion",
-                    SkillCheckRequired (Will, Persuasion, 4, AlternatePage "eresh-2-persuasion-failed"))
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-2-persuasion-failed"))
                 cb.Build(
                     """Money changes all minds, and I knew that if I gave them a small trinket they wanted, they would
                         let me pass in peace.""",
@@ -194,11 +194,11 @@ let pages =
                 cb.Build(
                     "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
                 cb.Build(
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
                 cb.Build(
                     """At this point I'd seen enough.  I knew I had the fastest mount in the land, steered her around,
                         and retreated back the way I came.""",
@@ -225,11 +225,11 @@ let pages =
                 cb.Build(
                     "I threw together a sleep spell, hoping that I wasn't too rushed to make the correct signs.",
                     "eresh-2-sleeping",
-                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
                 cb.Build(
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
-                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
             ]
         )
         pb.Build(
@@ -278,7 +278,7 @@ let pages =
                 """I knew I would have to overtake them in order to catch up to Greltza. I led my beetlee around them
                     under cover of darkness, careful not to make even the slightest noise.""",
                 "eresh-4",
-                SkillCheckRequired (Might, Sneaking, 3, AlternatePage "eresh-3-spotted"))])
+                SkillCheckRequired (Might, Sneaking, 2, AlternatePage "eresh-3-spotted"))])
         pb.Build(
             "eresh-3-spotted_in_eresh_2",
             [
@@ -291,7 +291,7 @@ let pages =
             [cb.Build(
                 """I led my beetle through the underbrush, giving their camp a wide berth.""",
                 "eresh-4",
-                SkillCheckRequired (Might, Sneaking, 4, AlternatePage "eresh-3-spotted"))])
+                SkillCheckRequired (Might, Sneaking, 3, AlternatePage "eresh-3-spotted"))])
         pb.Build(
             "eresh-3-spotted",
             [
@@ -305,17 +305,17 @@ let pages =
                     """I raised my hands. "Please," I said to them.  "I am just a simple traveler, who ran from
                         fright." """,
                     "eresh-3-social",
-                    SkillCheckRequired (Will, Persuasion, 4, AlternatePage "eresh-3-social-failed"))
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "eresh-3-social-failed"))
                 cb.Build(
                     """I drew my sword.  They had numbers and range on me, but I was quick and my dark clothes blended
                         with the trees.""",
                     "eresh-3-fighting",
-                    SkillCheckRequired (Might, Combat, 5, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
                 cb.Build(
                     """I began tracing magical forms with my arm.  A flashbang spell in this darkness could leave them
                         blinded for hours.""",
                     "eresh-3-magic",
-                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
             ])
         pb.Build(
             "eresh-3-social",
@@ -338,11 +338,11 @@ let pages =
                 cb.Build(
                     "I dashed forward, sword flashing.",
                     "eresh-3-fighting",
-                    SkillCheckRequired (Might, Combat, 5, AttributeDamage))
+                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
                 cb.Build(
                     "I hastily cast a flashbang spell, blinding them.",
                     "eresh-3-magic",
-                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
             ])
         pb.Build(
             "eresh-3-fighting",
@@ -387,7 +387,7 @@ let pages =
         pb.Build(
             "middle",
             ["You made it closer..."],
-            [cb.Build("Go easter", "end", SkillCheckRequired (Will, Persuasion, 30, AlternatePage "middle2"))])
+            [cb.Build("Go easter", "end", SkillCheckRequired (Will, Persuasion, 20, AlternatePage "middle2"))])
         pb.Build(
             "middle2",
             ["You made it closer, but then you fucked up."],
