@@ -12,6 +12,7 @@
     <Compile Include="src/Views/SplashScreen.fs" />
     <Compile Include="src/Views/CharacterCreation.fs" />
     <Compile Include="src/Views/ActiveGame.fs" />
+    <Compile Include="src/Views/ShowFullHistory.fs" />
     <Compile Include="src/Wanderer.fs" />
   </ItemGroup>
   <ItemGroup>
