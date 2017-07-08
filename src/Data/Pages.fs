@@ -68,7 +68,10 @@ let pages =
                 looked lost in thought.  At the sound of my arrival he looked up, and before he could stop blurted out,
                 "Please!  You must help us!" """
             ],
-            [cb.Build("\"Excuse me?\"", "tez1"); cb.Build("Enter test harness", "middle")])
+            [
+                cb.Build("\"Excuse me?\"", "tez1")
+                // cb.Build("Enter test harness", "middle")
+            ])
         pb.Build(
             "tez1",
             [
