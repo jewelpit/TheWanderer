@@ -197,18 +197,18 @@ let modals =
                 R.div [] [
                     para """
                         The Ereshkigal mountains are a chain of volcanic mountains separating the western coastlands
-                        from the Szaltun Desert to the east.  While Blight Pass is the safest route across the
+                        from the Szalkut Desert to the east.  While Blight Pass is the safest route across the
                         Ereshkigal mountains, the Mines of Misan are the quickest.
                         """
                 ]
         }
         {
-            Title = "Szaltun Desert"
+            Title = "Szalkut Desert"
             Content =
                 R.div [] [
                     para """
-                        Also called The Desert of Ten Thousand Dunes, the Szaltun Desert lies to the east of the
-                        Ereshkigal mountains.  Despite its initial appearance as a desolate wasteland, the Szaltun
+                        Also called The Desert of Ten Thousand Dunes, the Szalkut Desert lies to the east of the
+                        Ereshkigal mountains.  Despite its initial appearance as a desolate wasteland, the Szalkut
                         Desert is actually host to a rich ecosystem of cacti, reptiles, and insects.
                         """
                 ]
