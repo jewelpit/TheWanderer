@@ -70,7 +70,7 @@ let pages =
             ],
             [
                 cb.Build("\"Excuse me?\"", "tez1")
-                // cb.Build("Enter test harness", "middle")
+                cb.Build("Enter test harness", "middle", Flags (["TESTHARNESSENABLED"], Automatic))
             ])
         pb.Build(
             "tez1",
@@ -578,7 +578,7 @@ let pages =
                     looked around.  I must have rejoined the upper path."""
             ],
             [
-                cb.Build("After taking a moment to rest, I pressed on.", "eresh-10")
+                cb.Build("After taking a moment to rest, I pressed on.", "eresh-10-child")
             ])
 
         pb.Build(
@@ -592,6 +592,43 @@ let pages =
                     [[Illusion Helm]].  At her hip she had both a short sword and a [[sun pistol|Sun Pistol]].  Beneath
                     her helm, I could see that she had a sharpened steel beak cover, which looked like it could deliver
                     terrible, ripping wounds when the fighting was close and desperate."""
+                """Unfortunately, Greltza's senses were better than I expected.  I only had a scant few seconds to
+                    observe her and her coterie of bandits before she looked directly at me, and paused.  Then, she
+                    waved.  She turned to a burly human who looked to be her lieutenant, spoke some words in his ear,
+                    then disappeared through the door."""
+                """Her lieutenant, in turn, spoke with a few of the bandits that were left, then followed Greltza
+                    through the doors, taking all of the bandits with him except for four."""
+            ],
+            [
+                cb.Build(
+                    """Did they really underestimate me so?  I made it past five of their number not but a few days ago.
+                        I drew my sword and kicked my beetle into a charge!""",
+                    "eresh-10-fighting",
+                    SkillCheckRequired (Might, Combat, 4, AlternatePage "eresh-10-fighting-failed"))
+                cb.Build(
+                    """I had no time to waste.  Greltza was right there!  I rode forward, preparing a concussive blast
+                        spell.  I could blow them aside without even having to stop my beetle.""",
+                    "eresh-10-magic",
+                    SkillCheckRequired (Will, Ritual, 4, AlternatePage "eresh-10-magic-failed"))
+                cb.Build(
+                    """I knew that in many bandit crews, the leader ruled only through fear.  With Greltza so close I
+                        would have to pay more, but I knew they could still be bribed.""",
+                    "eresh-10-bribed",
+                    Bribe 75)
+            ])
+        pb.Build(
+            "eresh-10-child",
+            [
+                """I arrived at a bridge over a great chasm.  On the other end, a large set of doors sat, slightly open.
+                    In front of the doors there was a large landing, maybe sixty feet or so on a side.  And there, in
+                    the middle of the landing, my quarry: Greltza and her bandits."""
+                """Greltza looked much as I expected.  Her brilliant grey plumage was dusty from the mines, and she was
+                    dressed for action, wearing only a sleeveless tunic, baggy traveling pants, and her
+                    [[Illusion Helm]].  At her hip she had both a short sword and a [[sun pistol|Sun Pistol]].  Beneath
+                    her helm, I could see that she had a sharpened steel beak cover, which looked like it could deliver
+                    terrible, ripping wounds when the fighting was close and desperate."""
+                """My heart sank as I saw the Deskite child, hands bound behind their back, being led on a rope out the
+                    door.  There was no chance I was letting Greltza escape now."""
                 """Unfortunately, Greltza's senses were better than I expected.  I only had a scant few seconds to
                     observe her and her coterie of bandits before she looked directly at me, and paused.  Then, she
                     waved.  She turned to a burly human who looked to be her lieutenant, spoke some words in his ear,
@@ -674,9 +711,70 @@ let pages =
                     though, I had more important work."""
             ],
             [
-                cb.Build("I rode my beetle through the open door.", "szalk-1-bribed")
-            ]
-        )
+                cb.Build("I rode my beetle through the open door.", "szalk-1")
+            ])
+
+
+        pb.Build(
+            "szalk-1",
+            [
+                """After two days underground, the light of the sun was blinding.  I reached into my saddlebags and
+                    retrieved my tinted riding goggles.  With my eyes protected from the sun and the sand, I could now
+                    see the full vastness of the [[Szalkut Desert]] stretching before me, with sand and cacti all that I
+                    could make out.  About a mile away, I saw a large plume of sand, and a large object moving quicly.
+                    Greltza!  She had a sand sled with eight monitor beetles waiting at the exit, and was making her way
+                    across the desert with her full crew."""
+                """There was still time.  My beetle was far less encumbered than theirs, and their sled could only move
+                    at the speed of its slowest beetle."""
+            ],
+            [
+                cb.Build("I kicked my beetle forward into a sprint and gave chase.", "szalk-2")
+            ])
+        pb.Build(
+            "szalk-1-bandits",
+            [
+                """I galloped out the door, thankful that these four bandits were on foot while I was mounted.  The sun
+                    was blinding after two days underground, and I had to ride almost blind for several minutes before
+                    I felt safe to slow down enough to pull out my tinted riding goggles from my saddlebag."""
+                """I surveyed the horizon.  How could Greltza have gotten so far so quickly?  The answer came to me when
+                    I noticed a plume of dust about two miles away.  I couldn't quite tell, but it looked like she had a
+                    sand sled waiting at the exit of the mines, and was now riding away on that with her crew."""
+            ],
+            [
+                cb.Build("I kicked my beetle forward into a sprint and gave chase.", "szalk-2-delayed")
+            ])
+
+        pb.Build(
+            "szalk-2",
+            [
+                """It took ten minutes, but I caught up with Greltza and her sled.  The sand it was kicking up from
+                    behind was too thick to ride in, so I rode up alongisde the sled on the left.  From this close I
+                    could see Greltza standing, arms crossed, eyes straight ahead.  She bent her head down, and looked
+                    directly into my eyes.  Then she turned her head forward again, and raised her hand."""
+                """On signal, her lieutenant walked up to the edge of the sled, set his foot upon the wall, and
+                    unholstered his own [[sun pistol|Sun Pistol]].  Unless I acted quickly, my quest would take a turn
+                    for the dead."""
+            ],
+            [
+                cb.Build(
+                    """I leapt off my monitor beetle, grabbing onto some ropes on the side of the giant sled.  Hand over
+                        hand, I climbed to the railing, jumped over, and drew my sword.  I was going to take care of
+                        this lieutenant.""",
+                    "szalk-2-combat",
+                    SkillCheckRequired (Might, Combat, 3, AlternatePage "szalk-2-fallen"))
+                cb.Build(
+                    """I leapt off my monitor beetle, grabbing onto some ropes on the side of the giant sled.  Hand over
+                        hand, I climbed to the railing, jumped over, and drew my sword.  I was going to rescue this
+                        child.""",
+                    "szalk-2-combat",
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Might, Combat, 3, AlternatePage "szalk-2-fallen")))
+                cb.Build(
+                    """I didn't have time to make my way up to the sled to fight.  I began a body-lock spell, hoping I
+                        could get it cast before the lieutenant finished charging his pistol.""",
+                    "szalk-2-magic",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage Might)
+                )
+            ])
 
 
         pb.Build(
@@ -688,7 +786,7 @@ let pages =
             ["You made it closer, but then you fucked up."],
             [
                 cb.Build("Go eastest", "middle2", SkillCheckRequired (Might, Combat, 20, AttributeDamage), ["YouFuckedItUpViolently"])
-                cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"])
+                cb.Build("Go eastest, but pay", "middle2", Bribe 15, ["YouFuckedItUpPayedly"; "TESTHARNESSENABLED"])
                 cb.Build("Beat the game quickly", "middle3", Flags (["~YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game because you paid", "middle3", Flags (["~YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game because you fought", "middle3", Flags (["YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
