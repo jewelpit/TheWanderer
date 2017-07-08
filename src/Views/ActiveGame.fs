@@ -71,8 +71,8 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
 let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispatch =
     window.setTimeout(
         (fun _ ->
-            let storyArea = document.getElementById("storyArea")
-            storyArea.scrollTop <- storyArea.scrollHeight),
+            window.location.href <- "#"
+            window.location.href <- "#inGame"),
         0,
         [||]) |> ignore
     let character = gameState.Character
@@ -111,8 +111,9 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                             R.str <| sprintf " %d " roll
                         ]
                 ]
-            for paragraph in page.Text ->
-                R.p [] [Modal.formatLine paragraph dispatch]
+            yield R.div
+                [P.Id "inGame"]
+                (page.Text |> List.map (fun p -> R.p [] [Modal.formatLine p dispatch]))
             if List.isEmpty page.Continuations then
                 yield R.p [] [R.h4 [] [R.str "You completed the game! Would you like to view your full log?"]]
                 yield R.button [P.OnClick (fun _ -> dispatch ShowFullHistory)] [R.str "View full log"]
