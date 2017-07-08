@@ -59,7 +59,7 @@ let pages =
         pb.Build(
             "start",
             [
-                """I first made my way into Tetznatalk as dusk was falling, after a long day of travel.  I was
+                """I first made my way into [[Tetznatalk]] as dusk was falling, after a long day of travel.  I was
                 weary, and looking forward to my first night indoors in nearly a month.  I rode up to the inn and
                 stabled my [[monitor beetle|Monitor Beetle]], relieved that the inn seemed to have facilities to care
                 for it."""
@@ -402,8 +402,14 @@ let pages =
                     my decision."""
             ],
             [
-                cb.Build("I clicked my beetle forwards, going up the stairs to my left.", "eresh-6")
-                cb.Build("I clicked my beetle forwards, going down the stairs to my right.", "eresh-7")
+                cb.Build(
+                    "I clicked my beetle forwards, going up the stairs to my left.",
+                    "eresh-6",
+                    setFlags=["HIGH_ROAD"])
+                cb.Build(
+                    "I clicked my beetle forwards, going down the stairs to my right.",
+                    "eresh-7",
+                    setFlags=["LOW_ROAD"])
             ])
 
         pb.Build(
@@ -431,7 +437,7 @@ let pages =
                     the mines was dug near the end of their operation, and the tunnels here were smaller, less regular,
                     and more unfinished.  Progress was slow, since I had to periodically steer my beetle around old
                     mining equipment and other debris."""
-                """It was at this point that I heard voices up ahead.  They sounded like [[Deskites]], lanky, blind,
+                """It was at this point that I heard voices up ahead.  They sounded like [[Deskites]]: lanky, blind,
                     pale skinned people who live in caves.  Deskites are usually content to do their own thing and let
                     travelers pass on their way, but the [[Lost Mines]] are anything but usual."""
             ],
@@ -440,7 +446,7 @@ let pages =
                 cb.Build(
                     "I decided that it was best to avoid a direct encounter, so I snuck by them.",
                     "eresh-9-sneaking",
-                    SkillCheckRequired (Might, Sneaking, 4, AlternatePage "eresh-9-spotted"))
+                    SkillCheckRequired (Might, Sneaking, 2, AlternatePage "eresh-9-spotted"))
             ])
 
         pb.Build(
@@ -471,8 +477,7 @@ let pages =
                     """What had happened to this man was a tragedy, but I had no time to lose.  I gave him a few muld
                         shells and went on my way.""",
                     "eresh-8-b",
-                    Bribe 20,
-                    setFlags=["HELPED_KHEREK"])
+                    Bribe 20)
             ])
         pb.Build(
             "eresh-8-b",
@@ -484,13 +489,191 @@ let pages =
             ],
             [
                 cb.Build(
-                    "I pressed forward with haste.  I could still catch up to Greltza!",
-                    "eresh-9-fell")
-                cb.Build(
                     "I advanced forward with caution.  I can't make up time if my monitor beetle broke a leg.",
                     "eresh-10",
-                    SkillCheckRequired (Will, Sneaking, 4, AlternatePage "eresh-9-fell"))
+                    SkillCheckRequired (Will, Sneaking, 4, AttributeDamage))
             ])
+
+        pb.Build(
+            "eresh-9",
+            [
+                """I walked my beetle up to the [[Deskites]].  When I was able to get close enough to get a good look,
+                    I saw that they were all huddled together, and seemed to be crying.  I was downwind of them, and I
+                    could smell the pungent nutmeg-scent they give off when agitated.  One of them turned to face me
+                    when I came close enough that my beetle's footfalls could be felt through the ground."""
+                """ "Leave us, uplander!" she said in the characteristic Deskite drawl.  "We have suffered enough this
+                    day." """
+                """With a little gentle prodding, I was able to find out that Greltza and her crew had come through this
+                    passage, and taken the child that this hexad was raising.  The breeding pair in the hexad had been
+                    having trouble conceiving, and when the child was finally born it was hailed as a small miracle.
+                    Now, to have the child stolen from them..."""
+            ],
+            [
+                cb.Build(
+                    "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
+            ])
+        pb.Build(
+            "eresh-9-sneaking",
+            [
+                """Sneaking past the [[Deskites]] was easier than expected.  I was able to hug the wall on the opposite
+                    end of the tunnel from the alcove where they were staying, and therefore stay out of the range where
+                    they could feel my footfalls through the floor.  By the time I was upwind of them I would have
+                    enough of a lead that I could easily ride away."""
+                """On my way past, though, I noticed something interesting.  The Deskites appeared to be huddled
+                    together, in some kind of mourning."""
+            ],
+            [
+                cb.Build(
+                    "In my travels I had known Deskites to be friendly, so I decided to ask them what was wrong.",
+                    "eresh-9-sneaking-talking")
+                cb.Build(
+                    """However, every minute that Tetznatalk went without its town guardian, it was closer to
+                        destruction.  I pressed on my way.""",
+                    "eresh-9-climb")
+            ])
+        pb.Build(
+            "eresh-9-spotted",
+            [
+                """It's one of the great rules of the world that you should never try to sneak past someone in a narrow
+                    tunnel.  It's even more true if the people you're trying to sneak past can feel the vibrations from
+                    your footfalls.  I had barely made it within fifty feet of them before they turned to face me."""
+            ],
+            [
+                cb.Build(
+                    """I had always known Deskites to be friendly, so I decided to stop and talk.  Perhaps they had seen
+                        Greltza.""",
+                    "eresh-9-sneaking-talking")
+                cb.Build(
+                    """I had a gap that I could shoot through if my beetle was fast enough. I dug in my heels and we
+                        sprinted past them.""",
+                    "eresh-9-climb")
+            ])
+        pb.Build(
+            "eresh-9-sneaking-talking",
+            [
+                """ "Leave us, uplander!" the closest Deskite said in the characteristic Deskite drawl.  "We have
+                    suffered enough this day." """
+                """With a little gentle prodding, I was able to find out that Greltza and her crew had indeed come
+                    through this passage, and taken the child that this hexad was raising.  The breeding pair in the
+                    hexad had been having trouble conceiving, and when the child was finally born it was hailed as a
+                    small miracle. Now, to have the child stolen from them..."""
+            ],
+            [
+                cb.Build(
+                    "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
+            ])
+        pb.Build(
+            "eresh-9-climb",
+            [
+                """At this point the tunnel bent sharply upward, so sharply that it became almost more of a climb than
+                    a walk.  My monitor beetle's feet began to slip, and I knew that I would have to dismount and let
+                    it walk unencumbered."""
+                """As my beetle and I struggled up the steep passageway, I thought about Greltza.  Why would she steal
+                    the heartseed?  They have no power to anyone except a [[Town Guardian]], and there's no market for
+                    them.  What reason would Greltza have to steal it other than cruelty?"""
+                """I was so lost in thought that I almost didn't realize it when the passageway leveled out again.  I
+                    looked around.  I must have rejoined the upper path."""
+            ],
+            [
+                cb.Build("After taking a moment to rest, I pressed on.", "eresh-10")
+            ])
+
+        pb.Build(
+            "eresh-10",
+            [
+                """I arrived at a bridge over a great chasm.  On the other end, a large set of doors sat, slightly open.
+                    In front of the doors there was a large landing, maybe sixty feet or so on a side.  And there, in
+                    the middle of the landing, my quarry: Greltza and her bandits."""
+                """Greltza looked much as I expected.  Her brilliant grey plumage was dusty from the mines, and she was
+                    dressed for action, wearing only a sleeveless tunic, baggy traveling pants, and her
+                    [[Illusion Helm]].  At her hip she had both a short sword and a [[sun pistol|Sun Pistol]].  Beneath
+                    her helm, I could see that she had a sharpened steel beak cover, which looked like it could deliver
+                    terrible, ripping wounds when the fighting was close and desperate."""
+                """Unfortunately, Greltza's senses were better than I expected.  I only had a scant few seconds to
+                    observe her and her coterie of bandits before she looked directly at me, and paused.  Then, she
+                    waved.  She turned to a burly human who looked to be her lieutenant, spoke some words in his ear,
+                    then disappeared through the door."""
+                """Her lieutenant, in turn, spoke with a few of the bandits that were left, then followed Greltza
+                    through the doors, taking all of the bandits with him except for four."""
+            ],
+            [
+                cb.Build(
+                    """Did they really underestimate me so?  I made it past five of their number not but a few days ago.
+                        I drew my sword and kicked my beetle into a charge!""",
+                    "eresh-10-fighting",
+                    SkillCheckRequired (Might, Combat, 4, AlternatePage "eresh-10-fighting-failed"))
+                cb.Build(
+                    """I had no time to waste.  Greltza was right there!  I rode forward, preparing a concussive blast
+                        spell.  I could blow them aside without even having to stop my beetle.""",
+                    "eresh-10-magic",
+                    SkillCheckRequired (Will, Ritual, 4, AlternatePage "eresh-10-magic-failed"))
+                cb.Build(
+                    """I knew that in many bandit crews, the leader ruled only through fear.  With Greltza so close I
+                        would have to pay more, but I knew they could still be bribed.""",
+                    "eresh-10-bribed",
+                    Bribe 75)
+            ])
+        pb.Build(
+            "eresh-10-fighting",
+            [
+                """They were no match for me.  My sword flashed in the sliver of sunlight coming in through the doors,
+                    and after a few minutes they realized their predicament and ran through the doors into the desert
+                    beyond."""
+            ],
+            [
+                cb.Build(
+                    """I kicked my beetle, and she ran through the doors.  There wasn't a chance that Greltza could
+                        escape from me this day!""",
+                    "szalk-1")
+            ])
+        pb.Build(
+            "eresh-10-fighting-failed",
+            [
+                """I realized that these bandits were a fair bit more experienced than the ones I had bested earlier.  I
+                    was pressed into a corner, and realized that if I didn't do something, and soon, my beetle and I
+                    would be lying broken at the bottom of this chasm, pushed over the edge."""
+            ],
+            [
+                cb.Build(
+                    """I yanked on the reigns, and my beetle reared up.  I took advantage of the confusion to kick her
+                        forward, and rode past the bandits.  If I could make it to the door...""",
+                    "szalk-1-bandits")
+            ])
+        pb.Build(
+            "eresh-10-magic",
+            [
+                """They were no match for me.  As I finished my spell a wave of force shot out and slammed them into the
+                    walls.  """
+            ],
+            [
+                cb.Build(
+                    """I kicked my beetle, and she ran through the doors.  There wasn't a chance that Greltza could
+                        escape from me this day!""",
+                    "szalk-1")
+            ])
+        pb.Build(
+            "eresh-10-magic-failed",
+            [
+                """Unknown to me, one of the bandits had a [[noisestick|Noisestick]], and its concussive burst knocked
+                    me seneseless before I could finish my spell.  Thankfully my beetle was not affected, and it was
+                    able to run through the door, past the bandits, with me on it."""
+            ],
+            [
+                cb.Build(
+                    "I made it through the door, slightly dazed and with the bandits in hot pursuit.",
+                    "szalk-1-bandits")
+            ])
+        pb.Build(
+            "eresh-10-bribed",
+            [
+                """When I finished counting out the shells, the bandits went back the way they came, deeper into the
+                    mines.  Perhaps in a few months I would be called back to deal with these four.  In the meanwhile,
+                    though, I had more important work."""
+            ],
+            [
+                cb.Build("I rode my beetle through the open door.", "szalk-1-bribed")
+            ]
+        )
 
 
         pb.Build(
