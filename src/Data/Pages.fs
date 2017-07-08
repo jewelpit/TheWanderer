@@ -394,7 +394,7 @@ let pages =
                     was needed to gain entry to this door, but the hinges were time-worn and the doors were slightly off
                     their hinges, with just enough room to squeeze a monitor beetle and rider through."""
                 """I clicked my beetle forward, and she deftly made her way around the broken stonework.  The air in
-                    there was surprisingly fresh, a testament to the multitude of know and unknown entrances to the
+                    there was surprisingly fresh, a testament to the multitude of known and unknown entrances to the
                     mines.  I reached around in my saddlebag and pulled out a small [[glowbulb|Glowbulb]] that I could
                     strap to my head.  I would need both hands free in here."""
                 """After an hour or two, I came to a fork in the path where I could no longer track the bandits'
