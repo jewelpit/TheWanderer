@@ -71,7 +71,8 @@ let pages =
             [
                 cb.Build("\"Excuse me?\"", "tez1")
                 cb.Build("Enter test harness", "middle", Flags (["TESTHARNESSENABLED"], Automatic))
-            ])
+            ]
+        )
         pb.Build(
             "tez1",
             [
@@ -86,7 +87,8 @@ let pages =
                 cb.Build(
                     "I turned them down.  \"Why should I help the people who scattered mine to the wind?\"",
                     "tez2-deny")
-            ])
+            ]
+        )
         pb.Build(
             "tez2-deny",
             [
@@ -103,7 +105,8 @@ let pages =
                     """It's not unheard of for towns to survive long enough to get a new Town Guardian. I was
                         unconvinced.""",
                     "tez2-denytwice")
-            ])
+            ]
+        )
         pb.Build(
             "tez2-denytwice",
             ["\"Seventy shells!\""],
@@ -148,7 +151,8 @@ let pages =
                     """Seeing them, I let my monitor beetle maintain its pace.  It wouldn't do to be noticed this early,
                         and I figured I could always scout their positions at night.""",
                     "eresh-3")
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-2",
@@ -175,7 +179,8 @@ let pages =
                     """Having gotten a good look, I pulled back again.  I had learned their faces, and could now take my
                         time to plan.""",
                     "eresh-3")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-2-spotted",
             [
@@ -206,7 +211,8 @@ let pages =
                     """At this point I'd seen enough.  I knew I had the fastest mount in the land, steered her around,
                         and retreated back the way I came.""",
                     "eresh-3-spotted_in_eresh_2")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-2-persuasion",
             [
@@ -233,7 +239,8 @@ let pages =
                     "If I was going to die, I was going to die on my mount, sword in my hand.",
                     "eresh-2-fighting",
                     SkillCheckRequired (Might, Combat, 3, AttributeDamage))
-            ])
+            ]
+        )
         pb.Build(
             "eresh-2-sleeping",
             [
@@ -243,7 +250,8 @@ let pages =
             [
                 cb.Build("With the bandits taken care of, I headed forward along the road.", "eresh-4")
                 cb.Build("Of course, that didn't stop me from going through their pockets.", "eresh-4", grantsMoney=20)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-2-fighting",
             [
@@ -261,7 +269,8 @@ let pages =
                     "Turnabout is fair play, so I made sure to free them from their belongings before leaving.",
                     "eresh-4",
                     grantsMoney=20)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-2-bribed",
             [
@@ -320,7 +329,8 @@ let pages =
                         blinded for hours.""",
                     "eresh-3-magic",
                     SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
-            ])
+            ]
+        )
         pb.Build(
             "eresh-3-social",
             [
@@ -347,7 +357,8 @@ let pages =
                     "I hastily cast a flashbang spell, blinding them.",
                     "eresh-3-magic",
                     SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
-            ])
+            ]
+        )
         pb.Build(
             "eresh-3-fighting",
             [
@@ -364,7 +375,8 @@ let pages =
                     """They complied, and I made sure their purses were the lighter for it.""",
                     "eresh-4",
                     grantsMoney=20)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-3-magic",
             [
@@ -374,7 +386,8 @@ let pages =
             ],
             [
                 cb.Build("I continued on my way.", "eresh-4")
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-4",
@@ -385,7 +398,8 @@ let pages =
             ],
             [
                 cb.Build("It was two more days until the next obstacle in my path.", "eresh-5")
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-5",
@@ -413,7 +427,8 @@ let pages =
                     "I clicked my beetle forwards, going down the stairs to my right.",
                     "eresh-7",
                     setFlags=["LOW_ROAD"])
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-6",
@@ -431,7 +446,8 @@ let pages =
                     """I woke many hours later, unsure what time it was.  I put my glowbulb back on my head,
                         saddled my monitor beetle, and made my way further down the tunnel.""",
                     "eresh-8")
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-7",
@@ -450,7 +466,8 @@ let pages =
                     "I decided that it was best to avoid a direct encounter, so I snuck by them.",
                     "eresh-9-sneaking",
                     SkillCheckRequired (Might, Sneaking, 2, AlternatePage "eresh-9-spotted"))
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-8",
@@ -481,7 +498,8 @@ let pages =
                         shells and went on my way.""",
                     "eresh-8-b",
                     Bribe 20)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-8-b",
             [
@@ -495,7 +513,8 @@ let pages =
                     "I advanced forward with caution.  I can't make up time if my monitor beetle broke a leg.",
                     "eresh-10",
                     SkillCheckRequired (Will, Sneaking, 4, AttributeDamage))
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-9",
@@ -514,7 +533,8 @@ let pages =
             [
                 cb.Build(
                     "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
-            ])
+            ]
+        )
         pb.Build(
             "eresh-9-sneaking",
             [
@@ -533,7 +553,8 @@ let pages =
                     """However, every minute that Tetznatalk went without its town guardian, it was closer to
                         destruction.  I pressed on my way.""",
                     "eresh-9-climb")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-9-spotted",
             [
@@ -550,7 +571,8 @@ let pages =
                     """I had a gap that I could shoot through if my beetle was fast enough. I dug in my heels and we
                         sprinted past them.""",
                     "eresh-9-climb")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-9-sneaking-talking",
             [
@@ -564,7 +586,8 @@ let pages =
             [
                 cb.Build(
                     "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
-            ])
+            ]
+        )
         pb.Build(
             "eresh-9-climb",
             [
@@ -579,7 +602,8 @@ let pages =
             ],
             [
                 cb.Build("After taking a moment to rest, I pressed on.", "eresh-10-child")
-            ])
+            ]
+        )
 
         pb.Build(
             "eresh-10",
@@ -615,7 +639,8 @@ let pages =
                         would have to pay more, but I knew they could still be bribed.""",
                     "eresh-10-bribed",
                     Bribe 75)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-child",
             [
@@ -652,7 +677,8 @@ let pages =
                         would have to pay more, but I knew they could still be bribed.""",
                     "eresh-10-bribed",
                     Bribe 75)
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-fighting",
             [
@@ -665,7 +691,8 @@ let pages =
                     """I kicked my beetle, and she ran through the doors.  There wasn't a chance that Greltza could
                         escape from me this day!""",
                     "szalk-1")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-fighting-failed",
             [
@@ -678,7 +705,8 @@ let pages =
                     """I yanked on the reigns, and my beetle reared up.  I took advantage of the confusion to kick her
                         forward, and rode past the bandits.  If I could make it to the door...""",
                     "szalk-1-bandits")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-magic",
             [
@@ -690,7 +718,8 @@ let pages =
                     """I kicked my beetle, and she ran through the doors.  There wasn't a chance that Greltza could
                         escape from me this day!""",
                     "szalk-1")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-magic-failed",
             [
@@ -702,7 +731,8 @@ let pages =
                 cb.Build(
                     "I made it through the door, slightly dazed and with the bandits in hot pursuit.",
                     "szalk-1-bandits")
-            ])
+            ]
+        )
         pb.Build(
             "eresh-10-bribed",
             [
@@ -712,7 +742,8 @@ let pages =
             ],
             [
                 cb.Build("I rode my beetle through the open door.", "szalk-1")
-            ])
+            ]
+        )
 
 
         pb.Build(
@@ -729,7 +760,8 @@ let pages =
             ],
             [
                 cb.Build("I kicked my beetle forward into a sprint and gave chase.", "szalk-2")
-            ])
+            ]
+        )
         pb.Build(
             "szalk-1-bandits",
             [
@@ -742,7 +774,8 @@ let pages =
             ],
             [
                 cb.Build("I kicked my beetle forward into a sprint and gave chase.", "szalk-2-delayed")
-            ])
+            ]
+        )
 
         pb.Build(
             "szalk-2",
@@ -766,15 +799,137 @@ let pages =
                     """I leapt off my monitor beetle, grabbing onto some ropes on the side of the giant sled.  Hand over
                         hand, I climbed to the railing, jumped over, and drew my sword.  I was going to rescue this
                         child.""",
-                    "szalk-2-combat",
+                    "szalk-2-combat-child",
                     Flags (["DESKITE_CHILD"], SkillCheckRequired (Might, Combat, 3, AlternatePage "szalk-2-fallen")))
                 cb.Build(
                     """I didn't have time to make my way up to the sled to fight.  I began a body-lock spell, hoping I
                         could get it cast before the lieutenant finished charging his pistol.""",
                     "szalk-2-magic",
-                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage Might)
-                )
-            ])
+                    SkillCheckRequired (Will, Ritual, 3, AlternatePage "szalk-2-magic-failed"))
+                cb.Build(
+                    """ "Please!  Return the child!  They've done nothing to you!" I shouted. """,
+                    "szalk-2-persuasion-child",
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-2-persuasion-failed")))
+            ]
+        )
+        pb.Build(
+            "szalk-2-delayed",
+            [
+                """It took nearly an hour, but I caught up with Greltza and her sled.  The sand it was kicking up from
+                    behind was too thick to ride in, so I rode up alongisde the sled on the left.  From this close I
+                    could see Greltza standing, arms crossed, eyes straight ahead.  She bent her head down, and looked
+                    directly into my eyes.  Then she turned her head forward again, and raised her hand."""
+                """On signal, her lieutenant walked up to the edge of the sled, set his foot upon the wall, and
+                    unholstered his own [[sun pistol|Sun Pistol]].  Unless I acted quickly, my quest would take a turn
+                    for the dead."""
+            ],
+            [
+                cb.Build(
+                    """I leapt off my monitor beetle, grabbing onto some ropes on the side of the giant sled.  Hand over
+                        hand, I climbed to the railing, leapt over, and drew my sword.  I was going to take care of
+                        this lieutenant.""",
+                    "szalk-2-combat",
+                    SkillCheckRequired (Might, Combat, 4, AlternatePage "szalk-2-fallen"))
+                cb.Build(
+                    """I leapt off my monitor beetle, grabbing onto some ropes on the side of the giant sled.  Hand over
+                        hand, I climbed to the railing, leapt over, and drew my sword.  I was going to rescue this
+                        child.""",
+                    "szalk-2-combat-child",
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Might, Combat, 4, AlternatePage "szalk-2-fallen")))
+                cb.Build(
+                    """I didn't have time to make my way up to the sled to fight.  I began a body-lock spell, hoping I
+                        could get it cast before the lieutenant finished charging his pistol.""",
+                    "szalk-2-magic",
+                    SkillCheckRequired (Will, Ritual, 4, AlternatePage "szalk-2-magic-failed"))
+                cb.Build(
+                    """ "Please!  Return the child!  They've done nothing to you!" I shouted. """,
+                    "szalk-2-persuasion-child",
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 4, AlternatePage "szalk-2-persuasion-failed")))
+            ]
+        )
+        pb.Build(
+            "szalk-2-combat",
+            [
+                """His shot with the [[sun pistol|Sun Pistol]] missed me by inches.  I ducked down and kicked his legs
+                    out from under him.  He fell sideways, and his head landed near my hand.  This was my chance!
+                    Reaching back, I pulled out my knife and stuck it to his throat while I held my sword up to keep the
+                    other bandits at bay."""
+                "\"One wrong move, and he dies,\" I said."
+                """The bandits paused their advance and looked to their leader.  Greltza uncrossed her arms and rested
+                    her hands on her hips."""
+                "\"We outnumber you.  If he dies, you die a second later.\""
+                "We seemed to be at an impasse."
+            ],
+            [
+                cb.Build("I'll return him if you return the heartseed.", "szalk-2-sled-crash")
+                cb.Build(
+                    "I'll return him if you return the child.",
+                    "szalk-2-sled-crash",
+                    Flags (["DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-2-combat-child",
+            [
+                """His shot with the [[sun pistol|Sun Pistol]] missed me by inches.  I ducked down and kicked his legs
+                    out from under him.  He fell backwards, and I leapt to my feet.  I sprinted forward to the child,
+                    making sure to give the fallen bandit lieutenant a good kick in the stomach as I did so."""
+                """ "If you want the child back so badly, have them," Greltza said, as she pushed the child backwards
+                    off the far end of the sled."""
+                """I turned and ran back to the railing of the side I had climbed up, fighting off bandits with my
+                    sword as I went.  I dropped down off the edge of the railing, back onto my faithful monitor beetle.
+                    I'd have to catch up to Greltza later."""
+            ],
+            [
+                cb.Build("I circled back around, searching for the child.", "szalk-2-child-retrieved")
+            ]
+        )
+        pb.Build(
+            "szalk-2-persuasion-child",
+            [
+                """Her lieutenant let his [[sun pistol|Sun Pistol]] finish charging, but waited for Greltza's signal
+                    before firing.  Greltza looked down in thought for a few seconds."""
+                "\"Sure,\" she said, as she shoved the child backwards off the far end of the sled."
+                "I gasped in surprise, and reared my beetle back to slow down."
+            ],
+            [
+                cb.Build("I circled back around, searching for the child.", "szalk-2-child-retrieved")
+            ]
+        )
+        pb.Build(
+            "szalk-2-magic",
+            [
+                """I completed my spell right as the lieutenant fired.  He fell backwards and his shot went wild,
+                    missing me by several feet."""
+                """Now that I had earned myself some breathing room, I clambered up the side of the slide."""
+            ],
+            [
+                cb.Build("\"Greltza!\" I shouted. \"Return the heartseed!\"", "szalk-2-sled-crash")
+                cb.Build(
+                    "\"Greltza!\" I shouted. \"Return the child!\"",
+                    "szalk-2-magic-child",
+                    Flags (["DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-2-magic-child",
+            [
+                "\"Sure,\" she said, as she shoved the child backwards off the far end of the sled."
+                "I gasped in surprise, and reared my beetle back to slow down."
+            ],
+            [
+                cb.Build("I circled back around, searching for the child.", "szalk-2-child-retrieved")
+            ]
+        )
+        pb.Build(
+            "szalk-2-fallen",
+            [
+                
+            ],
+            [
+
+            ]
+        )
 
 
         pb.Build(
@@ -791,7 +946,8 @@ let pages =
                 cb.Build("Beat the game because you paid", "middle3", Flags (["~YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game because you fought", "middle3", Flags (["YouFuckedItUpViolently"; "~YouFuckedItUpPayedly"], Automatic))
                 cb.Build("Beat the game already!", "middle3", Flags (["YouFuckedItUpViolently"; "YouFuckedItUpPayedly"], Automatic))
-            ])
+            ]
+        )
         pb.Build("middle3", ["This'll reset you."], [cb.Build("Fine, just end it!", "end")], resets=true)
         pb.Build("end", ["You beat the game!"], [])
     ]
