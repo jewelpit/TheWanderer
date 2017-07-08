@@ -354,9 +354,9 @@ let modals =
             Content =
                 R.div [] [
                     gazetteer """Of all the regions of this world, there's none as truly unexplored as the Lost Mines of
-                                 Yantzeg."""
+                                 Misan."""
                     para """
-                        The Lost Mines of Yantzeg were once the most prosperous economic endeavor on the entire western
+                        The Lost Mines of Misan were once the most prosperous economic endeavor on the entire western
                         edge of the continent, but in the years since the Szalkut Empire fell the mines have fallen into
                         disarray.  No one truly knows how many entrances and exits there are to the Lost Mines, and new
                         ones are dug yearly by Deskite inhabitants, Etzen looking for ore, or just general curiosity.
