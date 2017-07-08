@@ -114,7 +114,7 @@ let pages =
                 her [[Illusion Helm]] to take the form of a bumblebee, an animal beloved by the Guardian.  The Town
                 Guardian was not able to distinguish Greltza from her other bumblebees, and Greltza was able to steal
                 the heartseed.  Greltza fled town to the east, heading towards the [[Ereshkigal Mountains]]. If she
-                continued on that path, she would eventually cross into the [[Szaltun Desert]], before finally arriving
+                continued on that path, she would eventually cross into the [[Szalkut Desert]], before finally arriving
                 at [[Estaton, the Inland Sea|Estaton]]."""
                 """We spoke and planned long into the night, but I was eventually able to get rest, and my steed and I
                 were refreshed in the morning when we set out.  I regretted not meeting the Town Guardian, but no
@@ -387,8 +387,8 @@ let pages =
         pb.Build(
             "eresh-5",
             [
-                """When I finally arrived at the great granite gates to the Lost Mines, I was relieved to see that it
-                    looked like a group of people had been camping here recently.  Greltza!  She had been here only
+                """When I finally arrived at the great granite gates to the [[Lost Mines]], I was relieved to see that
+                    it looked like a group of people had been camping here recently.  Greltza!  She had been here only
                     hours before!"""
                 """I looked up at the doors, towering twenty feet above me.  It is said that in the old days a password
                     was needed to gain entry to this door, but the hinges were time-worn and the doors were slightly off
@@ -406,23 +406,91 @@ let pages =
                 cb.Build("I clicked my beetle forwards, going down the stairs to my right.", "eresh-7")
             ])
 
-            pb.Build(
-                "eresh-6",
-                [
-                    """I continued along the high path the rest of the day, before eventually having to make camp.  I
-                        allowed myself the luxury of a fire, made from wood I had stored in my saddlebags just in case.
-                        I knew that the slight, constant breeze would get rid of the smoke, and being in this enclosed
-                        tunnel would prevent any bandits from seeing my light.  Earlier that day I had killed a rabbit
-                        with a spell as it crossed the trail, and I enjoyed my first hot meal in days."""
-                    """It's funny now, but at the time, this lonely dinner, two hundred feet underground with no one but
-                        myself and my beetle, was the most content I would be on this journey."""
-                ],
-                [
-                    cb.Build(
-                        """I woke many hours later, unsure what time it was.  I put my glowbulb back on my head,
-                            saddled my monitor beetle, and made my way further down the tunnel.""",
-                        "eresh-8")
-                ])
+        pb.Build(
+            "eresh-6",
+            [
+                """I continued along the high path the rest of the day, before eventually having to make camp.  I
+                    allowed myself the luxury of a fire, made from wood I had stored in my saddlebags just in case.
+                    I knew that the slight, constant breeze would get rid of the smoke, and being in this enclosed
+                    tunnel would prevent any bandits from seeing my light.  Earlier that day I had killed a rabbit
+                    with a spell as it crossed the trail, and I enjoyed my first hot meal in days."""
+                """It's funny now, but at the time, this lonely dinner, two hundred feet underground with no one but
+                    myself and my beetle, was the most content I would be on this journey."""
+            ],
+            [
+                cb.Build(
+                    """I woke many hours later, unsure what time it was.  I put my glowbulb back on my head,
+                        saddled my monitor beetle, and made my way further down the tunnel.""",
+                    "eresh-8")
+            ])
+
+        pb.Build(
+            "eresh-7",
+            [
+                """The stairs were long, and it took my beetle nearly twenty minutes to wend down them.  This part of
+                    the mines was dug near the end of their operation, and the tunnels here were smaller, less regular,
+                    and more unfinished.  Progress was slow, since I had to periodically steer my beetle around old
+                    mining equipment and other debris."""
+                """It was at this point that I heard voices up ahead.  They sounded like [[Deskites]], lanky, blind,
+                    pale skinned people who live in caves.  Deskites are usually content to do their own thing and let
+                    travelers pass on their way, but the [[Lost Mines]] are anything but usual."""
+            ],
+            [
+                cb.Build("I decided that the direct route was best.  I rode straight up to the Deskites.", "eresh-9")
+                cb.Build(
+                    "I decided that it was best to avoid a direct encounter, so I snuck by them.",
+                    "eresh-9-sneaking",
+                    SkillCheckRequired (Might, Sneaking, 4, AlternatePage "eresh-9-spotted"))
+            ])
+
+        pb.Build(
+            "eresh-8",
+            [
+                """After I had traveled for a while, not sure how long, I heard a faint sound up ahead.  As I got
+                    closer, I realized that the sound was someone crying.  I was familiar with bandits using someone
+                    pretending to be in distress as bait for an ambush, so I slowed my beetle and approached cautiously.
+                    """
+                """When I got closer, I saw that the source of the sound was a human man, with a neatly trimmed beard
+                    and the appearance of a merchant wanderer.  He was quietly sobbing, surrounded by shredded and
+                    shattered goods.  In the corner, I saw the curled up corpse of a monitor beetle.  It had once been
+                    covered with rich decorative paint, but much of it was burnt off by [[electrogun|Electrogun]] fire.
+                    """
+                """Upon my approach the man looked up.  I stil remember the look of his eyes when he just choked out
+                    one word: "Please." """
+                """I was able to find out that his name was Kherek, and he had been making his way from the
+                    [[Szalkut Desert]] to the coast when he ran head-on into Greltza's band.  They stole all of his
+                    easily portable goods and destroyed the rest, then bound him while they made camp and ate the legs
+                    and head of his beetle.  Apparently they had left only an hour ago.  I was getting close!"""
+            ],
+            [
+                cb.Build(
+                    """What had happened to this man was a tragedy, but I had no time to lose.  I gave him a few bites
+                        of food and went on my way.""",
+                    "eresh-8-b")
+                cb.Build(
+                    """What had happened to this man was a tragedy, but I had no time to lose.  I gave him a few muld
+                        shells and went on my way.""",
+                    "eresh-8-b",
+                    Bribe 20,
+                    setFlags=["HELPED_KHEREK"])
+            ])
+        pb.Build(
+            "eresh-8-b",
+            [
+                """At this point the path forward grew treacherous.  My [[glowbulb|Glowbulb]] began to flicker, even
+                    though I had recharged in the sun only two days ago.  Shadows grew, and I noticed that the floor of
+                    the tunnel had accumulated a large amount of loose debris.  Irregular holes sprouted up in the walls
+                    and floors, no doubt dug by the mines' unofficial new residents."""
+            ],
+            [
+                cb.Build(
+                    "I pressed forward with haste.  I could still catch up to Greltza!",
+                    "eresh-9-fell")
+                cb.Build(
+                    "I advanced forward with caution.  I can't make up time if my monitor beetle broke a leg.",
+                    "eresh-10",
+                    SkillCheckRequired (Will, Sneaking, 4, AlternatePage "eresh-9-fell"))
+            ])
 
 
         pb.Build(
