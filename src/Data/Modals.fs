@@ -50,6 +50,13 @@ let getDisplayLine (text : string) =
         | Link link -> link.DisplayName)
     |> List.reduce (+)
 
+let private gazetteer text =
+    R.blockquote [] [
+        R.str text
+        R.br []
+        R.str "-Flavian's Gazetteer"
+    ]
+
 let modals =
     [
         {
@@ -87,6 +94,26 @@ let modals =
                         Unlike Etzens, who have to recharge their magical power at Heartseeds, humans can pull magic
                         from the wider world around them.  This makes humans ideal travelers, and is a great aid to them
                         on their travels.
+                        """
+                ]
+        }
+        {
+            Title = "Deskites"
+            Content =
+                R.div [] [
+                    para """
+                        Deskites are a species of blind, pale skinned people who live deep underground.  The Deskites
+                        are a peaceful people, who do no more than farm cave mushrooms and millipedes, but they have a
+                        tragic history.
+                        """
+                    para """
+                        Since they live underground, Deskites are viewed as mysterious and aloof by "uplanders," as they
+                        call people from the surface.  This mysteriousness occasionally turns into outright fear, and
+                        uplanders are especially fond of blaming Deskites for famines, saying that they tunnel under the
+                        crop fields and kill plants at their roots.  Not only do Deskites tend to get attacked for this,
+                        completely unprovoked, but they are also terrible fighters due to their lack of vision.  Deskite
+                        history is full of devastating incursions by uplanders, so they rightly view uplanders with
+                        suspicion.
                         """
                 ]
         }
@@ -147,9 +174,20 @@ let modals =
                 ]
         }
         {
+            Title = "Tetznatalk"
+            Content =
+                R.div [] [
+                    para """
+                        Tetznatalk is a small town (almost more of a village) on the western coast, with no particularly
+                        notable features.
+                        """
+                ]
+        }
+        {
             Title = "Monitor Beetle"
             Content =
                 R.div [] [
+                    gazetteer "There is nothing better than the sun on your back and a beetle under your legs."
                     para """
                         Monitor beetles are large, horned, wingless beetles that have been domesticated as livestock and
                         riding animals.
@@ -195,6 +233,8 @@ let modals =
             Title = "Ereshkigal Mountains"
             Content =
                 R.div [] [
+                    gazetteer """The Ereshkigal Mountains may not be the tallest mountains in the world, but their
+                                 effect on nearby lands cannot be understated."""
                     para """
                         The Ereshkigal mountains are a chain of volcanic mountains separating the western coastlands
                         from the Szalkut Desert to the east.  While Blight Pass is the safest route across the
@@ -206,10 +246,20 @@ let modals =
             Title = "Szalkut Desert"
             Content =
                 R.div [] [
+                    gazetteer """I must admit to some unfamiliarity with the Szalkut Desert, as hot climates do not
+                                 appeal to me.  However, I have passed through it a few times on my way to Estaton, and
+                                 I can say that it has a certain beauty... as long as the Desert Knight does not get
+                                 you."""
                     para """
                         Also called The Desert of Ten Thousand Dunes, the Szalkut Desert lies to the east of the
                         Ereshkigal mountains.  Despite its initial appearance as a desolate wasteland, the Szalkut
                         Desert is actually host to a rich ecosystem of cacti, reptiles, and insects.
+                        """
+                    para """
+                        The Szalkut Desert was home to the greatest empire in this region, but after it collapsed 500
+                        years ago the desert has transformed from a vibrant network of trade routes to a bandit infested
+                        sandscape, where travelers take their lives into their own hands daily.  And there are always
+                        rumors of the Desert Knight...
                         """
                 ]
         }
@@ -262,6 +312,58 @@ let modals =
                         reducing the electrical resistance of the air between the gun and the target the electrogun is
                         capable of transferring enormous amounts of electricity in an instant, raising the temperature
                         of the are it hits by thousands of degrees.
+                        """
+                ]
+        }
+        {
+            Title = "Sun Pistol"
+            Content =
+                R.div [] [
+                    para """
+                        Sun pistols are ancient technology, capable of firing a blast of superheated gas. They have a
+                        short range, but their effect is devastating.
+                        """
+                ]
+        }
+        {
+            Title = "Noisestick"
+            Content =
+                R.div [] [
+                    para """
+                        Noisesticks are non-lethal weapons, favored by town militias and robbers who want to avoid
+                        murder.  They fire a loud concussive blast, which is easily capable of stunning a human for
+                        several seconds.  Etzen are more vulnerable to noisesticks, as they have a very delicate inner
+                        ear.
+                        """
+                ]
+        }
+        {
+            Title = "Glowbulb"
+            Content =
+                R.div [] [
+                    para """
+                        Glowbulbs are small glass bulbs, about two inches in diameter.  When activated, they're capable
+                        of producing light out to distances much further than torches can.  The real benefit of a
+                        glowbulb, though is that they can be given enough charge to last for a week of constant use just
+                        by being left in the sun for a few hours.
+                        """
+                ]
+        }
+        {
+            Title = "Lost Mines"
+            Content =
+                R.div [] [
+                    gazetteer """Of all the regions of this world, there's none as truly unexplored as the Lost Mines of
+                                 Yantzeg."""
+                    para """
+                        The Lost Mines of Yantzeg were once the most prosperous economic endeavor on the entire western
+                        edge of the continent, but in the years since the Szalkut Empire fell the mines have fallen into
+                        disarray.  No one truly knows how many entrances and exits there are to the Lost Mines, and new
+                        ones are dug yearly by Deskite inhabitants, Etzen looking for ore, or just general curiosity.
+                        """
+                    para """
+                        While the passes are certainly a safer way to cross the mountains, the Lost Mines are by far the
+                        fastest, as long as you don't get lost...
                         """
                 ]
         }
