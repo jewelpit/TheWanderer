@@ -425,8 +425,7 @@ let pages =
                     setFlags=["HIGH_ROAD"])
                 cb.Build(
                     "I clicked my beetle forwards, going down the stairs to my right.",
-                    "eresh-7",
-                    setFlags=["LOW_ROAD"])
+                    "eresh-7")
             ]
         )
 
@@ -1220,13 +1219,13 @@ let pages =
                 cb.Build(
                     "\"We go the safe route, through [[Dahl Oasis]],\" I replied.",
                     "szalk-6",
-                    Flags (["~NORTH_ROAD"], Automatic))
+                    Flags (["~HIGH_ROAD"], Automatic))
                 cb.Build(
                     """ "I met a merchant several days ago who came from [[Dahl Oasis]]." I replied. "Maybe we'd be able
                         to find less legitimate merchants there who would know where bandits go to sell their goods."
                         """,
                     "szalk-6",
-                    Flags (["NORTH_ROAD"], Automatic))
+                    Flags (["HIGH_ROAD"], Automatic))
             ]
         )
 
@@ -1270,7 +1269,7 @@ let pages =
                     were through the [[Lizard Fields]]."""
             ],
             [
-                cb.Build("Excited that our gamble had worked, we pressed on.", "szalk-7")
+                cb.Build("Free of the Lizard Fields, we pressed on.", "szalk-5-end")
             ]
         )
         pb.Build(
@@ -1303,7 +1302,7 @@ let pages =
             [
                 cb.Build(
                     "With the bone hyenas out of the way, Desert Knight and I were able to continue on our way.",
-                    "szalk-7")
+                    "szalk-5-end")
             ]
         )
         pb.Build(
@@ -1316,7 +1315,20 @@ let pages =
             [
                 cb.Build(
                     "With the bone hyenas out of the way, Desert Knight and I were able to continue on our way.",
-                    "szalk-7")
+                    "szalk-5-end")
+            ]
+        )
+        pb.Build(
+            "szalk-5-end",
+            [
+                """As we left the [[Lizard Fields]], I noticed tracks in the sand.  I got off my
+                    [[beetle|Monitor Beetle]] to investigate, and when I was looking at the tracks I noticed something
+                    glinting in the sand a few feet away.  I went over, and when I pulled the object out of the sand, I
+                    realized to my excitement that it was a waterskin with the symbol of Greltza's bandits painted on
+                    the side.  These were their tracks!"""
+            ],
+            [
+                cb.Build("We followed the tracks, tight on Greltza's heels.", "szalk-7")
             ]
         )
 
@@ -1398,7 +1410,7 @@ let pages =
             ],
             [
                 cb.Build(
-                    """I tucked Altexen into the bed, and sang them a story that my father had sung to me as a child,
+                    """I tucked Altexen into the bed, and sang them a story that my father had sung to me as a child
                         until they fell asleep.  Then I rolled my bedroll out on the floor next to the bed, and passed
                         into sleep.""",
                     "szalk-6-morning",
@@ -1418,8 +1430,8 @@ let pages =
                 """Morning came, and Desert Knight was waiting patiently outside the room."""
                 """ "I was able to find something out," they said.  "I learned that when a heartseed is stolen, it
                     physically binds to the person who has taken it, and is not removable for several days.  I did the
-                    math, and there's no way that Greltza could sell the seed within the next two days.  We now know
-                    exactly how much time we have!" """
+                    math, and there's no way that Greltza could sell the seed within the next two days.  We know exactly
+                    how much time we have!" """
                 """I let Desert Knight know what I had found out about Greltza's destination, and they were as excited
                     as I was that we seemed to have all the information we would need to plan our final assault.  It was
                     then I realized that I had never actually asked Desert Knight their name."""
@@ -1427,9 +1439,6 @@ let pages =
                 """ "Not really," Desert Knight replied. "I don't really remember anything from before my death, other
                     than my oath to protect the weak.  Any name I took would feel fake, because I don't really feel like
                     I'm truly the person before.  I feel like it's most correct if I have no name." """
-                """ "So... going by they...?" I began."""
-                """ "Nope, that's always been here, even before I died." """
-                """ "Ah," I said."""
             ],
             [
                 cb.Build(
@@ -1440,6 +1449,16 @@ let pages =
                     "With all that said, Desert Knight, Altexen, and I headed out.",
                     "szalk-7",
                     Flags (["DESKITE_CHILD"], Automatic))
+            ]
+        )
+
+        pb.Build(
+            "szalk-7",
+            [
+
+            ],
+            [
+
             ]
         )
 
