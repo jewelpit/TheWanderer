@@ -85,9 +85,19 @@ let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation)
                     let character = movedState.Character;
                     match attr with
                     | Might ->
-                        { movedState with Character = { character with Wounds = character.Wounds + 1 }}
+                        let newCharacter =
+                            if character.Wounds = 3 then
+                                { character with Might = character.Might - 1; Wounds = 0 }
+                            else
+                                { character with Wounds = character.Wounds + 1 }
+                        { movedState with Character = newCharacter }
                     | Will ->
-                        { movedState with Character = { character with Stress = character.Stress + 1 }}
+                        let newCharacter =
+                            if character.Stress = 3 then
+                                { character with Will = character.Will - 1; Stress = 0 }
+                            else
+                                { character with Stress = character.Stress + 1 }
+                        { movedState with Character = newCharacter }
                 |> (fun state -> GameWithResult (state, rollResult))
         | Pages.Bribe cost ->
             let newMuld = Math.Max(0, gameState.Character.Muld - cost)
