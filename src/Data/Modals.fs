@@ -164,12 +164,10 @@ let modals =
                     para """
                         When Pompeia fails skill rolls, she will either be sent on an alternate path or suffer an
                         injury.  Injuries come in two varieties: wounds and stress.  Wounds come from failing Might
-                        tests and stress comes from failing Will tests.  When Pompeia suffers a number of wounds equal
-                        to her Might score, she can no longer attempt Might tests.  When she suffers a number of wounds
-                        equal to her Will score, she can no longer attempt Will tests.
-                        """
-                    para """
-                        Injuries and stress are removed during special story events in game.
+                        tests and stress comes from failing Will tests.  When Pompeia suffers four wounds, her Might is
+                        permanently reduced by 1.  This will repeat for every four wounds she takes.  When Pompeia
+                        suffers four stress, her Will is permanently reduced by 1.  This will repeat for every four
+                        stress she takes.
                         """
                 ]
         }
