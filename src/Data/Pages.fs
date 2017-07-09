@@ -1015,6 +1015,210 @@ let pages =
             ]
         )
 
+        pb.Build(
+            "szalk-3",
+            [
+                """I had been following Greltza's sled for about two hours when I noticed that the horizon had begun to
+                    look a little... smudgy.  Instead of being able to make out a clear definition of sand and sky, all
+                    I could see along the horizon was a soft, diffuse brown.  As I continued following the sled, I
+                    realized to my horror that we were riding directly into a sandstorm."""
+            ],
+            [
+                cb.Build("With no choice, I followed Greltza.", "szalk-3-sandstorm")
+            ]
+        )
+        pb.Build(
+            "szalk-3-nosled",
+            [
+                """I had been following Greltza's band on their beetles for about two hours when I noticed that the
+                    horizon had begun to look a little... smudgy.  Instead of being able to make out a clear definition
+                    of sand and sky, all I could see along the horizon was a soft, diffuse brown.  As I continued
+                    following the band, I realized to my horror that we were riding directly into a sandstorm."""
+            ],
+            [
+                cb.Build("With no choice, I followed Greltza.", "szalk-3-sandstorm")
+            ]
+        )
+        pb.Build(
+            "szalk-3-sandstorm",
+            [
+                """Greltza's lieutenant moved his hands, and a magical dome surrounded Greltza and her crew.  As they
+                    entered the sandstorm head on, I was forced to respect their courage.  Not many people would go head
+                    on into a sandstorm, even with magical protection, and if her lieutenant's concentration wavered for
+                    even a moment, the barrier would fall."""
+                """Then again, I was riding in with no allies other than myself to fall back on if something went wrong,
+                    so what does that say about me?"""
+            ],
+            [
+                cb.Build(
+                    "I put on my large traveling cloak and tightened my riding goggles.  This was going to be rough.",
+                    "szalk-3-sandstorm-nomagic",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "I put on my large traveling cloak and tightened my riding goggles.  Fortunately for me, this type
+                        of protection spell is one of the first I learned.",
+                    "szalk-3-sandstorm-magic",
+                    Flags (["~DESKITE_CHILD"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
+                cb.Build(
+                    """I put on my large traveling cloak and tightened my riding goggles, then tucked Altexen in the
+                        front of my cloak.  This was going to be rough.""",
+                    "szalk-3-sandstorm-nomagic",
+                    Flags (["DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    """I put on my large traveling cloak and tightened my riding gogglesthen tucked Altexen in the
+                        front of my cloak.  Fortunately for me, this type of protection spell is one of the first I
+                        learned.""",
+                    "szalk-3-sandstorm-magic",
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
+            ]
+        )
+        pb.Build(
+            "szalk-3-sandstorm-nomagic",
+            [
+                """The sand was blinding, and the wind howled in my ears until I thought I would never hear another
+                    sound again.  The air smelled of ozone, and there was a definite sense of charge, and unease.  Even
+                    through my thick traveling cloak, my skin felt like it was beaten raw.  I do not know how long I was
+                    in the sandstorm, but it felt like an eternity."""
+            ],
+            [
+                cb.Build("Regardless, I pressed on.", "szalk-4-offtarget")
+            ]
+        )
+        pb.Build(
+            "szalk-3-sandstorm-nomagic",
+            [
+                """The sand was blinding, and the wind howled in my ears until I thought I would never hear another
+                    sound again.  The air smelled of ozone, and there was a definite sense of charge, and unease.  If it
+                    weren't for my magical shield, I do not know how I would have made it through.  I do not know how
+                    long I was in the sandstorm, but it felt like an eternity."""
+            ],
+            [
+                cb.Build("At long last, I passed the sandstorm behind.", "szalk-4")
+            ]
+        )
+
+        pb.Build(
+            "szalk-4",
+            [
+                """When I finally cleared the sandstorm, I wasn't surprised to see the sun nearly setting.  I made camp,
+                    and when the stars came out I was happy to see that I was right on track.  Were I attempting to go
+                    to Estaton, I was on exactly the route I would take."""
+            ],
+            [
+                cb.Build(
+                    "I went to bed, knowing that I would be able to sleep long enough to begin the morning rested.",
+                    "szalk-4-morning",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    """I went to bed, knowing that Altexen and I would be able to sleep long enough to begin the morning
+                        rested.""",
+                    "szalk-4-morning",
+                    Flags (["DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-4-offtarget",
+            [
+                """When I finally cleared the sandstorm, I wasn't surprised to see the sun nearly setting.  I made camp,
+                    but when the stars came out I looked at them and realized that I was far off course from where I was
+                    supposed to be.  Were I attempting to go to Estaton, I would be nowhere near here: I would instead
+                    try to be several hours' travel north.  Damn!"""
+            ],
+            [
+                cb.Build(
+                    "I went to bed, knowing that I would have to wake far earlier than I wanted in the morning.",
+                    "szalk-4-morning",
+                    Flags (["~DESKITE_CHILD"], Automatic),
+                    setFlags=["TIRED"])
+                cb.Build(
+                    """I went to bed, knowing that Altexen and I would have to wake far earlier than I wanted in the
+                        morning.""",
+                    "szalk-4-morning",
+                    Flags (["DESKITE_CHILD"], Automatic),
+                    setFlags=["TIRED"])
+            ]
+        )
+        pb.Build(
+            "szalk-4-morning",
+            [
+                """I woke bright and early, and headed out.  I made it a point to check maprooms every time I stopped in
+                    a town, and I prided myself on knowing the locations of all major cities and ports within hundreds
+                    of miles.  If Greltza was running, I had a good idea where to."""
+                """Around midday I figured I must have been going in more or less the right direction, because I saw
+                    three people I recognized as being in Greltza's band up ahead.  I clicked my beetle forward, and
+                    when the three bandits saw me they kicked their beetles and galloped off.  I vowed that I would not
+                    let them easily escape."""
+                """As I was chasing them, I saw them look to the right, and their faces turned white with fear.  They
+                    kicked their beetles even harder.  Nervous, I checked what they were looking at, and saw an
+                    [[Etzen]] riding the largest lizard I'd ever seen, almost twice the size of my monitor beetle, at
+                    incredible speed.  This mysterious Etzen was gaining on us, easily."""
+            ],
+            [
+                cb.Build("I rode my beetle as hard as I could, but I was still overtaken.", "szalk-4-noon")
+            ]
+        )
+        pb.Build(
+            "szalk-4-noon",
+            [
+                """ "Excuse me!" the mysterious Etzen shouted as they pulled up alongside me.  "Please excuse me if this
+                    is a weird question, but would you happen to be a bandit?  Please answer me honestly, as I have a
+                    magic ring that can tell me if you're lying." """
+                """ "Of course not!" I shouted back.  At this point I noticed that the Etzen looked a little... off. 
+                    Their feathers were patchy and grey, and they moved their body in an odd, jerky fashion.  "In fact,
+                    I'm trying to bring these three in front of me to justice!  They've stolen the heartseed from a
+                    [[Town Guardian]], and doomed the village of [[Tetznatalk]]!" """
+                """ "That does seem unconscionable," they said.  "Would you like some help?" """
+            ],
+            [
+                cb.Build("\"Of course I'd like some damn help!,\" I replied.", "szalk-4-noon-2")
+            ]
+        )
+        pb.Build(
+            "szalk-4-noon-2",
+            [
+                """ "Very well," the Etzen said as they took out a whip.  They swung the whip around, and it grew longer
+                    and longer.  When they finally whipped it forward, it was several hundred feet long, and wrapped
+                    around one of the bandits, yanking him out of his saddle.  The Etzen did this for the two others,
+                    and once they were without mounts we easily rode them down and bound their hands and feet."""
+                """The bandits were shaking with fear. "It's the Desert Knight... we're doomed," one of them said.  That
+                    piqued my interest."""
+                "\"Desert Knight?\" I asked."
+                "\"He--\" the bandit began."
+                "\"They, please,\" asked the Desert Knight."
+                """ "They ride around the desert, killing people left and right!  They're a mummified menace, killed two
+                    hundred years ago and then brought back to life by their own hatred of the living!" """
+                """ "While it may be true that I am a two hundred year old mummy, I hardly go around the desert killing
+                    for fun.  All I do is bring bandits to justice.  The rest is just unfounded rumors." """
+                """Once we had finished with the introductions, the Desert Knight bid me farewell and said they were
+                    taking in these three to the nearest authorities."""
+            ],
+            [
+                cb.Build(
+                    "\"Wait!\" I said. \"What if I said I knew where their leader was heading?\"",
+                    "szalk-4-noon-3",
+                    Flags (["~TIRED"], Automatic))
+                cb.Build(
+                    "\"Wait!\" I said. \"What if I said I knew where their leader was heading?\"",
+                    "szalk-4-noon-3",
+                    Flags (["TIRED"], SkillCheckRequired (Will, Persuasion, 3, AttributeDamage)))
+            ]
+        )
+        pb.Build(
+            "szalk-4-noon-3",
+            [
+                """The Desert Knight seemed interested.  I explained that it would be much more useful to the world as a
+                    whole if they would help me capture Gretza.  They sighed, and admitted that I was right."""
+                """ "We can't bring these three with us," they said."""
+                """ "I know." """
+                """ So, with that we let them go.  We gave them one of our waterskins, and directed them to the nearest
+                    town."""
+                """ "So, where to from here?" the Desert Knight asked."""
+            ],
+            [
+                cb.Build("\"We go the direst route, through [[Lizard Field]],\" I replied.")
+            ]
+        )
+
 
         pb.Build(
             "middle",
