@@ -1085,7 +1085,7 @@ let pages =
             ]
         )
         pb.Build(
-            "szalk-3-sandstorm-nomagic",
+            "szalk-3-sandstorm-magic",
             [
                 """The sand was blinding, and the wind howled in my ears until I thought I would never hear another
                     sound again.  The air smelled of ozone, and there was a definite sense of charge, and unease.  If it
@@ -1170,7 +1170,7 @@ let pages =
                 """ "That does seem unconscionable," they said.  "Would you like some help?" """
             ],
             [
-                cb.Build("\"Of course I'd like some damn help!,\" I replied.", "szalk-4-noon-2")
+                cb.Build("\"Of course I'd like some damn help!\" I replied.", "szalk-4-noon-2")
             ]
         )
         pb.Build(
