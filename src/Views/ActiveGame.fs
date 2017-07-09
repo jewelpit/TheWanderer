@@ -126,7 +126,7 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                         | None -> ()
                         | Some conditionButton ->
                             yield R.li [] [
-                                yield R.str cont.Description
+                                yield Modal.formatLine cont.Description dispatch
                                 yield R.br []
                                 yield conditionButton
                         ]
