@@ -1184,7 +1184,7 @@ let pages =
                 """The bandits were shaking with fear. "It's the Desert Knight... we're doomed," one of them said.  That
                     piqued my interest."""
                 "\"Desert Knight?\" I asked."
-                "\"He--\" the bandit began."
+                "\"She--\" the bandit began."
                 "\"They, please,\" asked Desert Knight."
                 """ "They ride around the desert, killing people left and right!  They're a mummified menace, killed two
                     hundred years ago and then brought back to life by their own hatred of the living!" """
@@ -1216,7 +1216,7 @@ let pages =
                 """ "So, where to from here?" Desert Knight asked."""
             ],
             [
-                cb.Build("\"We go the direst route, through [[Lizard Field]],\" I replied.", "szalk-5")
+                cb.Build("\"We go the direst route, through the [[Lizard Fields]],\" I replied.", "szalk-5")
                 cb.Build("\"We go the safe route, through [[Dahl Oasis]],\" I replied.", "szalk-6")
             ]
         )
@@ -1228,8 +1228,8 @@ let pages =
                     that when you've been a mummy for 200 years with no one but bandits and sheriffs to ever talk to,
                     you end up with a lot of stuff that you want to talk about.  For my part, I was happy to oblige.
                     Desert Knight had done me a favor, and if that meant listening to them spend an hour talking
-                    about their favorite rare variety of local cactus, then so be it.  And besides, I learned some
-                    interesting tidbits about cacti that might one day save my life."""
+                    about their favorite rare variety of local cactus, then so be it.  And besides, you never know when
+                    weird tidbits you know about cacti might save your life."""
                 """It took us about four hours to make it to the [[Lizard Fields]], all told.  Once we got there, I
                     could see how it got its name.  Huge lizard skeletons, ones that put even Desert Knight's mount
                     to shame, lay scattered across the landscape.  I could see packs of [[bone hyenas|Bone Hyenas]],
@@ -1301,7 +1301,7 @@ let pages =
             "szalk-5-magic",
             [
                 """As I completed the spell, a burst of darkness shot forth from my fingertips.  Whenever it touched a
-                    [[bone hyena|Bone Hyena]], the hyena would yelp as if in pain and sprint away as fast as it could.
+                    [[bone hyena|Bone Hyenas]], the hyena would yelp as if in pain and sprint away as fast as it could.
                     In only a few short seconds, our path was cleared."""
             ],
             [
@@ -1322,27 +1322,27 @@ let pages =
             ],
             [
                 cb.Build(
-                    """While I was talking to the innkeeper about arranging payment, I asked her if she had ever heard
-                        of a trader named Flavian.  When she said she had, I told her of how I had run across him in the
-                        mines, and how I was seeking the one who had done this to him.""",
+                    """While I was talking to the innkeeper, a brown-feathered Etzen, about arranging payment, I asked
+                        her if she had ever heard of a trader named Flavian.  When she said she had, I told her of how I
+                        had run across him in the mines, and how I was seeking the one who had done this to him.""",
                     "szalk-6-vengeance",
                     Flags (["HIGH_ROAD"; "~PAID_FLAVIAN"], Automatic))
                 cb.Build(
-                    """While I was talking to the innkeeper about arranging payment, I asked her if she had ever heard
-                        of a trader named Flavian.  When she said she had, I told her of how I had run across him in the
-                        mines, and how I was seeking the one who had done this to him.""",
+                    """While I was talking to the innkeeper, a brown-feathered Etzen, about arranging payment, I asked
+                        her if she had ever heard of a trader named Flavian.  When she said she had, I told her of how I
+                        had run across him in the mines, and how I was seeking the one who had done this to him.""",
                     "szalk-6-vengeance",
                     Flags (["HIGH_ROAD"; "PAID_FLAVIAN"], Automatic),
                     setFlags=["VENGEANCE_PLUS"])
                 cb.Build(
-                    """While I was talking to the innkeeper about arranging payment, I asked her if she knew anything
-                        about routes bandits tended to take through the desert.""",
+                    """While I was talking to the innkeeper, a brown-feathered Etzen, about arranging payment, I asked
+                        her if she knew anything about routes bandits tended to take through the desert.""",
                     "szalk-6-intel",
                     SkillCheckRequired (Will, Persuasion, 2, AttributeDamage))
                 cb.Build(
-                    """While I was talking to the in nkeeper about arranging payment, I asked her if she knew anything
-                        about routes bandits tended to take through the desert.  I also made sure to let her know I
-                        could make answering this worth her while.""",
+                    """While I was talking to the innkeeper, a brown-feathered Etzen, about arranging payment, I asked
+                        her if she knew anything about routes bandits tended to take through the desert.  I also made
+                        sure to let her know I could make answering this worth her while.""",
                     "szalk-6-intel",
                     Bribe 20)
             ]
@@ -1350,13 +1350,13 @@ let pages =
         pb.Build(
             "szalk-6-vengeance",
             [
-                """The innkeeper leaned in close.  "Everyone here knows Flavian.  He's well-loved in this town due to
-                    not only his skill at trading, but his kindness and sensitivity.  If someone truly did this to him,
-                    we will stop at nothing to help you hunt them down."""
+                """The innkeeper leaned in close.  "Everyone here knows Flavian.  He's well-loved in this town, not just
+                    because of his skill at trading, but also because of his kindness and sensitivity.  If someone truly
+                    did this to him, we will stop at nothing to help you hunt them down."""
                 """ "My sister got mixed up with banditry when she was younger.  I remember her telling me that Shouzas,
                     one of the best fences on this side of the continent, has a shop on the shores of [[Estaton]] that
-                    can ship stolen goods to any city-state along the borders of the lake, and do this so many times
-                    that nothing he sells can ever be tracked again." """
+                    can ship stolen goods to any city-state along the borders of the lake, and sell goods repeatedly in
+                    so many cities that nothing he sells can ever be tracked again." """
                 """My heart leapt to hear this news.  I had a definite location!  I thanked the innkeeper graciously,
                     and after an hour's time exchanging stories and pleasantries I headed to bed."""
             ],
@@ -1411,16 +1411,16 @@ let pages =
                     physically binds to the person who has taken it, and is not removable for several days.  I did the
                     math, and there's no way that Greltza could sell the seed within the next two days.  We now know
                     exactly how much time we have!" """
-                """I let Desert Knight know what I had found out about Greltza's destination, and she was as excited
+                """I let Desert Knight know what I had found out about Greltza's destination, and they were as excited
                     as I was that we seemed to have all the information we would need to plan our final assault.  It was
-                    then I realized that I had never actually asked Desert Knight her name."""
+                    then I realized that I had never actually asked Desert Knight their name."""
                 """ "Do you have a name that I could call you that's more personal than 'Desert Knight?'" I asked."""
                 """ "Not really," Desert Knight replied. "I don't really remember anything from before my death, other
                     than my oath to protect the weak.  Any name I took would feel fake, because I don't really feel like
                     I'm truly the person before.  I feel like it's most correct if I have no name." """
                 """ "So... going by they...?" I began."""
                 """ "Nope, that's always been here, even before I died." """
-                """ "Ah, I understand," I said."""
+                """ "Ah," I said."""
             ],
             [
                 cb.Build(
