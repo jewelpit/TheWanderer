@@ -36,7 +36,7 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
         | Automatic ->
             Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str "Choose"]
         | SkillCheckRequired (attr, skill, target, effect) ->
-            if Character.GetEffectiveAttr attr gameState.Character > 0 then
+            if Character.GetAttr attr gameState.Character > 0 then
                 let successChance =
                     Skills.getSuccessChance
                         { Skill = Character.GetSkill skill gameState.Character

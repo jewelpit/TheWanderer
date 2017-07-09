@@ -30,11 +30,6 @@ with
         | Might -> character.Might
         | Will -> character.Will
 
-    static member GetEffectiveAttr attr character =
-        match attr with
-        | Might -> character.Might - character.Wounds
-        | Will -> character.Will - character.Stress
-
     static member GetSkill skill character =
         match skill with
         | Persuasion -> character.Persuasion
