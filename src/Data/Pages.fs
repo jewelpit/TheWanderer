@@ -527,8 +527,8 @@ let pages =
                     day." """
                 """With a little gentle prodding, I was able to find out that Greltza and her crew had come through this
                     passage, and taken the child that this hexad was raising.  The breeding pair in the hexad had been
-                    having trouble conceiving, and when the child was finally born it was hailed as a small miracle.
-                    Now, to have the child stolen from them..."""
+                    having trouble conceiving, and when little Altexen was finally born it was hailed as a small
+                    miracle. Now, to have the child stolen from them..."""
             ],
             [
                 cb.Build(
@@ -580,8 +580,8 @@ let pages =
                     suffered enough this day." """
                 """With a little gentle prodding, I was able to find out that Greltza and her crew had indeed come
                     through this passage, and taken the child that this hexad was raising.  The breeding pair in the
-                    hexad had been having trouble conceiving, and when the child was finally born it was hailed as a
-                    small miracle. Now, to have the child stolen from them..."""
+                    hexad had been having trouble conceiving, and when little Altexen was finally born it was hailed as
+                    a small miracle. Now, to have the child stolen from them..."""
             ],
             [
                 cb.Build(
@@ -951,6 +951,67 @@ let pages =
                 cb.Build(
                     "I would have to settle for following them from a distance, and attempting to ambush them later.",
                     "szalk-3")
+            ]
+        )
+        pb.Build(
+            "szalk-2-child-retrieved",
+            [
+                """I circled back, and began my search.  After about twenty minutes, I found Altexen, the
+                    [[Deskite|Deskites]] child hiding in a shallow valley where some cacti had grown between two dunes.
+                    """
+                "\"I am here to bring you back to your parental hexad,\" I said."
+                "Altexen did not look convinced, for understandable reasons. \"Prove my parents sent you!\""
+                """I told Altexen that I knew their name and the story of their parents' difficulties with conception.
+                    This was enough to convince them that I was who I said I was.  Now came the difficult part.  I told
+                    Altexen that while I understood that they wanted nothing more than to be reunited with their
+                    parents, I had to bring the person who had captured them to justice, or else an entire town would
+                    die.  Altexen was terrified about the prospect of being near Greltza again, but to their credit they
+                    understood and agreed."""
+            ],
+            [
+                cb.Build("Now it was time to catch up to Greltza, and finally bring her to justice.", "szalk-3")
+            ]
+        )
+        pb.Build(
+            "szalk-2-sled-crash",
+            [
+                """This is the moment where my memory becomes hazy.  I saw the bandit leading the sled turn around, and
+                    I saw her yell something, and then my entire world flipped on its side at a gallop."""
+                """I remember tumbling.  And sand.  And pain."""
+                """I awoke later, partially buried by sand and a hundred feet from the sled, which was lying upside-down
+                    and split into several pieces.  Greltza, her bandits, and their beetles were gone.  I whistled for
+                    my beetle, and ten minutes saw it pop its head over a dune, coming at me at a run.  I let loose a
+                    huge sigh of relief.  I'd have hated to be stuck in the middle of this desert without a mount."""
+            ],
+            [
+                cb.Build(
+                    """After making sure that myself and my beetle had no permanent injuries, I mounted and headed off
+                        after the tracks Greltza and her crew had made.""",
+                    "szalk-3-nosled",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    """After making sure that myself and my beetle had no permanent injuries, I mounted and headed off
+                        after the tracks Greltza and her crew had made.""",
+                    "szalk-2-sled-crash-child-retrieved",
+                    Flags (["DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-2-sled-crash-child-retrieved",
+            [
+                """I began my search.  After about twenty minutes, I found Altexen, the [[Deskite|Deskites]] child,
+                    hiding in a shallow valley where some cacti had grown between two dunes."""
+                "\"I am here to bring you back to your parental hexad,\" I said."
+                "Altexen did not look convinced, for understandable reasons."
+                """I told Altexen that I knew their name and the story of their parents' difficulties with conception.
+                    This was enough to convince them that I was who I said I was.  Now came the difficult part.  I told
+                    Altexen that while I understood that they wanted nothing more than to be reunited with their
+                    parents, I had to bring the person who had captured them to justice, or else an entire town would
+                    die.  Altexen was terrified about the prospect of being near Greltza again, but to their credit they
+                    understood and agreed."""
+            ],
+            [
+                cb.Build("Now it was time to catch up to Greltza, and finally bring her to justice.", "szalk-3-nosled")
             ]
         )
 
