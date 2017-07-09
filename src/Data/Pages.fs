@@ -1220,6 +1220,96 @@ let pages =
             ]
         )
 
+        pb.Build(
+            "szalk-5",
+            [
+                """One thing I should mention in my tale is that the Desert Knight was quite talkative.  It turns out
+                    that when you've been a mummy for 200 years with no one but bandits and sheriffs to ever talk to,
+                    you end up with a lot of stuff that you want to talk about.  For my part, I was happy to oblige.
+                    The Desert Knight had done me a favor, and if that meant listening to them spend an hour talking
+                    about their favorite rare variety of local cactus, then so be it.  And besides, I learned some
+                    interesting tidbits about cacti that might one day save my life."""
+                """It took us about four hours to make it to the [[Lizard Fields]], all told.  Once we got there, I
+                    could see how it got its name.  Huge lizard skeletons, ones that put even the Desert Knight's mount
+                    to shame, lay scattered across the landscape.  I could see packs of [[bone hyenas|Bone Hyenas]],
+                    terrifying hunting animals that eat bones and would prefer my fresh ones to the ancient ones on
+                    display, wandering in and out of the skeletons.  If we were going to cross the [[Lizard Fields]],
+                    we would have to make it past the hyenas."""
+            ],
+            [
+                cb.Build(
+                    "Bone hyenas generally have dull senses.  They shouldn't be too hard to sneak past.",
+                    "szalk-5-sneaking",
+                    SkillCheckRequired (Might, Sneaking, 2, AlternatePage "szalk-5-discovered"))
+                cb.Build(
+                    "Bone hyenas are not amazing fighters.  I drew my sword, daring any to come close.",
+                    "szalk-5-fought",
+                    SkillCheckRequired (Might, Combat, 2, AttributeDamage))
+                cb.Build(
+                    """Bone hyenas are generally cowardly, scavenging animals.  A fear spell should disperse them
+                        nicely.""",
+                    "szalk-5-magic",
+                    SkillCheckRequired (Will, Ritual, 2, AttributeDamage))
+            ]
+        )
+        pb.Build(
+            "szalk-5-sneaking",
+            [
+                """The Desert Knight and I were able to find a path along which we could guide our mounts in order to
+                    avoid ever coming too close to a [[bone hyena|Bone Hyenas]].  After what seemed like forever, we
+                    were through the [[Lizard Fields]]."""
+            ],
+            [
+                cb.Build("Excited that our gamble had worked, we pressed on.", "szalk-7")
+            ]
+        )
+        pb.Build(
+            "szalk-5-discovered",
+            [
+                """The Desert Knight and I led our mounts carefully, making sure to give the [[bone hyenas|Bone Hyenas]]
+                    a wide berth.  What we didn't count on was a sudden change in the direction of the wind, which
+                    immediately took us from comfortable downwind of the hyenas to directly upwind of them.  They
+                    smelled us in an instant, and suddenly the pack went from a group of docile, sleeping predators into
+                    a frenzy of activity as the hyenas practically ran over themselves to surround us."""
+            ],
+            [
+                cb.Build(
+                    "I drew my sword.  I would never be bested by a mere animal.",
+                    "szalk-5-fought",
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                cb.Build(
+                    "I prepared a fear spell.  Bone hyenas are naturally skittish creatures.",
+                    "szalk-5-magic",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+            ]
+        )
+        pb.Build(
+            "szalk-5-fought",
+            [
+                """I fought against the pack of [[bone hyenas|Bone Hyenas]], carefully inflicting only light flesh
+                    wounds.  When enough of the pack had been wounded, they wisely decided they had had enough and
+                    turned tail and fled."""
+            ],
+            [
+                cb.Build(
+                    "With the bone hyenas out of the way, the Desert Knight and I were able to continue on our way.",
+                    "szalk-7")
+            ]
+        )
+        pb.Build(
+            "szalk-5-magic",
+            [
+                """As I completed the spell, a burst of darkness shot forth from my fingertips.  Whenever it touched a
+                    [[bone hyena|Bone Hyena]], the hyena would yelp as if in pain and sprint away as fast as it could.
+                    In only a few short seconds, our path was cleared."""
+            ],
+            [
+                cb.Build(
+                    "With the bone hyenas out of the way, the Desert Knight and I were able to continue on our way.",
+                    "szalk-7")
+            ]
+        )
+
 
         pb.Build(
             "middle",
