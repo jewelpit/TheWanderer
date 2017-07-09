@@ -244,10 +244,8 @@ let modals =
             Title = "Szalkut Desert"
             Content =
                 R.div [] [
-                    gazetteer """I must admit to some unfamiliarity with the Szalkut Desert, as hot climates do not
-                                 appeal to me.  However, I have passed through it a few times on my way to Estaton, and
-                                 I can say that it has a certain beauty... as long as the Desert Knight does not get
-                                 you."""
+                    gazetteer """I must admit to some bias towards the Szalkut Desert.  I grew up among its dunes, and I
+                        have deep roots in many towns and trading outposts here."""
                     para """
                         Also called The Desert of Ten Thousand Dunes, the Szalkut Desert lies to the east of the
                         Ereshkigal mountains.  Despite its initial appearance as a desolate wasteland, the Szalkut
@@ -363,6 +361,42 @@ let modals =
                         While the passes are certainly a safer way to cross the mountains, the Lost Mines are by far the
                         fastest, as long as you don't get lost...
                         """
+                ]
+        }
+        {
+            Title = "Lizard Fields"
+            Content =
+                R.div [] [
+                    gazetteer """I must admit, I was surprised to find out all the lizard's in Lizard Fields' namesake
+                        were dead, but I was more surprised to find out how aggressive all the bone hyenas there were!
+                        """
+                    para """
+                        The Lizard Fields are a region of the Szalkut Desert, so named because of all the giant desert
+                        lizards that have come there to die over the years.  The mass of unguarded bone has made this
+                        are a hotspot for bone hyenas.
+                        """
+                ]
+        }
+        {
+            Title = "Bone Hyenas"
+            Content =
+                R.div [] [
+                    para """
+                        Bone hyena's are hyena-like creatures that feed only on bone, old or fresh.  While they can
+                        comfortably feed on old bones of creatures long dead, bone hyenas vastly prefer to feed on the
+                        bones of the recently deceased, as they still have marrow.
+                        """
+                ]
+        }
+        {
+            Title = "Dahl Oasis"
+            Content =
+                R.div [] [
+                    gazetteer """Ahh, Dahl Oasis.  If I were to ever call any city in this world my home, it would be
+                        Dahl Oasis.  The trading capital of the Szalkut Desert, and the area where the western slopes of
+                        the Ereshkigal Mountains trade with the city-states around Estaton, the Inland Sea, Dahl Oasis
+                        is a wonderful jewel in the heart of Etzen civilization.  If you ever run into me, make sure to
+                        mention my name in Dahl Oasis."""
                 ]
         }
     ]
