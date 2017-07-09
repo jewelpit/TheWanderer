@@ -1217,7 +1217,16 @@ let pages =
             ],
             [
                 cb.Build("\"We go the direst route, through the [[Lizard Fields]],\" I replied.", "szalk-5")
-                cb.Build("\"We go the safe route, through [[Dahl Oasis]],\" I replied.", "szalk-6")
+                cb.Build(
+                    "\"We go the safe route, through [[Dahl Oasis]],\" I replied.",
+                    "szalk-6",
+                    Flags (["~NORTH_ROAD"], Automatic))
+                cb.Build(
+                    """ "I met a merchant several days ago who came from [[Dahl Oasis]]." I replied. "Maybe we'd be able
+                        to find less legitimate merchants there who would know where bandits go to sell their goods."
+                        """,
+                    "szalk-6",
+                    Flags (["NORTH_ROAD"], Automatic))
             ]
         )
 
