@@ -1215,7 +1215,8 @@ let pages =
                 """ "So, where to from here?" the Desert Knight asked."""
             ],
             [
-                cb.Build("\"We go the direst route, through [[Lizard Field]],\" I replied.")
+                cb.Build("\"We go the direst route, through [[Lizard Field]],\" I replied.", "szalk-5")
+                cb.Build("\"We go the safe route, through [[Dahl Oasis]],\" I replied.", "szalk-6")
             ]
         )
 
@@ -1302,6 +1303,13 @@ for kvp in pages do
             | AttributeDamage -> ()
         | _ -> ()
     for part in List.collect Modals.parseLine kvp.Value.Text do
+        match part with
+        | Modals.Str _ -> ()
+        | Modals.Link link ->
+            if not (Map.containsKey link.LinkName Modals.modals) then
+                printfn "Page %s has an invalid modal link: %s" kvp.Value.Name link.LinkName
+    
+    for part in List.collect (fun cont -> Modals.parseLine cont.Description) kvp.Value.Continuations do
         match part with
         | Modals.Str _ -> ()
         | Modals.Link link ->
