@@ -912,6 +912,21 @@ let pages =
             ]
         )
         pb.Build(
+            "szalk-2-magic-failed",
+            [
+                """My attempt to cast a body-lock spell in time failed.  Right as the [[sun pistol|Sun Pistol]] finished
+                    charging I had to drop my spell and pull back sharply on the reigns to avoid getting my head blown
+                    off by the bolt.  My beetle reared, and a good thing too--not even a second later four electrogun
+                    blasts hit the sand right where my beetle had been.  Greltza and her bandits would be on high alert
+                    now."""
+            ],
+            [
+                cb.Build(
+                    "I would have to settle for following them from a distance, and attempting to ambush them later.",
+                    "szalk-3")
+            ]
+        )
+        pb.Build(
             "szalk-2-magic-child",
             [
                 "\"Sure,\" she said, as she shoved the child backwards off the far end of the sled."
@@ -924,10 +939,18 @@ let pages =
         pb.Build(
             "szalk-2-fallen",
             [
-                
+                """Right as I was nearing the top of the railing the sled jerked to the right, and my hand slipped.
+                    With one hand suddenly not holding on, I involuntarily rolled to the side while desperately trying
+                    to maintain purchase with my other hand.  This was the only thing that saved my life, as half a
+                    second later a [[sun pistol|Sun Pistol]] bolt shot through where my head was a second before."""
+                """I let myself drop back onto the saddle of my beetle.  As I pulled it back, four
+                    [[electrogun|Electrogun]] blasts hit the sand where I was.  With them on this high alert, there was
+                    no way I could try boarding again."""
             ],
             [
-
+                cb.Build(
+                    "I would have to settle for following them from a distance, and attempting to ambush them later.",
+                    "szalk-3")
             ]
         )
 
