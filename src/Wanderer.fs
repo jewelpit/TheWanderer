@@ -44,7 +44,9 @@ let saveGame (state : ActiveGameState) =
 
 let changePage (gameState : ActiveGameState) (continuation : Pages.Continuation) =
     let newHistory =
-        gameState.History @ ((List.map Modals.getDisplayLine gameState.Page.Text) @ [continuation.Description])
+        gameState.History
+            @ ((List.map Modals.getDisplayLine gameState.Page.Text)
+            @ [Modals.getDisplayLine continuation.Description])
     let moveToPage pageName =
         let newMuld = gameState.Character.Muld + continuation.GrantsMoney
         match Map.tryFind pageName Pages.pages with
