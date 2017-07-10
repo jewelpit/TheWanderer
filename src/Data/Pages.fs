@@ -2120,6 +2120,27 @@ let pages =
             ]
         )
 
+        pb.Build(
+            "szalk-8",
+            [
+                "Back at our camp, Desert Knight shook my hand. \"It was a pleasure aiding you,\" they said."
+                "I shook back.  \"I will remember you,\" I said."
+                "\"And I have a feeling that I will remember you as well,\" they replied."
+                "\"Farewell,\" I said."
+                "\"Farewell,\" they replied."
+            ],
+            [
+                cb.Build(
+                    "Heartseed in tow, I made my way back to [[Tetznatalk]].",
+                    "szalk-end")
+                cb.Build(
+                    "Heartseed and child in tow, I made my way back to [[Tetznatalk]].",
+                    "szalk-end")
+            ]
+        )
+
+        pb.Build("szalk-end", [], [])
+
 
         pb.Build(
             "middle",
