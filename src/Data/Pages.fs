@@ -809,7 +809,7 @@ let pages =
                 cb.Build(
                     """ "Please!  Return the child!  They've done nothing to you!" I shouted. """,
                     "szalk-2-persuasion-child",
-                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-2-persuasion-failed")))
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 3, AttributeDamage)))
             ]
         )
         pb.Build(
@@ -844,7 +844,7 @@ let pages =
                 cb.Build(
                     """ "Please!  Return the child!  They've done nothing to you!" I shouted. """,
                     "szalk-2-persuasion-child",
-                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 4, AlternatePage "szalk-2-persuasion-failed")))
+                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Persuasion, 4, AttributeDamage)))
             ]
         )
         pb.Build(
@@ -2232,20 +2232,23 @@ let unwrittenFlags = Set.difference allReadFlags allSetFlags
 if not (Set.isEmpty unwrittenFlags) then
     printfn "The following flags are read but never set: %A" unwrittenFlags
 
+let rec private getAlternatePage cond =
+    match cond with
+    | SkillCheckRequired (_, _, _, AlternatePage name) -> Some name
+    | Flags (_, c) -> getAlternatePage c
+    | _ -> None
+
 for kvp in pages do
     if not (Set.contains kvp.Value.Name allRoutedPages) && kvp.Value.Name <> "start" then
         printfn "Page %s is not reachable from any other pages" kvp.Value.Name
     for continuation in kvp.Value.Continuations do
         if not (Map.containsKey continuation.NextPageName pages) then
             printfn "Page %s has an invalid continuation: %s" kvp.Value.Name continuation.NextPageName
-        match continuation.Condition with
-        | SkillCheckRequired (attr, skill, target, effect) ->
-            match effect with
-            | AlternatePage name ->
-                if not (Map.containsKey name pages) then
-                    printfn "Page %s has continuation with an invalid alternate page: %s." kvp.Value.Name name
-            | AttributeDamage -> ()
-        | _ -> ()
+        match getAlternatePage continuation.Condition with
+        | Some name ->
+            if not (Map.containsKey name pages) then
+                printfn "Page %s has continuation with an invalid alternate page: %s." kvp.Value.Name name
+        | None -> ()
     for part in List.collect Modals.parseLine kvp.Value.Text do
         match part with
         | Modals.Str _ -> ()
