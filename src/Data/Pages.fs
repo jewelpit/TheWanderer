@@ -1693,8 +1693,8 @@ let pages =
             [
                 """I wandered the trading post, keeping a sharp eye out for Greltza or any of her crew.  Since they
                     would recognize me on sight I made sure to stick to back alleys.  After a few minutes, I spotted
-                    her!  She was heading down to the dock, and I followed her from a distance.  There was a boat moored
-                    there, and she got on and went belowdecks."""
+                    her!  She was heading down to the dock, and I followed her from a distance.  There was a sailing
+                    ship moored there, and she got on and went belowdecks."""
             ],
             [
                 cb.Build(
@@ -1735,7 +1735,7 @@ let pages =
                     of this commotion, and if she wasn't there we could still check other parts of town, as long as we
                     could stay ahead of the mob chasing us."""
                 """And it's a good thing we ran down to the docks, too.  Up ahead, we could make out Greltza boarding a
-                    moored ship on the gangplank."""
+                    moored sailing ship on the gangplank."""
             ],
             [
                 cb.Build(
@@ -1752,6 +1752,88 @@ let pages =
                         would give up when it meant the life of an entire town.""",
                     "szalk-7-ship-fighting",
                     Flags (["~DESKITE_CHILD"; "DESERT_KNIGHT_BACKUP"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship",
+            [
+                """I was on the same boat as Greltza!  I hadn't been this close to capturing my quarry in days."""
+            ],
+            [
+                cb.Build(
+                    """I went belowdecks, keeping my sword sheathed.  It wasn't too late to resolve this without further
+                        bloodshed.""",
+                    "szalk-7-ship-lt",
+                    setFlags=["SHIP_TALKING"])
+                cb.Build(
+                    """I went belowdecks, preparing a concussive blast spell.  I could stun Greltza and her lieutenant,
+                        get the heartseed, and make it off the ship before they awoke.""",
+                    "szalk-7-ship-lt",
+                    Flags (["~DESKITE_CHILD"], Automatic),
+                    setFlags=["SHIP_MAGIC"])
+                cb.Build(
+                    """I went belowdecks, preparing a concussive blast spell.  I could stun Greltza and her lieutenant,
+                        get the heartseed and the child, and make it off the ship before they awoke.""",
+                    "szalk-7-ship-lt",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic),
+                    setFlags=["SHIP_MAGIC"])
+                cb.Build(
+                    """I went belowdecks, sword in hand.  Greltza and her lieutenant were some of the most dangerous
+                        people I had fought in years, and I wasn't about to tread lightly.""",
+                    "szalk-7-ship-lt",
+                    setFlags=["SHIP_FIGHTING"])
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-fighting",
+            [
+                """I was so close to Greltza!  I knew that this would be my final chance, and with our cover already
+                    blown, Desert Knight and I headed belowdecks."""
+                """A sword swung out from an alcove to my left, and I was barely able to move out of the way as it
+                    slammed into the wooden wall next to me.  Woodchips flew into my face, threatening to blind me.  I
+                    darted into the doorway of the alcove, and saw Greltza's lieutenant, wielding a short scimitar.
+                    I knew that he wouldn't dare us his [[sun pistol|Sun Pistol]] on this wooden ship, so this would be
+                    a straight swordfight."""
+            ],
+            [
+                cb.Build(
+                    """The lieutenant swung at me again, and I dodged to the part of the hallway past him.  Now Desert
+                        Knight and I had him surrounded.  We were easily able to fight him to a surrender, and after
+                        binding his arms, we made our way further to Greltza.""",
+                    "szalk-7-ship-greltza-knight",
+                    SkillCheckRequired (Might, Combat, 2, AttributeDamage))
+                cb.Build(
+                    "I shouted for Desert Knight to take the lieutenant.  I had to go stop Greltza!",
+                    "szalk-7-ship-greltza-noknight")
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-lt",
+            [
+                """A sword swung out from an alcove to my left, and I was barely able to move out of the way as it
+                    slammed into the wooden wall next to me.  Woodchips flew into my face, threatening to blind me.  I
+                    darted into the doorway of the alcove, and saw Greltza's lieutenant, wielding a short scimitar.
+                    I knew that he wouldn't dare us his [[sun pistol|Sun Pistol]] on this wooden ship, so this would be
+                    a straight swordfight."""
+            ],
+            [
+                cb.Build(
+                    """I shouted to the lieutenant that it wasn't too late for him to surrender.  He responded by
+                        swinging his sword at my head again, so I unsheathed my own and fought.  The fighting was
+                        vicious in that cramped corridor, but my longer sword had an advantage in reach, and I was able
+                        to force him to surrender without causing him permanent damage.""",
+                    "szalk-7-ship-greltza",
+                    Flags (["SHIP_TALKING"], SkillCheckRequired (Might, Combat, 3, AttributeDamage)))
+                cb.Build(
+                    """I completed my spell, and a shock wave burst out from my hand, slamming him into the wall.  The
+                        lieutenant fell to the ground, unconscious.""",
+                    "szalk-7-ship-greltza",
+                    Flags (["SHIP_MAGIC"], SkillCheckRequired (Will, Ritual, 3, AttributeDamage)))
+                cb.Build(
+                    """The fighting was vicious in that cramped corridor, but my longer sword had an advantage in reach,
+                        and I was able to force him to surrender without causing him permanent damage.""",
+                    "szalk-7-ship-greltza",
+                    Flags (["SHIP_FIGHTING"], SkillCheckRequired (Might, Combat, 3, AttributeDamage)))
             ]
         )
 
