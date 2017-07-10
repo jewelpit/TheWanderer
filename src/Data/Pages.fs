@@ -70,7 +70,7 @@ let pages =
             ],
             [
                 cb.Build("\"Excuse me?\"", "tez1")
-                cb.Build("Enter test harness", "middle"(*, Flags (["TESTHARNESSENABLED"], Automatic)*))
+                cb.Build("Enter test harness", "middle", Flags (["TESTHARNESSENABLED"], Automatic))
             ]
         )
         pb.Build(
