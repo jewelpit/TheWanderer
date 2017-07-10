@@ -1836,6 +1836,261 @@ let pages =
                     Flags (["SHIP_FIGHTING"], SkillCheckRequired (Might, Combat, 3, AttributeDamage)))
             ]
         )
+        pb.Build(
+            "szalk-7-ship-greltza",
+            [
+                """I made it to the end of the hallway, and there in the middle of the hold was Greltza."""
+                "\"Greltza!  I've made it all the way here!  It's not too late to surrender!\" I shouted."
+                """Greltza looked at me, and shook her head.  "I'm afraid it is," she replied."""
+            ],
+            [
+                cb.Build(
+                    "My heart sank at those words, but I held my sword in a striking pose and steeled myself.",
+                    "szalk-7-ship-greltza-noknight-2",
+                    Flags (["~DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """My heart sank at those words, but I held my sword in a striking pose and steeled myself.  Right
+                        then, I heard a voice from outside shouting "Ahoy!" and then a crash as the Desert Knight burst
+                        in a porthole.  Yes!  There was no way Greltza could escape now.""",
+                    "szalk-7-ship-greltza-knight-2",
+                    Flags (["~DESERT_KNIGHT_BACKUP"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-knight",
+            [
+                """We made it to the end of the hallway, and there in the middle of the hold was Greltza."""
+                "\"Greltza!  We've made it all the way here!  It's not too late to surrender!\" I shouted."
+                """Greltza looked at me, and shook her head.  "I'm afraid it is," she replied."""
+            ],
+            [
+                cb.Build(
+                    "My heart sank at those words, but I held my sword in a striking pose and steeled myself.",
+                    "szalk-7-ship-greltza-knight-2")
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-noknight",
+            [
+                """I made it to the end of the hallway, and there in the middle of the hold was Greltza."""
+                "\"Greltza!  I've made it all the way here!  It's not too late to surrender!\" I shouted."
+                """Greltza looked at me, and shook her head.  "I'm afraid it is," she replied."""
+            ],
+            [
+                cb.Build(
+                    "My heart sank at those words, but I held my sword in a striking pose and steeled myself.",
+                    "szalk-7-ship-greltza-noknight-2")
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-knight-2",
+            [
+                """Greltza drew her sword and charged at the two of us, snarling."""
+            ],
+            [
+                cb.Build(
+                    """We fought back, and the melee moved back and forth across the floor.  Swords clashed, and many
+                        times Greltza swung her blade and only sheer luck saved my life.  I was fighting the best
+                        swordswoman I had faced in my life.  But fighting two against one is difficult, and after
+                        several minutes, Desert Knight and I had managed to press her into a corner.""",
+                    "szalk-7-ship-greltza-knight-3",
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                cb.Build(
+                    """Desert Knight held off Greltza while I hung back and prepared a force wave spell.  I released it,
+                        and Greltza was picked up and slammed into the corner behind her.""",
+                    "szalk-7-ship-greltza-knight-3",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-noknight-2",
+            [
+                """Greltza drew her sword and charged at me, snarling."""
+            ],
+            [
+                cb.Build(
+                    """I fought back, and the melee moved back and forth across the floor.  Swords clashed, and many
+                        times Greltza swung her blade and only sheer luck saved my life.  I was fighting the best
+                        swordswoman I had faced in my life.  But I had the weight of justice on my side, and after
+                        several minutes, I had managed to press her into a corner.""",
+                    "szalk-7-ship-greltza-knight-3",
+                    SkillCheckRequired (Might, Combat, 4, AttributeDamage))
+                cb.Build(
+                    """Desert Knight held off Greltza while I hung back and prepared a force wave spell.  I released it,
+                        and Greltza was picked up and slammed into the corner behind her.""",
+                    "szalk-7-ship-greltza-knight-3",
+                    SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-knight-3",
+            [
+                """Desert Knight and I surged forward, and Greltza had her back completely to the wall.  We pressed our
+                    advantage."""
+            ],
+            [
+                cb.Build(
+                    "\"Surrender!\" I yelled at her.",
+                    "szalk-7-ship-greltza-surrender",
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-7-ship-greltza-surrender-failed"))
+                cb.Build(
+                    "While Desert Knight kept her pinned, I cast a sleep spell.",
+                    "szalk-7-ship-greltza-sleeping",
+                    SkillCheckRequired (Will, Ritual, 3, AlternatePage "szalk-7-ship-greltza-sleep-failed"))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-noknight-3",
+            [
+                """I surged forward, and Greltza had her back completely to the wall.  I pressed our advantage."""
+            ],
+            [
+                cb.Build(
+                    "\"Surrender!\" I yelled at her.",
+                    "szalk-7-ship-greltza-surrender",
+                    SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-7-ship-greltza-surrender-failed"))
+                cb.Build(
+                    "While holding her off with one hand, I cast a sleep spell with the other.",
+                    "szalk-7-ship-greltza-sleeping",
+                    SkillCheckRequired (Will, Ritual, 4, AlternatePage "szalk-7-ship-greltza-sleep-failed"))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-surrender-failed",
+            [
+                """ "As if!" she shouted as she lunged at me.  My survival instincts kicked in, and I brought up my
+                    sword.  One thrust, and Greltza was skewered through the chest.  She brought her own sword down, but
+                    I dodged it with an inch to spare."""
+                """Greltza coughed up blood, then looked directly into my eyes.  She gave an angry scoff.  "Who the
+                    fuck... do you think... you are?" """
+                "With that said, the life went out of her eyes."
+            ],
+            [
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """I checked the box she had been carrying and inside was the heartseed.  My mission was complete.
+                        After more searching, I found the child in the captain's quarters.""",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-sleep-failed",
+            [
+                """Before I could complete my spell, she lunged at me.  My survival instincts kicked in, and I brought
+                    up my sword.  One thrust, and Greltza was skewered through the chest.  She brought her own sword
+                    down, but I dodged it with an inch to spare."""
+                """Greltza coughed up blood, then looked directly into my eyes.  She gave an angry scoff.  "Who the
+                    fuck... do you think... you are?" """
+                "With that said, the life went out of her eyes."
+            ],
+            [
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """I checked the box she had been carrying and inside was the heartseed.  My mission was complete.
+                        After more searching, I found the child in the captain's quarters.""",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-sleeping",
+            [
+                """I completed my spell, and Greltza fell to the ground, snoring gently.  I bent down and checked her
+                    for head injuries, and when I was convinced that she needed no medical attention, I was pleased."""
+            ],
+            [
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "I checked the box she had been carrying and inside was the heartseed.  My mission was complete.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """I checked the box she had been carrying and inside was the heartseed.  My mission was complete.
+                        After more searching, I found the child in the captain's quarters.""",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-surrender",
+            [
+                """Greltza paused for a second.  Then, she lowered her sword and frowned.  "You're right.  No one ever
+                    becomes a bandit lord by not being able to see the writing on the wall, you know?  Fine.  You can
+                    have it all back."""
+            ],
+            [
+                cb.Build(
+                    "\"Just return it all, and we're square,\" I said.",
+                    "szalk-7-ship-greltza-surrender-return")
+                cb.Build(
+                    "\"I'm also going to need to bring you in,\" I said.",
+                    "szalk-7-ship-greltza-surrender-refuse")
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-surrender-return",
+            [
+                "Greltza agreed that the sounded fair."
+            ],
+            [
+                cb.Build(
+                    "She opened the box, took out the heartseed, and put it in my hand. \"Take care,\" she said.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "She opened the box, took out the heartseed, and put it in my hand. \"Take care,\" she said.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """She opened the box, took out the heartseed, and put it in my hand. "The child is in the captain's
+                        quarters," she said.""",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-surrender-refuse",
+            [
+                """Greltza looked at me, incredulous.  "How do you plan to get out of here with me in tow?" """
+                """Desert Knight and I looked at each other."""
+                "\"Okay, just return what you stole,\" I said."
+            ],
+            [
+                cb.Build(
+                    "She opened the box, took out the heartseed, and put it in my hand. \"Take care,\" she said.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    "She opened the box, took out the heartseed, and put it in my hand. \"Take care,\" she said.",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """She opened the box, took out the heartseed, and put it in my hand. "The child is in the captain's
+                        quarters," she said.  We climbed up the stairs onto the main deck, and when we opened the door
+                        to the captain's quarters, we saw the child there, crying.  When I told them that we were here
+                        to take them back, all they could muster back was a grim nod.""",
+                    "szalk-7-ship-greltza-defeated-2",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
+            ]
+        )
 
 
         pb.Build(
