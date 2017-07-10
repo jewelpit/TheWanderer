@@ -969,7 +969,10 @@ let pages =
                     understood and agreed."""
             ],
             [
-                cb.Build("Now it was time to catch up to Greltza, and finally bring her to justice.", "szalk-3")
+                cb.Build(
+                    "Now it was time to catch up to Greltza, and finally bring her to justice.",
+                    "szalk-3",
+                    setFlags=["CHILD_RETRIEVED"])
             ]
         )
         pb.Build(
@@ -1011,7 +1014,10 @@ let pages =
                     understood and agreed."""
             ],
             [
-                cb.Build("Now it was time to catch up to Greltza, and finally bring her to justice.", "szalk-3-nosled")
+                cb.Build(
+                    "Now it was time to catch up to Greltza, and finally bring her to justice.",
+                    "szalk-3-nosled",
+                    setFlags=["CHILD_RETRIEVED"])
             ]
         )
 
@@ -1053,23 +1059,23 @@ let pages =
                 cb.Build(
                     "I put on my large traveling cloak and tightened my riding goggles.  This was going to be rough.",
                     "szalk-3-sandstorm-nomagic",
-                    Flags (["~DESKITE_CHILD"], Automatic))
+                    Flags (["~CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     "I put on my large traveling cloak and tightened my riding goggles.  Fortunately for me, this type
                         of protection spell is one of the first I learned.",
                     "szalk-3-sandstorm-magic",
-                    Flags (["~DESKITE_CHILD"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
+                    Flags (["~CHILD_RETRIEVED"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
                 cb.Build(
                     """I put on my large traveling cloak and tightened my riding goggles, then tucked Altexen in the
                         front of my cloak.  This was going to be rough.""",
                     "szalk-3-sandstorm-nomagic",
-                    Flags (["DESKITE_CHILD"], Automatic))
+                    Flags (["CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     """I put on my large traveling cloak and tightened my riding gogglesthen tucked Altexen in the
                         front of my cloak.  Fortunately for me, this type of protection spell is one of the first I
                         learned.""",
                     "szalk-3-sandstorm-magic",
-                    Flags (["DESKITE_CHILD"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
+                    Flags (["CHILD_RETRIEVED"], SkillCheckRequired (Will, Ritual, 2, AttributeDamage)))
             ]
         )
         pb.Build(
@@ -1108,12 +1114,12 @@ let pages =
                 cb.Build(
                     "I went to bed, knowing that I would be able to sleep long enough to begin the morning rested.",
                     "szalk-4-morning",
-                    Flags (["~DESKITE_CHILD"], Automatic))
+                    Flags (["~CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     """I went to bed, knowing that Altexen and I would be able to sleep long enough to begin the morning
                         rested.""",
                     "szalk-4-morning",
-                    Flags (["DESKITE_CHILD"], Automatic))
+                    Flags (["CHILD_RETRIEVED"], Automatic))
             ]
         )
         pb.Build(
@@ -1128,13 +1134,13 @@ let pages =
                 cb.Build(
                     "I went to bed, knowing that I would have to wake far earlier than I wanted in the morning.",
                     "szalk-4-morning",
-                    Flags (["~DESKITE_CHILD"], Automatic),
+                    Flags (["~CHILD_RETRIEVED"], Automatic),
                     setFlags=["TIRED"])
                 cb.Build(
                     """I went to bed, knowing that Altexen and I would have to wake far earlier than I wanted in the
                         morning.""",
                     "szalk-4-morning",
-                    Flags (["DESKITE_CHILD"], Automatic),
+                    Flags (["CHILD_RETRIEVED"], Automatic),
                     setFlags=["TIRED"])
             ]
         )
@@ -1383,18 +1389,33 @@ let pages =
             ],
             [
                 cb.Build(
-                    """I tucked Altexen into the bed, and sang them a story that my father had sung to me as a child,
-                        until they fell asleep.  Then I rolled my bedroll out on the floor next to the bed, and passed
-                        into sleep.""",
+                    """By this point it was late, so I went upstairs, tucked Altexen into the bed, and sang them a story
+                        that my father had sung to me as a child, until they fell asleep.  Then I rolled my bedroll out
+                        on the floor next to the bed, and passed into sleep.""",
                     "szalk-6-morning",
-                    Flags (["DESKITE_CHILD"], Automatic))
+                    Flags (["CHILD_RETRIEVED"; "~VENGEANCE_PLUS"], Automatic))
                 cb.Build(
-                    """I got into bed, and thought about the days ahead of me.  I knew that with how close I was to
-                        Greltza's destination, I would be facing her again in two days.  I couldn't tell if the prospect
-                        scared me or excited me more.""",
+                    """By this point it was late, so I went upstairs, got into bed, and thought about the days ahead of
+                        me.  I knew that with how close I was to Greltza's destination, I would be facing her again in
+                        two days.  I couldn't tell if the prospect scared me or excited me more.""",
                     "szalk-6-morning",
-                    Flags (["~DESKITE_CHILD"], Automatic)
-                )
+                    Flags (["~CHILD_RETRIEVED"; "~VENGEANCE_PLUS"], Automatic))
+                cb.Build(
+                    """The innkeeper also told me that the day guard Shouzas's port was an admirer of Flavian, and that
+                        that knowledge might be useful to me.  I thanked her graciously.  It had gotten late by this
+                        point, so I went upstairs, tucked Altexen into the bed, and sang them a story that my father had
+                        sung to me as a child, until they fell asleep.  Then I rolled my bedroll out on the floor next
+                        to the bed, and passed into sleep.""",
+                    "szalk-6-morning",
+                    Flags (["CHILD_RETRIEVED"; "VENGEANCE_PLUS"], Automatic))
+                cb.Build(
+                    """The innkeeper also told me that the day guard Shouzas's port was an admirer of Flavian, and that
+                        that knowledge might be useful to me.  I thanked her graciously.  It had gotten late by this
+                        point, so I went upstairs, got into bed, and thought about the days ahead of me.  I knew that
+                        with how close I was to Greltza's destination, I would be facing her again in two days.  I
+                        couldn't tell if the prospect scared me or excited me more.""",
+                    "szalk-6-morning",
+                    Flags (["~CHILD_RETRIEVED"; "VENGEANCE_PLUS"], Automatic))
             ]
         )
         pb.Build(
@@ -1414,13 +1435,13 @@ let pages =
                         until they fell asleep.  Then I rolled my bedroll out on the floor next to the bed, and passed
                         into sleep.""",
                     "szalk-6-morning",
-                    Flags (["DESKITE_CHILD"], Automatic))
+                    Flags (["CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     """I got into bed, and thought about the days ahead of me.  I knew that with how close I was to
                         Greltza's destination, I would be facing her again in two days.  I couldn't tell if the prospect
                         scared me or excited me more.""",
                     "szalk-6-morning",
-                    Flags (["~DESKITE_CHILD"], Automatic)
+                    Flags (["~CHILD_RETRIEVED"], Automatic)
                 )
             ]
         )
@@ -1442,23 +1463,295 @@ let pages =
             ],
             [
                 cb.Build(
+                    """With all that said, Desert Knight and I headed out.  I would bring back the heartseed and the
+                        child.""",
+                    "szalk-7",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
+                cb.Build(
                     "With all that said, Desert Knight and I headed out.",
                     "szalk-7",
-                    Flags (["~DESKITE_CHILD"], Automatic))
+                    Flags (["~DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     "With all that said, Desert Knight, Altexen, and I headed out.",
                     "szalk-7",
-                    Flags (["DESKITE_CHILD"], Automatic))
+                    Flags (["CHILD_RETRIEVED"], Automatic))
             ]
         )
 
         pb.Build(
             "szalk-7",
             [
-
+                """We crested a tall dune, and suddenly the entirety of [[Estaton]] was before us.  If I hadn't seen
+                    maps that showed all of the land around this lake, I would have sworn I was on the ocean coast
+                    again.  Thousands of rivers traveled thousands of miles to create this lake before me, and it was an
+                    inspiring site."""
+                """Desert Knight told me to look down, and I spotted a small trading port on the shore, with a stone
+                    walls and a large compliment of guards."""
+                "\"This must be where Greltza is going to fence the heartseed,\" I said."
+                "Desert Knight nodded. \"Hm.\""
             ],
             [
-
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, I rode up to the front gate alone.  Greltza and her bandits would still recognize me on
+                        sight, but we were gambling that they weren't close enough with the boss here to have told the
+                        guards too much about my appearance.""",
+                    "szalk-7-persuasion",
+                    Flags (
+                        ["~CHILD_RETRIEVED"; "~VENGEANCE_PLUS"],
+                        SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-7-persuasion-failed")))
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, they guarded the Altexen behind a dune while I rode up to the front gate alone.  Greltza
+                        and her bandits would still recognize me on sight, but we were gambling that they weren't close
+                        enough with the boss here to have told the guards too much about my appearance.""",
+                    "szalk-7-persuasion",
+                    Flags (
+                        ["CHILD_RETRIEVED"; "~VENGEANCE_PLUS"],
+                        SkillCheckRequired (Will, Persuasion, 3, AlternatePage "szalk-7-persuasion-failed")))
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, I rode up to the front gate alone.  Greltza and her bandits would still recognize me on
+                        sight, but we were gambling that they weren't close enough with the boss here to have told the
+                        guards too much about my appearance.""",
+                    "szalk-7-persuasion-vengeance",
+                    Flags (
+                        ["~CHILD_RETRIEVED"; "VENGEANCE_PLUS"],
+                        SkillCheckRequired (Will, Persuasion, 2, AlternatePage "szalk-7-persuasion-failed")))
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, they guarded the Altexen behind a dune while I rode up to the front gate alone.  Greltza
+                        and her bandits would still recognize me on sight, but we were gambling that they weren't close
+                        enough with the boss here to have told the guards too much about my appearance.""",
+                    "szalk-7-persuasion-vengeance",
+                    Flags (
+                        ["CHILD_RETRIEVED"; "VENGEANCE_PLUS"],
+                        SkillCheckRequired (Will, Persuasion, 2, AlternatePage "szalk-7-persuasion-failed")))
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, I rode up to the front gate alone.  Greltza and her bandits would still recognize me on
+                        sight, but we were gambling that they weren't close enough with the boss here to have told the
+                        guards too much about my appearance.""",
+                    "szalk-7-bribe",
+                    Flags (
+                        ["~CHILD_RETRIEVED"],
+                        Bribe 35))
+                cb.Build(
+                    """Time was of the essence.  Since there were undoubtedly people here who would recognize Desert
+                        Knight, they guarded the Altexen behind a dune while I rode up to the front gate alone.  Greltza
+                        and her bandits would still recognize me on sight, but we were gambling that they weren't close
+                        enough with the boss here to have told the guards too much about my appearance.""",
+                    "szalk-7-bribe",
+                    Flags (
+                        ["CHILD_RETRIEVED"],
+                        Bribe 35))
+                cb.Build(
+                    """Time was of the essence.  Desert Knight and I rode around to the side wall.  The walls were bare
+                        stone, and easy to climb.  When we got to the top, we slipped down the other side and entered
+                        the town.""",
+                    "szalk-7-sneaking",
+                    SkillCheckRequired (Might, Sneaking, 3, AlternatePage "szalk-7-sneaking-failed"))
+                cb.Build(
+                    """Time was of the essence, but this was a well-defended facility.  We decided that it was better to
+                        wait until nightfall.""",
+                    "szalk-7-night")
+            ]
+        )
+        pb.Build(
+            "szalk-7-persuasion",
+            [
+                "\"State your business,\" the guard commanded."
+                "\"I am a wanderer who wishes to trade wares.  Is that not what this place is for?\" I responded."
+                """The guard looked suspicious of me, but I was able to produce some trinkets that looked valuable
+                    enough that he eventually let me inside.  I was in."""
+            ],
+            [
+                cb.Build(
+                    """I wandered around the post, knowing that I would run into Greltza sooner rather than later.  I
+                        just hoped that I saw her before she saw me.""",
+                    "szalk-7-wandering"
+                )
+            ]
+        )
+        pb.Build(
+            "szalk-7-persuasion-vengeance",
+            [
+                "\"State your business,\" the guard commanded."
+                """I leaned in close.  "Are you familiar with Flavian, the merchant?" I asked the guard."""
+                """ "Flavian's Gazetteer is my favorite series of books in the world!  I love reading about his travels,
+                    and pretending that I'm there seeing the sites and meeting the people." """
+                """Perfect, I thought.  I told the guard the entire horrible story about Greltza and Flavian.  By the
+                    time I was done, the guard's facial feathers were raised, which Etzen do involuntary when furious.
+                    """
+                "\"If anyone asks, you climbed the wall,\" he said as he let me into the trading post."
+            ],
+            [
+                cb.Build(
+                    """I wandered around the post, knowing that I would run into Greltza sooner rather than later.  I
+                        just hoped that I saw her before she saw me.""",
+                    "szalk-7-wandering"
+                )
+            ]
+        )
+        pb.Build(
+            "szalk-7-sneaking",
+            [
+                """Desert Knight and I looked around.  We seemed to have landed behind a public house, and we agreed
+                    that since Desert Knight was probably very well know in this area, they would stay in the shadows
+                    while I investigated."""
+            ],
+            [
+                cb.Build(
+                    """I wandered around the post, knowing that I would run into Greltza sooner rather than later.  I
+                        just hoped that I saw her before she saw me.""",
+                    "szalk-7-wandering",
+                    setFlags=["DESERT_KNIGHT_BACKUP"]
+                )
+            ]
+        )
+        pb.Build(
+            "szalk-7-bribe",
+            [
+                "\"State your business,\" the guard commanded."
+                "\"I am a wanderer who wishes to trade wares.  Is that not what this place is for?\" I responded."
+                """The guard looked suspicious of me, so I reached into my pocket and pulled out some muld shells."""
+                """ "To prove I'm serious," I said as I dropped them into his palm.  He counted them, then waved me by.
+                    I was in."""
+            ],
+            [
+                cb.Build(
+                    """I wandered around the post, knowing that I would run into Greltza sooner rather than later.  I
+                        just hoped that I saw her before she saw me.""",
+                    "szalk-7-wandering",
+                    setFlags=["DESERT_KNIGHT_BACKUP"]
+                )
+            ]
+        )
+        pb.Build(
+            "szalk-7-persuasion-failed",
+            [
+                "\"State your business,\" the guard commanded."
+                "\"I am a wanderer who wishes to trade wares.  Is that not what this place is for?\" I responded."
+                """The guard looked suspicious of me.  "No wanderers in town until tomorrow," he said. "We've had...
+                    reports." """
+            ],
+            [
+                cb.Build(
+                    """Seeing that I would never get in this way, I returned to Desert Knight.  We would have to wait
+                        until nightfall.""",
+                    "szalk-7-night")
+            ]
+        )
+        pb.Build(
+            "szalk-7-night",
+            [
+                """We waited throughout the hot day in some improvised shade made by draping our bedrolls over a gnarled
+                    cactus.  Once night fell, Desert Knight and I prepared ourselves."""
+                """The plan was that Desert Knight and I would climb over the walls under cover of night, find Greltza,
+                    and deal with her as quietly as possible."""
+            ],
+            [
+                cb.Build(
+                    "We scaled the bare stone walls easily, and slipped into the trading post.",
+                    "szalk-7-wandering",
+                    SkillCheckRequired (Might, Sneaking, 1, AlternatePage "szalk-7-sneaking-failed"),
+                    setFlags=["DESERT_KNIGHT_BACKUP"])
+            ]
+        )
+        pb.Build(
+            "szalk-7-sneaking-failed",
+            [
+                """We scaled the bare stone walls easily, and dropped silently down to the other side, where we seemed
+                    to be behind some kind of public house.  Our luck immediately soured, as a drunk patron stumbled out
+                    the back door to vomit."""
+                """Desert Knight and I stayed as still as we could, but it was too late.  She ran back inside, our
+                    presence driving all nausea from her."""
+                """We heard the people inside readying arms.  This trading post seemed to be infested with bandits, and
+                    each of them would love to be the one to lay Desert Knight to their final rest."""
+            ],
+            [
+                cb.Build(
+                    """We ran through a side alley, blades out.  It came to fighting in a few areas, but we were able
+                        to push our way through without having to hurt anybody too badly.""",
+                    "szalk-7-sneaking-failed-2",
+                    SkillCheckRequired (Might, Combat, 3, AttributeDamage))
+                cb.Build(
+                    "We ran through a side alley as quietly as we could, making sure to loop back occasionally to throw
+                        off pursuers.",
+                    "szalk-7-sneaking-failed-2",
+                    SkillCheckRequired (Might, Sneaking, 3, AttributeDamage))
+                cb.Build(
+                    """We ran off through a side alley as I prepared a flashbang spell.  Once we were in the town
+                        square I set it off, blinding both our original purshuers and those who had joined them after
+                        the hue and cry.""",
+                    "szalk-7-sneaking-failed-2",
+                    SkillCheckRequired (Will, Ritual, 3, AttributeDamage))
+            ]
+        )
+        pb.Build(
+            "szalk-7-wandering",
+            [
+                """I wandered the trading post, keeping a sharp eye out for Greltza or any of her crew.  Since they
+                    would recognize me on sight I made sure to stick to back alleys.  After a few minutes, I spotted
+                    her!  She was heading down to the dock, and I followed her from a distance.  There was a boat moored
+                    there, and she got on and went belowdecks."""
+            ],
+            [
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, towing the [[Deskite|Deskites]] child behind him.  I
+                        had to get on this boat, now!  I walked down to the dock, and boarded the ship.  Good thing it
+                        seemed like her bandits were staying on land, and she and her lieutenant were the only ones on
+                        the ship who would recognize me.""",
+                    "szalk-7-ship",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"; "~DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, towing the [[Deskite|Deskites]] child behind him.  I
+                        had to get on this boat, now!  I walked down to the dock, and saw the Desert Knight waiting
+                        there in hiding.  I pointed to the ship I was boarding, and they nodded back.  As I boarded the
+                        ship, I was thankful that it seemed like her bandits were staying on land, and she and her
+                        lieutenant were the only ones on the ship who would recognize me.""",
+                    "szalk-7-ship",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"; "DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  I walked down to the dock, and boarded the ship.
+                        Good thing it seemed like her bandits were staying on land, and she and her lieutenant were the
+                        only ones on the ship who would recognize me.""",
+                    "szalk-7-ship",
+                    Flags (["~DESKITE_CHILD"; "~DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  I walked down to the dock, and saw the Desert
+                        Knight waiting there in hiding.  I pointed to the ship I was boarding, and they nodded back.  As
+                         I boarded the ship, I was thankful that it seemed like her bandits were staying on land, and
+                         she and her lieutenant were the only ones on the ship who would recognize me.""",
+                    "szalk-7-ship",
+                    Flags (["~DESKITE_CHILD"; "DESERT_KNIGHT_BACKUP"], Automatic))
+            ])
+        pb.Build(
+            "szalk-7-sneaking-failed-2",
+            [
+                """We ran towards the docks.  I didn't want to take the chance that Greltza could sail away at the sound
+                    of this commotion, and if she wasn't there we could still check other parts of town, as long as we
+                    could stay ahead of the mob chasing us."""
+                """And it's a good thing we ran down to the docks, too.  Up ahead, we could make out Greltza boarding a
+                    moored ship on the gangplank."""
+            ],
+            [
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, towing the [[Deskite|Deskites]] child behind him.  I
+                        had to get on this boat, now!  Desert Knight and I sprinted down the dock, and up the gangplank.
+                        Things had gone a bit more south than expected, but neither Desert Knight nor I would give up
+                        when the life of a child was concerned.""",
+                    "szalk-7-ship-fighting",
+                    Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"; "DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  Desert Knight and I sprinted down the dock, and up
+                        the gangplank. Things had gone a bit more south than expected, but neither Desert Knight nor I
+                        would give up when it meant the life of an entire town.""",
+                    "szalk-7-ship-fighting",
+                    Flags (["~DESKITE_CHILD"; "DESERT_KNIGHT_BACKUP"], Automatic))
             ]
         )
 
