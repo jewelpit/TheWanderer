@@ -1451,7 +1451,7 @@ let pages =
                 """Morning came, and Desert Knight was waiting patiently outside the room."""
                 """ "I was able to find something out," they said.  "I learned that when a heartseed is stolen, it
                     physically binds to the person who has taken it, and is not removable for several days.  I did the
-                    math, and there's no way that Greltza could sell the seed within the next two days.  We know exactly
+                    math, and there's no way that Greltza could sell the seed before the end of today.  We know exactly
                     how much time we have!" """
                 """I let Desert Knight know what I had found out about Greltza's destination, and they were as excited
                     as I was that we seemed to have all the information we would need to plan our final assault.  It was
