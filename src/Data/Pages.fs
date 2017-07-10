@@ -1622,8 +1622,7 @@ let pages =
                 cb.Build(
                     """I wandered around the post, knowing that I would run into Greltza sooner rather than later.  I
                         just hoped that I saw her before she saw me.""",
-                    "szalk-7-wandering",
-                    setFlags=["DESERT_KNIGHT_BACKUP"]
+                    "szalk-7-wandering"
                 )
             ]
         )
@@ -1718,6 +1717,21 @@ let pages =
                         Good thing it seemed like her bandits were staying on land, and she and her lieutenant were the
                         only ones on the ship who would recognize me.""",
                     "szalk-7-ship",
+                    Flags (["CHILD_RETRIEVED"; "~DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  I walked down to the dock, and saw the Desert
+                        Knight waiting there in hiding.  I pointed to the ship I was boarding, and they nodded back.  As
+                         I boarded the ship, I was thankful that it seemed like her bandits were staying on land, and
+                         she and her lieutenant were the only ones on the ship who would recognize me.""",
+                    "szalk-7-ship",
+                    Flags (["CHILD_RETRIEVED"; "DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  I walked down to the dock, and boarded the ship.
+                        Good thing it seemed like her bandits were staying on land, and she and her lieutenant were the
+                        only ones on the ship who would recognize me.""",
+                    "szalk-7-ship",
                     Flags (["~DESKITE_CHILD"; "~DESERT_KNIGHT_BACKUP"], Automatic))
                 cb.Build(
                     """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
@@ -1752,6 +1766,13 @@ let pages =
                         would give up when it meant the life of an entire town.""",
                     "szalk-7-ship-fighting",
                     Flags (["~DESKITE_CHILD"; "DESERT_KNIGHT_BACKUP"], Automatic))
+                cb.Build(
+                    """Then I saw her lieutenant board the ship, holding a box that looked the right size to hold a
+                        heartseed.  I had to get on this boat, now!  Desert Knight and I sprinted down the dock, and up
+                        the gangplank. Things had gone a bit more south than expected, but neither Desert Knight nor I
+                        would give up when it meant the life of an entire town.""",
+                    "szalk-7-ship-fighting",
+                    Flags (["CHILD_RETRIEVED"; "DESERT_KNIGHT_BACKUP"], Automatic))
             ]
         )
         pb.Build(
@@ -1853,7 +1874,7 @@ let pages =
                         then, I heard a voice from outside shouting "Ahoy!" and then a crash as the Desert Knight burst
                         in a porthole.  Yes!  There was no way Greltza could escape now.""",
                     "szalk-7-ship-greltza-knight-2",
-                    Flags (["~DESERT_KNIGHT_BACKUP"], Automatic))
+                    Flags (["DESERT_KNIGHT_BACKUP"], Automatic))
             ]
         )
         pb.Build(
@@ -2034,7 +2055,7 @@ let pages =
             [
                 """Greltza paused for a second.  Then, she lowered her sword and frowned.  "You're right.  No one ever
                     becomes a bandit lord by not being able to see the writing on the wall, you know?  Fine.  You can
-                    have it all back."""
+                    have it all back." """
             ],
             [
                 cb.Build(
@@ -2081,7 +2102,7 @@ let pages =
                 cb.Build(
                     "She opened the box, took out the heartseed, and put it in my hand. \"Take care,\" she said.",
                     "szalk-7-ship-greltza-defeated-2",
-                    Flags (["DESKITE_CHILD"; "CHILD_RETRIEVED"], Automatic))
+                    Flags (["CHILD_RETRIEVED"], Automatic))
                 cb.Build(
                     """She opened the box, took out the heartseed, and put it in my hand. "The child is in the captain's
                         quarters," she said.  We climbed up the stairs onto the main deck, and when we opened the door
@@ -2132,10 +2153,12 @@ let pages =
             [
                 cb.Build(
                     "Heartseed in tow, I made my way back to [[Tetznatalk]].",
-                    "szalk-end")
+                    "szalk-end",
+                    Flags (["~DESKITE_CHILD"], Automatic))
                 cb.Build(
                     "Heartseed and child in tow, I made my way back to [[Tetznatalk]].",
-                    "szalk-end")
+                    "szalk-end",
+                    Flags (["DESKITE_CHILD"], Automatic))
             ]
         )
 
