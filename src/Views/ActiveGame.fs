@@ -120,16 +120,32 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                 yield R.str " or "
                 yield R.a [Nowhere; P.OnClick (fun _ -> dispatch StartCharacterCreation)] [R.str "start a new game"]
             else
-                yield R.ul [] [
-                    for cont in page.Continuations do
+                let activeContinuations =
+                    page.Continuations
+                    |> List.choose (fun cont ->
                         match makeConditionButton cont cont.Condition gameState dispatch with
-                        | None -> ()
+                        | None -> None
                         | Some conditionButton ->
-                            yield R.li [] [
-                                yield Modal.formatLine cont.Description dispatch
-                                yield R.br []
-                                yield conditionButton
+                            Some <| R.li [] [
+                                Modal.formatLine cont.Description dispatch
+                                R.br []
+                                conditionButton
+                            ])
+                match activeContinuations with
+                | [] ->
+                    yield R.div [] [
+                        R.h4 [] [
+                            R.str """Uh oh, there's supposed to be a next page here, but I screwed up the flags.  Please
+                                send an email to """
+                            R.a [P.Href "mailto:will.pitts@outlook.com"] [R.str "will.pitts@outlook.com"]
+                            R.str " and include the following information:"
+                            R.br []
+                            R.str <| sprintf "Page name: %s" gameState.Page.Name
+                            R.br []
+                            R.str <| sprintf "Flags: %A" gameState.Flags
                         ]
-                ]
+                    ]
+                | continuations ->
+                    yield R.ul [] continuations
         ]
     ]
