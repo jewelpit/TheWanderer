@@ -1,3 +1,5 @@
 node_modules/
 obj/
 packages/
+public/bundle.js
+public/bundle.js.map
