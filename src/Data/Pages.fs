@@ -1913,12 +1913,12 @@ let pages =
                         times Greltza swung her blade and only sheer luck saved my life.  I was fighting the best
                         swordswoman I had faced in my life.  But I had the weight of justice on my side, and after
                         several minutes, I had managed to press her into a corner.""",
-                    "szalk-7-ship-greltza-knight-3",
+                    "szalk-7-ship-greltza-noknight-3",
                     SkillCheckRequired (Might, Combat, 4, AttributeDamage))
                 cb.Build(
                     """Desert Knight held off Greltza while I hung back and prepared a force wave spell.  I released it,
                         and Greltza was picked up and slammed into the corner behind her.""",
-                    "szalk-7-ship-greltza-knight-3",
+                    "szalk-7-ship-greltza-noknight-3",
                     SkillCheckRequired (Will, Ritual, 4, AttributeDamage))
             ]
         )
@@ -2089,6 +2089,34 @@ let pages =
                         to take them back, all they could muster back was a grim nod.""",
                     "szalk-7-ship-greltza-defeated-2",
                     Flags (["DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
+            ]
+        )
+        pb.Build(
+            "szalk-7-ship-greltza-defeated-2",
+            [
+                """After so many days, it was strange to no longer have this burden weighing on me."""
+            ],
+            [
+                cb.Build(
+                    """Desert Knight and I prepared a rowboat, and got in.  We rowed along the shore for a time
+                        before putting in, and made our way back to where we had left our mounts.""",
+                    "szalk-8",
+                    Flags (["DESERT_KNIGHT_BACKUP"; "~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    """I prepared a rowboat, and got in.  I rowed along the shore for a time before putting in, and made
+                        my way back to where I had left Desert Knight and our mounts.""",
+                    "szalk-8",
+                    Flags (["~DESERT_KNIGHT_BACKUP"; "~DESKITE_CHILD"], Automatic))
+                cb.Build(
+                    """Desert Knight and I prepared a rowboat, and got in with the child.  We rowed along the shore for
+                        a time before putting in, and made our way back to where we had left our mounts.""",
+                    "szalk-8",
+                    Flags (["DESERT_KNIGHT_BACKUP"; "DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """Desert Knight and I prepared a rowboat, and got in.  We rowed along the shore for a time before
+                        putting in, and made our way back to where we had left the child and our mounts.""",
+                    "szalk-8",
+                    Flags (["DESERT_KNIGHT_BACKUP"; "CHILD_RETRIEVED"], Automatic))
             ]
         )
 
