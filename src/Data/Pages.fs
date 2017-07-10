@@ -532,7 +532,7 @@ let pages =
             ],
             [
                 cb.Build(
-                    "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
+                    "\"Greltza will pay.  I will return your child to you,\" I said.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
             ]
         )
         pb.Build(
@@ -585,7 +585,7 @@ let pages =
             ],
             [
                 cb.Build(
-                    "Greltza will pay.  I will return your child to you.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
+                    "\"Greltza will pay.  I will return your child to you,\" I said.", "eresh-9-climb", setFlags=["DESKITE_CHILD"])
             ]
         )
         pb.Build(
