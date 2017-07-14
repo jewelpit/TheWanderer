@@ -307,7 +307,7 @@ let modals =
                         The electrogun is one of the most fearsome weapons created by the blind monks of Sizzhar.  By
                         reducing the electrical resistance of the air between the gun and the target the electrogun is
                         capable of transferring enormous amounts of electricity in an instant, raising the temperature
-                        of the are it hits by thousands of degrees.
+                        of the area it hits by thousands of degrees.
                         """
                 ]
         }
@@ -367,7 +367,7 @@ let modals =
             Title = "Lizard Fields"
             Content =
                 R.div [] [
-                    gazetteer """I must admit, I was surprised to find out all the lizard's in Lizard Fields' namesake
+                    gazetteer """I must admit, I was surprised to find out all the lizards in Lizard Fields' namesake
                         were dead, but I was more surprised to find out how aggressive all the bone hyenas there were!
                         """
                     para """

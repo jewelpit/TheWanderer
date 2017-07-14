@@ -752,7 +752,7 @@ let pages =
                 """After two days underground, the light of the sun was blinding.  I reached into my saddlebags and
                     retrieved my tinted riding goggles.  With my eyes protected from the sun and the sand, I could now
                     see the full vastness of the [[Szalkut Desert]] stretching before me, with sand and cacti all that I
-                    could make out.  About a mile away, I saw a large plume of sand, and a large object moving quicly.
+                    could make out.  About a mile away, I saw a large plume of sand, and a large object moving quickly.
                     Greltza!  She had a sand sled with eight monitor beetles waiting at the exit, and was making her way
                     across the desert with her full crew."""
                 """There was still time.  My beetle was far less encumbered than theirs, and their sled could only move
@@ -1213,7 +1213,7 @@ let pages =
             "szalk-4-noon-3",
             [
                 """Desert Knight seemed interested.  I explained that it would be much more useful to the world as a
-                    whole if they would help me capture Gretza.  They sighed, and admitted that I was right."""
+                    whole if they would help me capture Greltza.  They sighed, and admitted that I was right."""
                 """ "We can't bring these three with us," they said."""
                 """ "I know." """
                 """ So, with that we let them go.  We gave them one of our waterskins, and directed them to the nearest
@@ -1485,8 +1485,8 @@ let pages =
                     maps that showed all of the land around this lake, I would have sworn I was on the ocean coast
                     again.  Thousands of rivers traveled thousands of miles to create this lake before me, and it was an
                     inspiring site."""
-                """Desert Knight told me to look down, and I spotted a small trading port on the shore, with a stone
-                    walls and a large compliment of guards."""
+                """Desert Knight told me to look down, and I spotted a small trading port on the shore, with stone walls
+                    and a large compliment of guards."""
                 "\"This must be where Greltza is going to fence the heartseed,\" I said."
                 "Desert Knight nodded. \"Hm.\""
             ],
