@@ -3,3 +3,4 @@ obj/
 packages/
 public/bundle.js
 public/bundle.js.map
+npm-debug.log
