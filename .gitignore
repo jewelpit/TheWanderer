@@ -3,4 +3,5 @@ obj/
 packages/
 public/bundle.js
 public/bundle.js.map
+public/the_wanderer.zip
 npm-debug.log
