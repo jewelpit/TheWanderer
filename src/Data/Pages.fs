@@ -2129,6 +2129,17 @@ let pages =
                     "szalk-8",
                     Flags (["~DESERT_KNIGHT_BACKUP"; "~DESKITE_CHILD"], Automatic))
                 cb.Build(
+                    """I prepared a rowboat, and got in.  I rowed along the shore for a time before putting in, and made
+                        my way back to where I had left Desert Knight, the child, and our mounts.""",
+                    "szalk-8",
+                    Flags (["~DESERT_KNIGHT_BACKUP"; "CHILD_RETRIEVED"], Automatic))
+                cb.Build(
+                    """I prepared a rowboat, and the child and I got in.  I rowed along the shore for a time before
+                        putting in, and made my way back to where I had left Desert Knight, the child, and our mounts.
+                        """,
+                    "szalk-8",
+                    Flags (["~DESERT_KNIGHT_BACKUP"; "DESKITE_CHILD"; "~CHILD_RETRIEVED"], Automatic))
+                cb.Build(
                     """Desert Knight and I prepared a rowboat, and got in with the child.  We rowed along the shore for
                         a time before putting in, and made our way back to where we had left our mounts.""",
                     "szalk-8",
