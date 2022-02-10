@@ -24,7 +24,7 @@
     "bulma": "^0.4.2",
     "css-loader": "^0.28.4",
     "fable-loader": "^1.0.2",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "webpack": "^2.6.1",
