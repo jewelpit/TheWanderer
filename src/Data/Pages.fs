@@ -1,11 +1,6 @@
 module Wanderer.Pages
 
-open Fable.Import.React
-
 open Wanderer.Skills
-
-module R = Fable.Helpers.React
-module P = Fable.Helpers.React.Props
 
 type FailureEffect =
     | AlternatePage of string
@@ -1169,7 +1164,7 @@ let pages =
                 """ "Excuse me!" the mysterious Etzen shouted as they pulled up alongside me.  "Please excuse me if this
                     is a weird question, but would you happen to be a bandit?  Please answer me honestly, as I have a
                     magic ring that can tell me if you're lying." """
-                """ "Of course not!" I shouted back.  At this point I noticed that the Etzen looked a little... off. 
+                """ "Of course not!" I shouted back.  At this point I noticed that the Etzen looked a little... off.
                     Their feathers were patchy and grey, and they moved their body in an odd, jerky fashion.  "In fact,
                     I'm trying to bring these three in front of me to justice!  They've stolen the heartseed from a
                     [[Town Guardian]], and doomed the village of [[Tetznatalk]]!" """
@@ -2266,7 +2261,7 @@ for kvp in pages do
         | Modals.Link link ->
             if not (Map.containsKey link.LinkName Modals.modals) then
                 printfn "Page %s has an invalid modal link: %s" kvp.Value.Name link.LinkName
-    
+
     for part in List.collect (fun cont -> Modals.parseLine cont.Description) kvp.Value.Continuations do
         match part with
         | Modals.Str _ -> ()

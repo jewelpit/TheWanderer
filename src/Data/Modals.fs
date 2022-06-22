@@ -2,12 +2,10 @@ module Wanderer.Modals
 
 open System.Text.RegularExpressions
 
-open Fable.Import.React
 
 open Wanderer.ViewHelpers
 
-module R = Fable.Helpers.React
-module P = Fable.Helpers.React.Props
+open Fable.React
 
 type Modal = {
     Title : string
@@ -23,7 +21,7 @@ type ParsedLine =
     | Str of string
     | Link of ModalLink
 
-let modalLinkRegex = Regex(@"(\[\[.+?\]\])", RegexOptions.Compiled)
+let modalLinkRegex = Regex(@"(\[\[.+?\]\])")
 
 let parseLine (text : string) =
     let parts = modalLinkRegex.Split(text)
@@ -51,10 +49,10 @@ let getDisplayLine (text : string) =
     |> List.reduce (+)
 
 let private gazetteer text =
-    R.blockquote [] [
-        R.str text
-        R.br []
-        R.str "-Flavian's Gazetteer"
+    blockquote [] [
+        str text
+        br []
+        str "-Flavian's Gazetteer"
     ]
 
 let modals =
@@ -62,7 +60,7 @@ let modals =
         {
             Title = "Etzen"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Six to seven foot tall, owl-like, and the dominant species of this planet.  Although their
                         vestigial wing-flaps on their arms are no longer large enough for them to fly, they are
@@ -82,7 +80,7 @@ let modals =
         {
             Title = "Humans"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Humans, my people, crash landed on this planet nearly four hundred years ago.  We would not have
                         survived our first winter here were it not for the Etzens who discovered us, but a few short
@@ -100,7 +98,7 @@ let modals =
         {
             Title = "Deskites"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Deskites are a species of blind, pale skinned people who live deep underground.  The Deskites
                         are a peaceful people, who do no more than farm cave mushrooms and millipedes, but they have a
@@ -120,7 +118,7 @@ let modals =
         {
             Title = "Attributes and Skills"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Pompeia has two core attributes: Might and Will.  Might determines how good Pompeia is at
                         physical tasks, and is most frequently paired with the Combat and Sneaking skills.  Will
@@ -141,7 +139,7 @@ let modals =
         {
             Title = "Rolling"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         When a story choice button says "Attempt," and lists an attribute, skill, and target number,
                         that means that a roll is required.  When you attempt a roll, the game will roll a number of
@@ -160,7 +158,7 @@ let modals =
         {
             Title = "Injuries"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         When Pompeia fails skill rolls, she will either be sent on an alternate path or suffer an
                         injury.  Injuries come in two varieties: wounds and stress.  Wounds come from failing Might
@@ -174,7 +172,7 @@ let modals =
         {
             Title = "Tetznatalk"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Tetznatalk is a small town (almost more of a village) on the western coast, with no particularly
                         notable features.
@@ -184,7 +182,7 @@ let modals =
         {
             Title = "Monitor Beetle"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer "There is nothing better than the sun on your back and a beetle under your legs."
                     para """
                         Monitor beetles are large, horned, wingless beetles that have been domesticated as livestock and
@@ -195,7 +193,7 @@ let modals =
         {
             Title = "Bandit"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         The west coast area of this region was recently the forefront of a land war with the neighbor to
                         the northwest, but when the war ended, the mercenary soldiers stayed around as bandits, preying
@@ -207,7 +205,7 @@ let modals =
         {
             Title = "Town Guardian"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Each Etzen town is guarded by a Town Guardian, a specially chosen and trained Etzen who receives
                         magical energy from the town's heartseed.  The Town Guardian is responsible for the physical
@@ -219,7 +217,7 @@ let modals =
         {
             Title = "Illusion Helm"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         The Illusion Helm is an ancient artifact, created by the deific Etzen of old.  When worn, the
                         Illusion Helm will allow the wearer to change their form to that of any animal they've seen.
@@ -230,7 +228,7 @@ let modals =
         {
             Title = "Ereshkigal Mountains"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer """The Ereshkigal Mountains may not be the tallest mountains in the world, but their
                                  effect on nearby lands cannot be understated."""
                     para """
@@ -243,7 +241,7 @@ let modals =
         {
             Title = "Szalkut Desert"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer """I must admit to some bias towards the Szalkut Desert.  I grew up among its dunes, and I
                         have deep roots in many towns and trading outposts here."""
                     para """
@@ -262,7 +260,7 @@ let modals =
         {
             Title = "Estaton"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Ah, Estaton: the Inland Sea.  Estaton is said to be the physical containment of the goddess
                         Estaton, chief among the deities.  It is only fitting that the strongest deity should go to the
@@ -273,7 +271,7 @@ let modals =
         {
             Title = "Great Eastern Road"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         The Great Eastern Road connects the coastal regions along the western coast to the desert beyond
                         the mountains.  No one can remember who first built the Great Eastern Road, and sections of it
@@ -289,7 +287,7 @@ let modals =
         {
             Title = "Barbarians of Lagamut"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Lagamut, an island far across the ocean, is known far and wide for its varied collection of
                         venemous, poisonous, or otherwise deadly wildlife.  In this environment, Etzen and humans have
@@ -302,7 +300,7 @@ let modals =
         {
             Title = "Electrogun"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         The electrogun is one of the most fearsome weapons created by the blind monks of Sizzhar.  By
                         reducing the electrical resistance of the air between the gun and the target the electrogun is
@@ -314,7 +312,7 @@ let modals =
         {
             Title = "Sun Pistol"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Sun pistols are ancient technology, capable of firing a blast of superheated gas. They have a
                         short range, but their effect is devastating.
@@ -324,7 +322,7 @@ let modals =
         {
             Title = "Noisestick"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Noisesticks are non-lethal weapons, favored by town militias and robbers who want to avoid
                         murder.  They fire a loud concussive blast, which is easily capable of stunning a human for
@@ -336,7 +334,7 @@ let modals =
         {
             Title = "Glowbulb"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Glowbulbs are small glass bulbs, about two inches in diameter.  When activated, they're capable
                         of producing light out to distances much further than torches can.  The real benefit of a
@@ -348,7 +346,7 @@ let modals =
         {
             Title = "Lost Mines"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer """Of all the regions of this world, there's none as truly unexplored as the Lost Mines of
                                  Misan."""
                     para """
@@ -366,7 +364,7 @@ let modals =
         {
             Title = "Lizard Fields"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer """I must admit, I was surprised to find out all the lizards in Lizard Fields' namesake
                         were dead, but I was more surprised to find out how aggressive all the bone hyenas there were!
                         """
@@ -380,7 +378,7 @@ let modals =
         {
             Title = "Bone Hyenas"
             Content =
-                R.div [] [
+                div [] [
                     para """
                         Bone hyena's are hyena-like creatures that feed only on bone, old or fresh.  While they can
                         comfortably feed on old bones of creatures long dead, bone hyenas vastly prefer to feed on the
@@ -391,7 +389,7 @@ let modals =
         {
             Title = "Dahl Oasis"
             Content =
-                R.div [] [
+                div [] [
                     gazetteer """Ahh, Dahl Oasis.  If I were to ever call any city in this world my home, it would be
                         Dahl Oasis.  The trading capital of the Szalkut Desert, and the area where the western slopes of
                         the Ereshkigal Mountains trade with the city-states around Estaton, the Inland Sea, Dahl Oasis

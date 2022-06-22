@@ -3,38 +3,38 @@ module Wanderer.ActiveGame
 open Elmish
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import.Browser
+open Browser
 
 open Wanderer.Modal
 open Wanderer.Model
 open Wanderer.Pages
 open Wanderer.ViewHelpers
 
-module R = Fable.Helpers.React
-module P = Fable.Helpers.React.Props
+open Fable.React
+open Fable.React.Props
 
 let private divider =
-    R.tr [] [R.td [P.ColSpan 2.; P.Style [P.Height "1em"]] []]
+    tr [] [td [ColSpan 2; Style [Height "1em"]] []]
 
 let private makeStatRow title value =
-    R.tr [] [
-        R.th [P.Style [P.TextAlign "right"]] [R.str title]
-        R.td [] [R.str <| string value]
+    tr [] [
+        th [Style [TextAlign TextAlignOptions.Right]] [str title]
+        td [] [str <| string value]
     ]
 
 let private makeInjuryRow title value =
     if value = 0 then
-        R.tr [] []
+        tr [] []
     else
-        R.tr [P.ClassName "injured"] [
-            R.th [P.Style [P.TextAlign "right"]] [R.str title]
-            R.td [] [R.str <| string value]
+        tr [ClassName "injured"] [
+            th [Style [TextAlign TextAlignOptions.Right]] [str title]
+            td [] [str <| string value]
         ]
 
 let rec private makeConditionButton continuation condition (gameState : ActiveGameState) dispatch =
         match condition with
         | Automatic ->
-            Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str "Choose"]
+            Some <| button [OnClick (fun _ -> dispatch (Flip continuation))] [str "Choose"]
         | SkillCheckRequired (attr, skill, target, effect) ->
             if Character.GetAttr attr gameState.Character > 0 then
                 let successChance =
@@ -42,20 +42,20 @@ let rec private makeConditionButton continuation condition (gameState : ActiveGa
                         { Skill = Character.GetSkill skill gameState.Character
                           Attr = Character.GetAttr attr gameState.Character }
                         target
-                Some <| R.button
-                    [P.OnClick (fun _ -> dispatch (Flip continuation))]
-                    [R.str <| sprintf "%A/%A vs %d (%.0f%%)" skill attr target successChance]
+                Some <| button
+                    [OnClick (fun _ -> dispatch (Flip continuation))]
+                    [str <| sprintf "%A/%A vs %d (%.0f%%)" skill attr target successChance]
             else
                 let buttonText =
                     match attr with
                     | Skills.Might -> "Too many injuries."
                     | Skills.Will -> "Too much stress."
-                Some <| R.button [P.Disabled true] [R.str buttonText]
+                Some <| button [Disabled true] [str buttonText]
         | Bribe cost ->
             if gameState.Character.Muld >= cost then
-                Some <| R.button [P.OnClick (fun _ -> dispatch (Flip continuation))] [R.str <| sprintf "Bribe (%d muld)" cost]
+                Some <| button [OnClick (fun _ -> dispatch (Flip continuation))] [str <| sprintf "Bribe (%d muld)" cost]
             else
-                Some <| R.button [P.Disabled true] [R.str "Cannot afford to bribe"]
+                Some <| button [Disabled true] [str "Cannot afford to bribe"]
         | Flags (flags, nextCondition) ->
             let negatedFlags, positiveFlags = List.partition (fun (f : string) -> f.StartsWith("~")) flags
             let hasAllPositiveFlags =
@@ -77,9 +77,9 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
         [||]) |> ignore
     let character = gameState.Character
     let page = gameState.Page
-    R.div [P.Style [P.Display "flex"]] [
-        R.table [] [
-            R.tbody [] [
+    div [Style [Display DisplayOptions.Flex]] [
+        table [] [
+            tbody [] [
                 makeStatRow "Might" character.Might
                 makeStatRow "Will" character.Will
                 divider
@@ -94,31 +94,31 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                 makeInjuryRow "Stress" character.Stress
             ]
         ]
-        R.div [P.ClassName "verticalDivider"] []
-        R.div [P.Id "storyArea"] [
-            yield R.div [P.ClassName "history"] [
+        div [ClassName "verticalDivider"] []
+        div [Id "storyArea"] [
+            yield div [ClassName "history"] [
                 for paragraph in gameState.History ->
                     para paragraph
             ]
             match result with
             | None -> ()
             | Some rollResult ->
-                yield R.h4 [] [
-                    yield R.str <| sprintf "You %s with a roll of " 
+                yield h4 [] [
+                    yield str <| sprintf "You %s with a roll of "
                         (if rollResult.Succeeded then "succeeded" else "failed")
                     for roll in rollResult.Rolls do
-                        yield R.div [P.ClassName (if roll <= rollResult.AttributeLevel then "success" else "fail")] [
-                            R.str <| sprintf " %d " roll
+                        yield div [ClassName (if roll <= rollResult.AttributeLevel then "success" else "fail")] [
+                            str <| sprintf " %d " roll
                         ]
                 ]
-            yield R.div
-                [P.Id "inGame"]
-                (page.Text |> List.map (fun p -> R.p [] [Modal.formatLine p dispatch]))
+            yield div
+                [Id "inGame"]
+                (page.Text |> List.map (fun t -> p [] [Modal.formatLine t dispatch]))
             if List.isEmpty page.Continuations then
-                yield R.p [] [R.h4 [] [R.str "You completed the game! Would you like to view your full log?"]]
-                yield R.button [P.OnClick (fun _ -> dispatch ShowFullHistory)] [R.str "View full log"]
-                yield R.str " or "
-                yield R.a [Nowhere; P.OnClick (fun _ -> dispatch StartCharacterCreation)] [R.str "start a new game"]
+                yield p [] [h4 [] [str "You completed the game! Would you like to view your full log?"]]
+                yield button [OnClick (fun _ -> dispatch ShowFullHistory)] [str "View full log"]
+                yield str " or "
+                yield a [Nowhere; OnClick (fun _ -> dispatch StartCharacterCreation)] [str "start a new game"]
             else
                 let activeContinuations =
                     page.Continuations
@@ -126,26 +126,26 @@ let view (gameState : ActiveGameState) (result : Skills.RollResult option) dispa
                         match makeConditionButton cont cont.Condition gameState dispatch with
                         | None -> None
                         | Some conditionButton ->
-                            Some <| R.li [] [
+                            Some <| li [] [
                                 Modal.formatLine cont.Description dispatch
-                                R.br []
                                 conditionButton
+                                div [classList [("spacer", true)]] []
                             ])
                 match activeContinuations with
                 | [] ->
-                    yield R.div [] [
-                        R.h4 [] [
-                            R.str """Uh oh, there's supposed to be a next page here, but I screwed up the flags.  Please
+                    yield div [] [
+                        h4 [] [
+                            str """Uh oh, there's supposed to be a next page here, but I screwed up the flags.  Please
                                 send an email to """
-                            R.a [P.Href "mailto:will.pitts@outlook.com"] [R.str "will.pitts@outlook.com"]
-                            R.str " and include the following information:"
-                            R.br []
-                            R.str <| sprintf "Page name: %s" gameState.Page.Name
-                            R.br []
-                            R.str <| sprintf "Flags: %A" gameState.Flags
+                            a [Href "mailto:will.pitts@outlook.com"] [str "will.pitts@outlook.com"]
+                            str " and include the following information:"
+                            br []
+                            str <| sprintf "Page name: %s" gameState.Page.Name
+                            br []
+                            str <| sprintf "Flags: %A" gameState.Flags
                         ]
                     ]
                 | continuations ->
-                    yield R.ul [] continuations
+                    yield ul [] continuations
         ]
     ]

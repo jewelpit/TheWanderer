@@ -2,21 +2,19 @@ module Wanderer.App
 
 open System
 
+open Browser
 open Elmish
-open Elmish.Debug
 open Elmish.React
-open Fable.Core.JsInterop
-open Fable.Import.Browser
 
-open Wanderer.CharacterCreation
 open Wanderer.Model
 open Wanderer.Skills
+open Wanderer.Utils
 
 let loadGame () =
     match window.localStorage.getItem "savedGame" with
     | null -> None
     | x ->
-        let savedGame = ofJson<SavedGameState> <| string x
+        let savedGame = ofJson<SavedGameState> x
         let page =
             match Map.tryFind savedGame.PageName Pages.pages with
             | Some p -> p
@@ -172,10 +170,5 @@ let rec view model dispatch =
 
 // App
 Program.mkSimple init update view
-|> Program.withReact "elmish-app"
-//-:cnd
-#if DEBUG
-|> Program.withDebugger
-#endif
-//+:cnd
+|> Program.withReactBatched "elmish-app"
 |> Program.run

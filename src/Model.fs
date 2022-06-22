@@ -1,7 +1,5 @@
 module rec Wanderer.Model
 
-open Fable.Import.React
-
 open Wanderer.Modals
 open Wanderer.Pages
 open Wanderer.Skills

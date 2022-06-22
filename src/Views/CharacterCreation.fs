@@ -1,37 +1,34 @@
 module Wanderer.CharacterCreation
 
-open Elmish
-open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import.Browser
 
 open Wanderer.Modal
 open Wanderer.Model
 open Wanderer.Skills
 open Wanderer.ViewHelpers
 
-module R = Fable.Helpers.React
-module P = Fable.Helpers.React.Props
+open Fable.React
+open Fable.React.Props
 
 let private updateHighSkill skill fallbackSkill character =
     let newLowSkill = if character.LowSkill <> skill then character.LowSkill else fallbackSkill
     { character with HighSkill = skill; LowSkill = newLowSkill }
 
 let view (character : InProgressCharacter) dispatch =
-    R.div [] [
+    div [] [
         para """
             So you wish to know the full story, stranger?  Well, as long as the coin for my drinks keeps coming out
             of your purse, I will keep talking.
             """
-        R.p [] [
-            R.str "To other "
+        p [] [
+            str "To other "
             showModalLinkByName "Humans" "humans" dispatch
-            R.str ", my name is Pompeia.  To "
+            str ", my name is Pompeia.  To "
             showModalLinkByName "Etzen" "Etzen" dispatch
-            R.str ", I am known only as wanderer.  I have traveled far over these lands, and "
-            R.select
-                [P.OnChange (fun e ->
-                    let idx : int = unbox e.nativeEvent.srcElement?selectedIndex
+            str ", I am known only as wanderer.  I have traveled far over these lands, and "
+            select
+                [OnChange (fun e ->
+                    let idx : int = unbox e.target?selectedIndex
                     match idx with
                     | 0 -> { character with Might = 3; Will = 3 }
                     | 1 -> { character with Might = 2; Will = 4 }
@@ -42,14 +39,14 @@ let view (character : InProgressCharacter) dispatch =
                     |> Model.UpdateCharacter
                     |> dispatch)]
                 [
-                    R.option [] [R.str "my body and mind are in balance"]
-                    R.option [] [R.str "my mind is unmatched"]
-                    R.option [] [R.str "my strength is known of far and wide"]
+                    option [] [str "my body and mind are in balance"]
+                    option [] [str "my mind is unmatched"]
+                    option [] [str "my strength is known of far and wide"]
                 ]
-            R.str ". When confronted with an obstacle, my first response is always to "
-            R.select
-                [P.OnChange (fun e ->
-                    let idx : int = unbox e.nativeEvent.srcElement?selectedIndex
+            str ". When confronted with an obstacle, my first response is always to "
+            select
+                [OnChange (fun e ->
+                    let idx : int = unbox e.target?selectedIndex
                     match idx with
                     | 0 ->
                         updateHighSkill Persuasion Combat character
@@ -65,15 +62,15 @@ let view (character : InProgressCharacter) dispatch =
                     |> Model.UpdateCharacter
                     |> dispatch)]
                 [
-                    R.option [] [R.str "talk my way out"]
-                    R.option [] [R.str "reach for my sword"]
-                    R.option [] [R.str "prepare a spell"]
-                    R.option [] [R.str "sneak past"]
+                    option [] [str "talk my way out"]
+                    option [] [str "reach for my sword"]
+                    option [] [str "prepare a spell"]
+                    option [] [str "sneak past"]
                 ]
-            R.str ". My greatest weakness is my low skill at "
-            R.select
-                [P.OnChange (fun e ->
-                    let value = getSelectedValue e.nativeEvent.srcElement
+            str ". My greatest weakness is my low skill at "
+            select
+                [OnChange (fun e ->
+                    let value = getSelectedValue e.target
                     match value with
                     | "persuasion" -> { character with LowSkill = Persuasion }
                     | "combat" -> { character with LowSkill = Combat }
@@ -95,60 +92,60 @@ let view (character : InProgressCharacter) dispatch =
                         yield makeValueOption "sneaking" "athletics" (character.LowSkill = Sneaking)
                 ]
         ]
-        R.h3 [] [R.str "With these choices, Pompeia will have the following stats:"]
-        R.table [] [
-            R.tbody [] [
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Might"]
-                    R.td [] [R.str <| string character.Might]
+        h3 [] [str "With these choices, Pompeia will have the following stats:"]
+        table [] [
+            tbody [] [
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Might"]
+                    td [] [str <| string character.Might]
                 ]
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Will"]
-                    R.td [] [R.str <| string character.Will]
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Will"]
+                    td [] [str <| string character.Will]
                 ]
-                R.tr [] [R.td [P.ColSpan 2.] [R.hr []]]
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Persuasion"]
-                    R.td [] [
+                tr [] [td [ColSpan 2] [hr []]]
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Persuasion"]
+                    td [] [
                         if character.HighSkill = Persuasion then 6 else if character.LowSkill = Persuasion then 4 else 5
                         |> string
-                        |> R.str
+                        |> str
                     ]
                 ]
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Combat"]
-                    R.td [] [
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Combat"]
+                    td [] [
                         if character.HighSkill = Combat then 6 else if character.LowSkill = Combat then 4 else 5
                         |> string
-                        |> R.str
+                        |> str
                     ]
                 ]
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Ritual"]
-                    R.td [] [
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Ritual"]
+                    td [] [
                         if character.HighSkill = Ritual then 6 else if character.LowSkill = Ritual then 4 else 5
                         |> string
-                        |> R.str
+                        |> str
                     ]
                 ]
-                R.tr [] [
-                    R.th [P.Style [P.TextAlign "right"]] [R.str "Sneaking"]
-                    R.td [] [
+                tr [] [
+                    th [Style [TextAlign TextAlignOptions.Right]] [str "Sneaking"]
+                    td [] [
                         if character.HighSkill = Sneaking then 6 else if character.LowSkill = Sneaking then 4 else 5
                         |> string
-                        |> R.str
+                        |> str
                     ]
                 ]
             ]
         ]
-        R.hr []
-        R.h4 [] [
-            R.str "If this is your first time playing, it would be useful to read about "
+        hr []
+        h4 [] [
+            str "If this is your first time playing, it would be useful to read about "
             showModalLinkByName "Attributes and Skills" "attributes and skills" dispatch
-            R.str ", "
+            str ", "
             showModalLinkByName "Rolling" "rolling" dispatch
-            R.str ", and "
+            str ", and "
             showModalLinkByName "Injuries" "injuries" dispatch
         ]
-        R.button [P.OnClick (fun _ -> dispatch StartGame)] [R.str "I am ready to begin my tale..."]
+        button [OnClick (fun _ -> dispatch StartGame)] [str "I am ready to begin my tale..."]
     ]
